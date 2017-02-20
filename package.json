@@ -1,0 +1,31 @@
+{
+  "name": "kchung-newsbody",
+  "version": "1.0.0",
+  "description": "KCHUNG Newsbody Website",
+  "author": "Tim Phillips <tim@kchungradio.org>",
+  "dependencies": {
+    "next": "beta",
+    "isomorphic-fetch": "^2.2.1",
+    "react-draggable": "^2.2.3"
+  },
+  "devDependencies": {
+    "standard": "^8.6.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "now": {
+    "alias": [
+      "kchung.news",
+      "kchung-newsbody.now.sh"
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
