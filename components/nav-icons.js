@@ -34,7 +34,6 @@ export default ({ showWindow, onPlayClick }) => (
       <p>about</p>
     </div>
 
-    {/*
     <div id='upload' className='icon'>
       <a href='https://upload.kchung.news'>
         <svg className='upload' fill='white' viewBox='0 0 1253.2 1508.2'>
@@ -44,7 +43,6 @@ export default ({ showWindow, onPlayClick }) => (
         <p>upload</p>
       </a>
     </div>
-    */}
 
     <style jsx>{`
       .navigation {

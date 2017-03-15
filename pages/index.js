@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import 'isomorphic-fetch'
 
+import config from '../config'
 import Layout from '../components/layout'
 import Window from '../components/window'
 import EpisodeList from '../components/bodies/episode-list'
@@ -15,7 +16,7 @@ import Info from '../components/player/info'
 const liveStreamEpisode = {
   title: 'live stream',
   audio: {
-    url: 'http://s2.voscast.com:9208/;&type=mp3'
+    url: config.voscast.url
   }
 }
 
@@ -43,10 +44,11 @@ export default class NewsBody extends Component {
     this.showEpisodeDetail = this.showEpisodeDetail.bind(this)
     this.playEpisode = this.playEpisode.bind(this)
     this.playLiveStream = this.playLiveStream.bind(this)
+    this.getAudioUrl = this.getAudioUrl.bind(this)
   }
 
   static async getInitialProps () {
-    const res = await fetch('https://kchung-newsbody-api.now.sh')
+    const res = await fetch(config.db.apiUrl)
     const json = await res.json()
     const episodes = json.slice().sort((a, b) =>
       new Date(b.date) - new Date(a.date)
@@ -63,13 +65,20 @@ export default class NewsBody extends Component {
         {this.renderWindow()}
         <Player
           hide={this.state.hidePlayer}
-          url={this.state.episodeForPlayer.audio &&
-            this.state.episodeForPlayer.audio.url}
+          url={this.getAudioUrl()}
         >
           <Info episode={this.state.episodeForPlayer} />
         </Player>
       </Layout>
     )
+  }
+
+  getAudioUrl () {
+    if (this.state.episodeForPlayer.audio) {
+      const audio = this.state.episodeForPlayer.audio
+      if (audio.filename) return config.s3.rootUrl + audio.filename
+      else return audio.url
+    }
   }
 
   renderWindow () {

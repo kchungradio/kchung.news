@@ -15,7 +15,7 @@ export default ({ episode, onEpisodeClick, playEpisode }) => {
   return (
     <div className='episode' onClick={event => onEpisodeClick(event, episode)}>
 
-      {audio && audio.url &&
+      {audio &&
       <div className='sidebar'>
         <PlayEpisodeButton
           episode={episode}

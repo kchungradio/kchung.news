@@ -1,9 +1,9 @@
 import React from 'react'
 import moment from 'moment'
 
-import PlayEpisodeButton from '../play-episode-button'
-
+import config from '../../config'
 import { getDurationString } from '../../lib/utils'
+import PlayEpisodeButton from '../play-episode-button'
 
 // TODO: make window size adjust to each episode
 
@@ -26,7 +26,7 @@ const EpisodeDetail = ({ episode, playEpisode }) => {
       <div className='episode-detail'>
         <div className='episode'>
 
-          {audio && audio.url &&
+          {audio &&
           <div className='sidebar'>
             <PlayEpisodeButton
               episode={episode}
@@ -64,8 +64,7 @@ const EpisodeDetail = ({ episode, playEpisode }) => {
         <div className='images'>
           {images && images.map((image, index) =>
             <img key={index}
-              src={image.url}
-              title={image.caption}
+              src={config.s3.rootUrl + image.filename}
               height='130px'
             />
           )}
