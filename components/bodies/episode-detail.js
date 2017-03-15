@@ -64,7 +64,7 @@ const EpisodeDetail = ({ episode, playEpisode }) => {
         <div className='images'>
           {images && images.map((image, index) =>
             <img key={index}
-              src={config.s3.rootUrl + image.filename}
+              src={config.s3.root_url + image.filename}
               height='130px'
             />
           )}

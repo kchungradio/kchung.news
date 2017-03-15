@@ -48,7 +48,7 @@ export default class NewsBody extends Component {
   }
 
   static async getInitialProps () {
-    const res = await fetch(config.db.apiUrl)
+    const res = await fetch(config.db.api_url)
     const json = await res.json()
     const episodes = json.slice().sort((a, b) =>
       new Date(b.date) - new Date(a.date)
@@ -76,7 +76,7 @@ export default class NewsBody extends Component {
   getAudioUrl () {
     if (this.state.episodeForPlayer.audio) {
       const audio = this.state.episodeForPlayer.audio
-      if (audio.filename) return config.s3.rootUrl + audio.filename
+      if (audio.filename) return config.s3.root_url + audio.filename
       else return audio.url
     }
   }
