@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 
 import config from '../../config'
-import { getDurationString } from '../../lib/utils'
+import getDurationString from '../../lib/get-duration-string'
 import PlayEpisodeButton from '../play-episode-button'
 
 const EpisodeDetail = ({ episode, playEpisode }) => {

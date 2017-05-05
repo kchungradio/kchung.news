@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Draggable from 'react-draggable'
 
-import { getDurationString } from '../../lib/utils'
+import getDurationString from '../../lib/get-duration-string'
 
 class Transport extends Component {
   constructor (props) {
