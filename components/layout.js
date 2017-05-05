@@ -5,7 +5,7 @@ import GlobalStyle from '../components/global-style'
 import Header from '../components/header'
 import NavIcons from '../components/nav-icons'
 
-export default ({ showWindow, playLiveStream, children }) => (
+export default ({ playLiveStream, children }) => (
   <div className='background'>
 
     <Head>
@@ -16,13 +16,10 @@ export default ({ showWindow, playLiveStream, children }) => (
     </Head>
 
     <Header />
-    <NavIcons
-      showWindow={showWindow}
-      onPlayClick={playLiveStream}
-    />
+    <NavIcons onPlayClick={playLiveStream} />
     {children}
-
     <GlobalStyle />
+
     <style jsx>{`
       .background {
         margin-bottom: 99px;

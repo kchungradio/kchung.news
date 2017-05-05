@@ -5,8 +5,6 @@ import config from '../../config'
 import { getDurationString } from '../../lib/utils'
 import PlayEpisodeButton from '../play-episode-button'
 
-// TODO: make window size adjust to each episode
-
 const EpisodeDetail = ({ episode, playEpisode }) => {
   const {
     title,
