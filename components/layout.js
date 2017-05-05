@@ -3,7 +3,6 @@ import Head from 'next/head'
 
 import GlobalStyle from '../components/global-style'
 import Header from '../components/header'
-import NavIcons from '../components/nav-icons'
 
 export default ({ playLiveStream, children }) => (
   <div className='background'>
@@ -16,8 +15,9 @@ export default ({ playLiveStream, children }) => (
     </Head>
 
     <Header />
-    <NavIcons onPlayClick={playLiveStream} />
+
     {children}
+
     <GlobalStyle />
 
     <style jsx>{`
