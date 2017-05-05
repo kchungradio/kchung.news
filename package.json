@@ -4,8 +4,10 @@
   "description": "KCHUNG Newsbody Website",
   "author": "Tim Phillips <tim@kchungradio.org>",
   "dependencies": {
-    "next": "beta",
     "isomorphic-fetch": "^2.2.1",
+    "next": "beta",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-draggable": "^2.2.3"
   },
   "devDependencies": {
