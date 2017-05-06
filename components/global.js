@@ -21,7 +21,6 @@ export default () => (
         font-family: courier, sans-serif;
         background: red;
         color: white;
-        position: fixed;
       }
       a, a:link, a:visited, a:active {
         text-decoration: none;
