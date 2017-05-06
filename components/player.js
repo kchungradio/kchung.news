@@ -32,7 +32,7 @@ export default class Player extends Component {
   }
 
   render () {
-    const { url, title, streaming } = this.props
+    const { url, title, stream } = this.props
     const { playing, played, duration } = this.state
 
     return (
@@ -61,18 +61,17 @@ export default class Player extends Component {
         />
 
         <div className='stack'>
-          <div className='title'>
+          <div className={`title${stream && ' stream'}`}>
             <span>{title}</span>
           </div>
 
-          {!streaming &&
-            <Duration
-              className='duration'
-              seconds={duration}
-            />
-          }
+          <Duration
+            className={`duration${stream && ' hidden'}`}
+            seconds={duration}
+          />
 
           <input
+            className={stream && 'hidden'}
             type='range' min={0} max={1} step='any'
             value={played}
             onMouseDown={this.onSeekMouseDown}
@@ -95,7 +94,6 @@ export default class Player extends Component {
             height: 70px;
             min-width: 500px;
             box-sizing: border-box;
-            border-top: 1px solid white;
             background: red;
           }
           img {
@@ -109,7 +107,11 @@ export default class Player extends Component {
           }
           .title {
             position: absolute;
-            top: 1px;
+            top: 2px;
+          }
+          .title.stream {
+            position: relative;
+            top: 0;
           }
           :global(.duration) {
             position: absolute;

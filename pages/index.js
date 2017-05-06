@@ -11,13 +11,15 @@ import Player from '../components/player'
 import config from '../config'
 const apiUrl = config.db.api_url
 
-const playerProps = {
-  title: 'live stream',
-  url: config.voscast.url,
-  streaming: true
-}
-
 export default class NewsBody extends Component {
+  state = {
+    player: {
+      title: 'live stream',
+      url: config.voscast.url,
+      stream: true
+    }
+  }
+
   static async getInitialProps () {
     const res = await fetch(apiUrl)
     const json = await res.json()
@@ -37,7 +39,7 @@ export default class NewsBody extends Component {
           <RecentStories />
         </MainLayout>
 
-        <Player {...playerProps} />
+        <Player {...this.state.player} />
       </div>
     )
   }

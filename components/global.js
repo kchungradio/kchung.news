@@ -42,6 +42,9 @@ export default () => (
       }
       .red { color: red; }
       .darkgrey { color: darkgrey; }
+      .hidden {
+        display: none;
+      }
     `}</style>
   </div>
 )
