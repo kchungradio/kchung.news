@@ -3,20 +3,18 @@ import React from 'react'
 export default () => (
   <div className='kchung'>
 
-    <img width='200px' src='/static/kchungblood.png' />
-
-    <h1>news body</h1>
+    <h1>KCHUNG NEWS BODY</h1>
 
     <style jsx> {`
       .kchung {
-        margin: 25px 0 30px 25px;
-        width: 200px;
+        display: flex;
+        justify-content: center;
+        margin: 25px;
+        width: 100%;
       }
       h1 {
-        width: 100%;
-        font-size: 25px;
+        font-size: 4rem;
         font-weight: normal;
-        text-align: right;
         letter-spacing: 7px;
       }
     `}</style>
