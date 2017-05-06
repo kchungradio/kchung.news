@@ -9,7 +9,8 @@
     "next": "beta",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-draggable": "^2.2.3"
+    "react-draggable": "^2.2.3",
+    "react-textfit": "^0.1.9"
   },
   "devDependencies": {
     "standard": "^8.6.0"

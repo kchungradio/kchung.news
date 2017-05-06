@@ -2,16 +2,17 @@ import moment from 'moment'
 
 const renderStories = () => (
   recentStories.map(story =>
-    <div className='story'>
+    <div className='story' key={story.id}>
 
       <span className='date'>
         {moment(story.date).format('MMMM Do, YYYY')}
       </span>
 
+      {/* TODO: use next/link here */}
       <a>{story.title}</a>
 
       <style jsx>{`
-        .post {
+        .story {
           margin-bottom: 10px;
         }
 
@@ -20,15 +21,15 @@ const renderStories = () => (
           width: 180px;
           text-align: right;
           margin-right: 30px;
+          font-size: 85%;
         }
 
         a {
-          text-decoration: underline;
           cursor: pointer;
         }
 
         @media (max-width: 500px) {
-          .post {
+          .story {
             margin-bottom: 15px;
           }
 
@@ -37,7 +38,7 @@ const renderStories = () => (
             width: inherit;
             text-align: inherit;
             font-size: 11px;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
           }
         }
       `}</style>

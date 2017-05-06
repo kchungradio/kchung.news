@@ -5,6 +5,7 @@ import 'isomorphic-fetch'
 
 import config from '../config'
 import MainLayout from '../layouts/main'
+import Header from '../components/header'
 import RecentStories from '../components/recent-stories'
 import Player from '../components/player'
 import Info from '../components/player/info'
@@ -42,15 +43,20 @@ export default class NewsBody extends Component {
 
   render () {
     return (
-      <MainLayout playLiveStream={this.playLiveStream}>
-        <RecentStories />
+      <div>
+        <MainLayout playLiveStream={this.playLiveStream}>
+          <Header />
+          <br />
+          <RecentStories />
+        </MainLayout>
+
         <Player
           hide={this.state.hidePlayer}
           url={this.getAudioUrl()}
         >
           <Info episode={this.state.episodeForPlayer} />
         </Player>
-      </MainLayout>
+      </div>
     )
   }
 

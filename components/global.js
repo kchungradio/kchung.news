@@ -24,10 +24,15 @@ export default () => (
       }
       a, a:link, a:visited, a:active {
         text-decoration: none;
+        color: white;
       }
       a:hover {
         background: white;
         color: red;
+      }
+      h1 a:hover {
+        background: red;
+        color: white;
       }
       hr {
         width: 97%;
