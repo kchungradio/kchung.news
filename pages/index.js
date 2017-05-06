@@ -1,6 +1,6 @@
 /* global fetch */
 
-import React, { Component } from 'react'
+import { Component } from 'react'
 import 'isomorphic-fetch'
 
 import MainLayout from '../layouts/main'

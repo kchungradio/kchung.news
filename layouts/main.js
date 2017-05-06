@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Global from '../components/global'
 
 export default ({ children }) => (

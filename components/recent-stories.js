@@ -15,7 +15,6 @@ const renderStories = () => (
         .story {
           margin-bottom: 10px;
         }
-
         .date {
           display: inline-block;
           width: 180px;
@@ -23,7 +22,6 @@ const renderStories = () => (
           margin-right: 30px;
           font-size: 85%;
         }
-
         a {
           cursor: pointer;
         }
@@ -32,7 +30,6 @@ const renderStories = () => (
           .story {
             margin-bottom: 15px;
           }
-
           .date {
             display: block;
             width: inherit;
