@@ -5,8 +5,11 @@ import 'isomorphic-fetch'
 
 import config from '../config'
 import Layout from '../components/layout'
+import Header from '../components/header'
+import RecentStories from '../components/recent-stories'
 import Player from '../components/player'
 import Info from '../components/player/info'
+import GlobalStyle from '../components/global-style'
 
 const liveStreamEpisode = {
   title: 'live stream',
@@ -42,12 +45,15 @@ export default class NewsBody extends Component {
   render () {
     return (
       <Layout playLiveStream={this.playLiveStream}>
+        <Header />
+        <RecentStories />
         <Player
           hide={this.state.hidePlayer}
           url={this.getAudioUrl()}
         >
           <Info episode={this.state.episodeForPlayer} />
         </Player>
+        <GlobalStyle />
       </Layout>
     )
   }

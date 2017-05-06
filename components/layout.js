@@ -1,9 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 
-import GlobalStyle from '../components/global-style'
-import Header from '../components/header'
-
 export default ({ playLiveStream, children }) => (
   <div className='background'>
 
@@ -14,11 +11,7 @@ export default ({ playLiveStream, children }) => (
       <link rel='icon' type='image/x-icon' href='/static/favicon.ico' />
     </Head>
 
-    <Header />
-
     {children}
-
-    <GlobalStyle />
 
     <style jsx>{`
       .background {
