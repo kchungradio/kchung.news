@@ -9,7 +9,7 @@
     "next": "beta",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-player": "0.17.1",
+    "react-player": "babenzele/react-player",
     "react-textfit": "^0.1.9"
   },
   "devDependencies": {

@@ -2802,9 +2802,9 @@ react-hot-loader@3.0.0-beta.6:
     redbox-react "^1.2.5"
     source-map "^0.4.4"
 
-react-player@^0.17.1:
+react-player@babenzele/react-player:
   version "0.17.1"
-  resolved "https://registry.yarnpkg.com/react-player/-/react-player-0.17.1.tgz#b42d9c26a7944d46a35eb3bd30e00d3d73645f47"
+  resolved "https://codeload.github.com/babenzele/react-player/tar.gz/1d175032b47743a03171a3ea6de4f45ae8f602f5"
   dependencies:
     fetch-jsonp "^1.0.2"
     load-script "^1.0.0"
