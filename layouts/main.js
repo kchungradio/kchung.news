@@ -2,7 +2,7 @@ import React from 'react'
 
 import Global from '../components/global'
 
-export default ({ playLiveStream, children }) => (
+export default ({ children }) => (
   <div className='background'>
     <Global />
 
@@ -11,12 +11,8 @@ export default ({ playLiveStream, children }) => (
     </div>
 
     <style jsx>{`
-      .background {
-        margin-bottom: 99px;
-      }
-
       .main {
-        padding: 40px;
+        padding: 30px 40px;
       }
     `}</style>
   </div>
