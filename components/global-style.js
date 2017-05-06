@@ -6,11 +6,16 @@ export default () => (
   <style jsx global>{`
     * {
       margin: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     body {
       font-family: courier, sans-serif;
       background: red;
       color: white;
+      position: fixed;
     }
     a, a:link, a:visited, a:active {
       text-decoration: none;
