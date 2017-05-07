@@ -53,6 +53,7 @@ export default class Player extends Component {
           onError={e => console.log('onError', e)}
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
+          fileConfig={{forceAudio: true}}
         />
 
         <img className='play-button'

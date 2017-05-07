@@ -6,10 +6,10 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
-    "next": "beta",
+    "next": "^2.3.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-player": "babenzele/react-player",
+    "react-player": "^0.17.2",
     "react-textfit": "^0.1.9"
   },
   "devDependencies": {
@@ -25,8 +25,7 @@
   },
   "now": {
     "alias": [
-      "kchung.news",
-      "kchung-newsbody.now.sh"
+      "dev-kchung-newsbody.now.sh"
     ],
     "env": {
       "NODE_ENV": "production"
