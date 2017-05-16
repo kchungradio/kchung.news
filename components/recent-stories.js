@@ -1,7 +1,7 @@
 import moment from 'moment'
 
-const renderStories = () => (
-  recentStories.map(story =>
+const renderStories = (stories) => (
+  stories.map(story =>
     <div className='story' key={story.id}>
 
       <span className='date'>
@@ -43,24 +43,4 @@ const renderStories = () => (
   )
 )
 
-const recentStories = [
-  {
-    id: '1',
-    title: 'antifa clash w/ fascists',
-    date: '2017-05-01'
-  }, {
-    id: '2',
-    title: 'trump destroys america',
-    date: '2017-04-29'
-  }, {
-    id: '3',
-    title: 'ai singularists promote body modification',
-    date: '2017-04-20'
-  }, {
-    id: '4',
-    title: 'neighborhood council solicits neighbors help',
-    date: '2017-04-19'
-  }
-]
-
-export default () => <div> {renderStories()} </div>
+export default ({ stories }) => <div> {renderStories(stories)} </div>

@@ -25,6 +25,7 @@
   },
   "now": {
     "alias": [
+      "dev.kchung.news",
       "dev-kchung-newsbody.now.sh"
     ],
     "env": {

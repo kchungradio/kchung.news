@@ -21,25 +21,23 @@ export default class NewsBody extends Component {
   }
 
   static async getInitialProps () {
-    /*
     const res = await fetch(apiUrl)
     const json = await res.json()
-    const episodes = json.slice().sort((a, b) =>
+    const stories = json.slice().sort((a, b) =>
       new Date(b.date) - new Date(a.date)
     )
-    return { episodes }
-    */
-    return { episodes: [] }
+    return { stories }
   }
 
   render () {
+    const { stories } = this.props
     return (
       <div>
         <MainLayout>
           <Header />
           <br />
           <br />
-          <RecentStories />
+          <RecentStories stories={stories} />
         </MainLayout>
 
         <Player {...this.state.player} />
