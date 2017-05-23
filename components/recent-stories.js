@@ -5,7 +5,7 @@ const renderStories = (stories) => (
     <div className='story' key={story.id}>
 
       <span className='date'>
-        {moment(story.date).format('MMMM Do, YYYY')}
+        {moment(story.published_at).format('MMMM Do, YYYY')}
       </span>
 
       {/* TODO: use next/link here */}
