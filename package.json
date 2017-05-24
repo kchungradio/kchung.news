@@ -10,6 +10,7 @@
     "qs": "^6.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-html-parser": "^1.0.3",
     "react-player": "^0.17.2",
     "react-textfit": "^0.1.9"
   },
@@ -26,8 +27,7 @@
   },
   "now": {
     "alias": [
-      "dev.kchung.news",
-      "dev-kchung-newsbody.now.sh"
+      "dev.kchung.news"
     ],
     "env": {
       "NODE_ENV": "production"

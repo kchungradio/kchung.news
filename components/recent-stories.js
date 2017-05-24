@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import moment from 'moment'
 
 const renderStories = (stories) => (
@@ -8,8 +9,9 @@ const renderStories = (stories) => (
         {moment(story.published_at).format('MMMM Do, YYYY')}
       </span>
 
-      {/* TODO: use next/link here */}
-      <a>{story.title}</a>
+      <Link prefetch href={`/story?slug=${story.slug}`}>
+        <a>{story.title}</a>
+      </Link>
 
       <style jsx>{`
         .story {
