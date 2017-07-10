@@ -1,14 +1,11 @@
 import Link from 'next/link'
-import { Textfit } from 'react-textfit'
 
 export default () => (
   <div className='kchung'>
     <h1>
       <Link href='/'>
         <a>
-          <Textfit mode='single'>
-            KCHUNG News Body
-          </Textfit>
+          KCHUNG News Body
         </a>
       </Link>
     </h1>
