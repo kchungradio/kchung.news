@@ -1,12 +1,15 @@
-import { Component } from 'react'
+/* global fetch */
 
-import config from '../config'
-import { getStories } from '../lib/db'
+import { Component } from 'react'
+import 'isomorphic-fetch'
 
 import MainLayout from '../layouts/main'
 import Header from '../components/header'
-import RecentStories from '../components/recent-stories'
+import Story from '../components/story'
 import Player from '../components/player'
+
+import config from '../config'
+const apiUrl = config.db.api_url
 
 export default class NewsBody extends Component {
   state = {
@@ -18,19 +21,28 @@ export default class NewsBody extends Component {
   }
 
   static async getInitialProps () {
-    const stories = await getStories()
+    const res = await fetch(apiUrl)
+    const json = await res.json()
+    const stories = json.slice().sort((a, b) =>
+      new Date(b.date) - new Date(a.date)
+    )
     return { stories }
   }
 
   render () {
     const { stories } = this.props
+
     return (
       <div>
         <MainLayout>
+
           <Header />
           <br />
-          <br />
-          <RecentStories stories={stories} />
+
+          {stories.map(story =>
+            <Story story={story} />
+          )}
+
         </MainLayout>
 
         <Player {...this.state.player} />
