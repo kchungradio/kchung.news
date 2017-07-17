@@ -6,12 +6,13 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
-    "next": "beta",
+    "next": "^2.4.7",
     "qs": "^6.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-html-parser": "^1.0.3",
-    "react-player": "^0.17.2"
+    "react-player": "^0.17.2",
+    "validator": "^8.0.0"
   },
   "devDependencies": {
     "standard": "^8.6.0"

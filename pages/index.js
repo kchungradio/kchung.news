@@ -8,11 +8,9 @@ import Story from '../components/story'
 
 import config from '../config'
 
-const apiUrl = config.db.api_url
-
 export default class NewsBody extends Component {
   static async getInitialProps () {
-    const res = await fetch(apiUrl)
+    const res = await fetch(config.api.stories_url)
     const json = await res.json()
     const stories = json.slice().sort((a, b) =>
       new Date(b.date) - new Date(a.date)

@@ -18,17 +18,17 @@ export default () => (
       <Link href='/participate'><a>participate</a></Link>
     </nav>
 
+    <br />
+
     <style jsx> {`
       h1 {
         text-transform: lowercase;
         letter-spacing: 0.25rem;
         font-size: 8.423vw;
       }
-
       nav {
         padding-top: 5px;
       }
-
       @media (max-width: 500px) {
         h1 {
           font-size: 6.4vw;
