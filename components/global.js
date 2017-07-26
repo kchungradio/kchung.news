@@ -5,6 +5,7 @@ export default () => (
     <Head>
       <meta charSet='utf-8' />
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      <meta name='google-site-verification' content='bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y' />
       <link rel='icon' type='image/x-icon' href='/static/favicon.ico' />
     </Head>
 
