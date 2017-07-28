@@ -3,10 +3,11 @@
 import { Component } from 'react'
 import validator from 'validator'
 
+import Layout from '../layouts/main'
 import config from '../config'
 
 const checkEmailWithServer = email => {
-  return fetch(config.api.auth_url, {
+  return fetch(`${config.api.auth_url}/signIn`, {
     method: 'POST',
     body: JSON.stringify({ email })
   })
@@ -27,7 +28,7 @@ class SignInForm extends Component {
   handleFormSubmit = async event => {
     event.preventDefault()
     const { email, emailSent } = this.state
-    if (emailSent) return
+    // if (emailSent) return
 
     if (validator.isEmail(email)) {
       this.setState({ error: null })
@@ -65,7 +66,7 @@ class SignInForm extends Component {
     } = this.state
 
     return (
-      <div>
+      <Layout>
         <form onSubmit={this.handleFormSubmit}>
           <p>Sign in with your email:</p>
           <br />
@@ -79,7 +80,8 @@ class SignInForm extends Component {
           <p>{message}</p>
           <p>{error}</p>
           <br />
-          {!emailSent && <button type='submit'>sign in</button>}
+          {/* !emailSent && <button type='submit'>sign in</button> */}
+          <button type='submit'>sign in</button>
         </form>
 
         <style jsx>{`
@@ -97,7 +99,7 @@ class SignInForm extends Component {
             background-color: white;
           }
         `}</style>
-      </div>
+      </Layout>
     )
   }
 }
