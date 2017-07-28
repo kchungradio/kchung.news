@@ -3,12 +3,12 @@
 import { Component } from 'react'
 import 'isomorphic-fetch'
 
-import Layout from '../layouts/main'
+import wrapWithLayout from '../components/wrapWithLayout'
 import Story from '../components/story'
 
 import config from '../config'
 
-export default class NewsBody extends Component {
+class NewsBody extends Component {
   static async getInitialProps () {
     const res = await fetch(config.api.stories_url)
     const json = await res.json()
@@ -22,11 +22,13 @@ export default class NewsBody extends Component {
     const { stories } = this.props
 
     return (
-      <Layout>
+      <div>
         {stories.map(story =>
           <Story story={story} />
         )}
-      </Layout>
+      </div>
     )
   }
 }
+
+export default wrapWithLayout(NewsBody)

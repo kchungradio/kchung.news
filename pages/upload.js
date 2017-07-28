@@ -1,15 +1,5 @@
-import { Component } from 'react'
+import wrapWithLayout from '../components/wrapWithLayout'
 
-import Layout from '../layouts/main'
+const Upload = () => <p>upload</p>
 
-class Upload extends Component {
-  render () {
-    return (
-      <Layout>
-        upload
-      </Layout>
-    )
-  }
-}
-
-export default Upload
+export default wrapWithLayout(Upload)

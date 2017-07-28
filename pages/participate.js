@@ -1,9 +1,5 @@
-import Layout from '../layouts/main'
+import wrapWithLayout from '../components/wrapWithLayout'
 
-const participate = () => (
-  <Layout>
-    <h1>Participate</h1>
-  </Layout>
-)
+const Participate = () => <p>participate</p>
 
-export default participate
+export default wrapWithLayout(Participate)
