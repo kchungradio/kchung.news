@@ -3,7 +3,6 @@ const prod = process.env.NODE_ENV === 'production'
 let config = {}
 
 config.api = {}
-config.ghost = {}
 config.s3 = {}
 config.voscast = {}
 
