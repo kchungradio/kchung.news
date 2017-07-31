@@ -3,7 +3,7 @@
 import { Component } from 'react'
 import 'isomorphic-fetch'
 
-import wrapWithLayout from '../components/wrapWithLayout'
+import Page from '../components/page'
 import Story from '../components/story'
 
 import config from '../config'
@@ -31,4 +31,4 @@ class NewsBody extends Component {
   }
 }
 
-export default wrapWithLayout(NewsBody)
+export default Page(NewsBody)

@@ -1,5 +1,5 @@
-import wrapWithLayout from '../components/wrapWithLayout'
+import Page from '../components/page'
 
 const Upload = () => <p>upload</p>
 
-export default wrapWithLayout(Upload)
+export default Page(Upload)

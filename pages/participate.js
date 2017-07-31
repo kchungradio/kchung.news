@@ -1,5 +1,5 @@
-import wrapWithLayout from '../components/wrapWithLayout'
+import Page from '../components/page'
 
 const Participate = () => <p>participate</p>
 
-export default wrapWithLayout(Participate)
+export default Page(Participate)

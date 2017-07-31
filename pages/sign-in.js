@@ -3,7 +3,7 @@
 import { Component } from 'react'
 import validator from 'validator'
 
-import Layout from '../layouts/main'
+import Page from '../components/page'
 import config from '../config'
 
 const checkEmailWithServer = email => {
@@ -66,7 +66,7 @@ class SignInForm extends Component {
     } = this.state
 
     return (
-      <Layout>
+      <div>
         <form onSubmit={this.handleFormSubmit}>
           <p>Sign in with your email:</p>
           <br />
@@ -99,9 +99,9 @@ class SignInForm extends Component {
             background-color: white;
           }
         `}</style>
-      </Layout>
+      </div>
     )
   }
 }
 
-export default SignInForm
+export default Page(SignInForm)
