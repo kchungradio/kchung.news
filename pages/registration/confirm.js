@@ -13,6 +13,10 @@ import config from '../../config'
  */
 
 class Confirm extends Component {
+  state = {
+    message: ''
+  }
+
   static async getInitialProps ({ query }) {
     return { query }
   }
@@ -25,18 +29,26 @@ class Confirm extends Component {
       `${config.api.auth_url}/confirm?${qs.stringify(query)}`
     )
 
+    console.log(res)
     if (res.ok) {
       let { email, token } = await res.json()
       console.log('response', { email, token })
       // TODO save token to cookie/localStorage
       // TODO router.replace /upload
     } else {
-      // TODO router.replace /notifications/no-match
+      const message = await res.text()
+      this.setState({ message })
     }
   }
 
   render () {
-    return <div>hey</div>
+    const { message } = this.state
+
+    return (
+      <div>
+        <p>{message}</p>
+      </div>
+    )
   }
 }
 
