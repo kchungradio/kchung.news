@@ -1,6 +1,7 @@
 /* global fetch */
 import { Component } from 'react'
 import qs from 'querystring'
+import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
 
 import Page from '../../components/page'
@@ -12,9 +13,11 @@ import config from '../../config'
  * which this page will store locally
  */
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 class Confirm extends Component {
   state = {
-    message: ''
+    error: ''
   }
 
   static async getInitialProps ({ query }) {
@@ -22,31 +25,36 @@ class Confirm extends Component {
   }
 
   async componentDidMount () {
-    const { query } = this.props
+    const { query, url } = this.props
     console.log('query', query)
 
     const res = await fetch(
       `${config.api.auth_url}/confirm?${qs.stringify(query)}`
     )
 
-    console.log(res)
     if (res.ok) {
       let { email, token } = await res.json()
       console.log('response', { email, token })
-      // TODO save token to cookie/localStorage
-      // TODO router.replace /upload
+
+      // Store the email, token for the benefit of client and server
+      window.localStorage.setItem('email', email)
+      window.localStorage.setItem('token', token)
+      Cookie.set('email', email, { secure: isProduction })
+      Cookie.set('token', token, { secure: isProduction })
+
+      url.replace('/upload')
     } else {
-      const message = await res.text()
-      this.setState({ message })
+      const error = await res.text()
+      this.setState({ error })
     }
   }
 
   render () {
-    const { message } = this.state
+    const { error } = this.state
 
     return (
       <div>
-        <p>{message}</p>
+        <p>{error}</p>
       </div>
     )
   }
