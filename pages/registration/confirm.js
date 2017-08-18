@@ -3,6 +3,7 @@ import { Component } from 'react'
 import qs from 'querystring'
 import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
+import Router from 'next/router'
 
 import Page from '../../components/page'
 import config from '../../config'
@@ -20,12 +21,12 @@ class Confirm extends Component {
     error: ''
   }
 
-  static async getInitialProps ({ query }) {
+  static getInitialProps ({ query }) {
     return { query }
   }
 
   async componentDidMount () {
-    const { query, url } = this.props
+    const { query } = this.props
     console.log('query', query)
 
     const res = await fetch(
@@ -36,13 +37,13 @@ class Confirm extends Component {
       let { email, token } = await res.json()
       console.log('response', { email, token })
 
-      // Store the email, token for the benefit of client and server
+      // store the email and token for the benefit of client and server
       window.localStorage.setItem('email', email)
       window.localStorage.setItem('token', token)
       Cookie.set('email', email, { secure: isProduction })
       Cookie.set('token', token, { secure: isProduction })
 
-      url.replace('/upload')
+      Router.replace('/upload')
     } else {
       const error = await res.text()
       this.setState({ error })
