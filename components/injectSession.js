@@ -10,7 +10,9 @@ import React from 'react'
 const getSessionFromLocalStorage = () => {
   const email = window.localStorage.getItem('email')
   const token = window.localStorage.getItem('token')
-  return { email, token }
+  if (email && token) {
+    return { email, token }
+  }
 }
 
 const getSessionFromCookie = (req) => {
