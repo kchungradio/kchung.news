@@ -43,7 +43,7 @@ class Confirm extends Component {
       Cookie.set('email', email, { secure: isProduction })
       Cookie.set('token', token, { secure: isProduction })
 
-      Router.replace('/upload')
+      Router.push('/')
     } else {
       const error = await res.text()
       this.setState({ error })
@@ -55,7 +55,7 @@ class Confirm extends Component {
 
     return (
       <div>
-        <p>{error}</p>
+        {error ? <p>{error}</p> : <div>signing in...</div>}
       </div>
     )
   }

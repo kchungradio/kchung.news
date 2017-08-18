@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-export default () => (
-  <div className='kchung'>
+export default ({ session }) => (
+  <div className='header'>
     <h1>
       <Link href='/'>
         <a>
@@ -11,11 +11,16 @@ export default () => (
     </h1>
 
     <nav>
-      <Link href='/'><a>stories</a></Link>
+      {session && <Link href='/stories'><a>stories</a></Link>}
+
+      {session && <span> | </span>}
+      {session && <Link href='/upload'><a>upload</a></Link>}
+
+      {!session && <Link href='/participate'><a>participate</a></Link>}
+
       <span> | </span>
-      <Link href='/upload'><a>upload</a></Link>
-      <span> | </span>
-      <Link href='/participate'><a>participate</a></Link>
+      {!session && <Link href='/sign-in'><a>sign in</a></Link>}
+      {session && <Link href='/sign-out'><a>sign out</a></Link>}
     </nav>
 
     <br />

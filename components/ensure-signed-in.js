@@ -17,7 +17,6 @@ const ensureSignedIn = Page => {
 
     constructor (props) {
       super(props)
-      console.log(process.browser, props.session, !props.session)
 
       // On the client redirect right away to the sign in page if
       // there's no session

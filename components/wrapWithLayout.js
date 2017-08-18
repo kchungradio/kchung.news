@@ -16,13 +16,13 @@ const wrapWithLayout = Page => (
         <div className='background'>
           <Global />
 
-          <div className='main'>
-            <Header />
+          <div className='layout'>
+            <Header session={this.props.session} />
             <Page {...this.props} />
           </div>
 
           <style jsx>{`
-            .main {
+            .layout {
               padding: 30px 40px;
             }
           `}</style>
