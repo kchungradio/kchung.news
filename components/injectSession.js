@@ -1,4 +1,5 @@
 import React from 'react'
+import base64 from 'base-64'
 
 /*
  * Dredges up a `session` object from cookie or localStorage and, if present,
@@ -8,35 +9,33 @@ import React from 'react'
  */
 
 const getSessionFromLocalStorage = () => {
-  const email = window.localStorage.getItem('email')
-  const token = window.localStorage.getItem('token')
-  if (email && token) {
-    return { email, token }
+  const sessionStr = window.localStorage.getItem('session')
+  const session = JSON.parse(sessionStr)
+
+  if (session) {
+    return session
   }
 }
 
 const getSessionFromCookie = (req) => {
-  // cookie should be "email=email@domain.org; token=a1b2c3d4e5f6g7h8"
   const { cookie } = req.headers
 
   if (cookie) {
-    const emailCookie = cookie
+    const sessionCookie = cookie
       .split(';')
       .map(s => s.trim())
-      .find(s => s.startsWith('email='))
-    const tokenCookie = cookie
-      .split(';')
-      .map(s => s.trim())
-      .find(s => s.startsWith('token='))
+      .find(s => s.startsWith('session='))
 
-    // If there's an email and token
-    if (emailCookie && tokenCookie) {
-      // Pull out and cleanup email and token
-      const email = emailCookie.split('=').pop().trim()
-      const token = tokenCookie.split('=').pop().trim()
+    // pull out and cleanup session
+    if (sessionCookie) {
+      // split on first equals sign because of base64 padding
+      // https://stackoverflow.com/a/4607799/1386245
+      const encodedSessionStr = sessionCookie.split(/=(.+)/)[1]
+      const sessionStr = base64.decode(encodedSessionStr)
+      const session = JSON.parse(sessionStr)
 
-      if (email && token) {
-        return { email, token }
+      if (session) {
+        return session
       }
     }
   }
@@ -54,11 +53,10 @@ const injectSession = Page => {
         ? await Page.getInitialProps(ctx)
         : {}
 
-      // session should be { email, token }
+      // session should be { email, name, token }
       const session = process.browser
         ? getSessionFromLocalStorage()
         : getSessionFromCookie(ctx.req)
-      console.log('session', session)
 
       // Inject any initial props and session
       return { ...initialProps, session }

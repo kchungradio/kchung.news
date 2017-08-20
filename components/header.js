@@ -11,16 +11,17 @@ export default ({ session }) => (
     </h1>
 
     <nav>
-      {session && <Link href='/stories'><a>stories</a></Link>}
-
-      {session && <span> | </span>}
-      {session && <Link href='/upload'><a>upload</a></Link>}
-
-      {!session && <Link href='/participate'><a>participate</a></Link>}
-
+      <Link href='/'><a>stories</a></Link>
       <span> | </span>
-      {!session && <Link href='/sign-in'><a>sign in</a></Link>}
-      {session && <Link href='/sign-out'><a>sign out</a></Link>}
+
+      {session
+        ? <Link href='/:username'><a>{session.name}</a></Link>
+        : <Link href='/participate'><a>participate</a></Link>}
+      <span> | </span>
+
+      {session
+        ? <Link href='/sign-out'><a>sign out</a></Link>
+        : <Link href='/sign-in'><a>sign in</a></Link>}
     </nav>
 
     <br />

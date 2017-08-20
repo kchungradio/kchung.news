@@ -5,9 +5,9 @@ import Header from '../components/header'
 
 const wrapWithLayout = Page => (
   class WrapWithLayout extends React.Component {
-    static getInitialProps (context) {
+    static getInitialProps (ctx) {
       return Page.getInitialProps
-        ? Page.getInitialProps(context)
+        ? Page.getInitialProps(ctx)
         : {}
     }
 

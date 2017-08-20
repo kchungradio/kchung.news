@@ -7,10 +7,8 @@ import Page from '../components/page'
 class SignOut extends React.Component {
   componentDidMount () {
     if (process.browser) {
-      window.localStorage.removeItem('email')
-      window.localStorage.removeItem('token')
-      Cookie.remove('email')
-      Cookie.remove('token')
+      window.localStorage.removeItem('session')
+      Cookie.remove('session')
     }
     Router.push('/')
   }

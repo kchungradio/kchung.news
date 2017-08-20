@@ -4,6 +4,7 @@ import qs from 'querystring'
 import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
 import Router from 'next/router'
+import base64 from 'base-64'
 
 import Page from '../../components/page'
 import config from '../../config'
@@ -27,21 +28,21 @@ class Confirm extends Component {
 
   async componentDidMount () {
     const { query } = this.props
-    console.log('query', query)
 
+    // get session
     const res = await fetch(
       `${config.api.auth_url}/confirm?${qs.stringify(query)}`
     )
 
     if (res.ok) {
-      let { email, token } = await res.json()
-      console.log('response', { email, token })
+      let { email, name, token } = await res.json()
+      const session = { email, name, token }
+      const sessionStr = JSON.stringify(session)
+      const encodedSessionStr = base64.encode(sessionStr)
 
-      // store the email and token for the benefit of client and server
-      window.localStorage.setItem('email', email)
-      window.localStorage.setItem('token', token)
-      Cookie.set('email', email, { secure: isProduction })
-      Cookie.set('token', token, { secure: isProduction })
+      // store the session for the benefit of client and server
+      window.localStorage.setItem('session', sessionStr)
+      Cookie.set('session', encodedSessionStr, { secure: isProduction })
 
       Router.push('/')
     } else {
