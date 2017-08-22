@@ -8,6 +8,7 @@
     "js-cookie": "^2.1.4",
     "moment": "^2.18.1",
     "next": "^3.0.3",
+    "next-routes": "^1.0.40",
     "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -22,16 +23,13 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "PORT=3000 node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "now": {
     "alias": [
       "dev.kchung.news"
-    ],
-    "env": {
-      "NODE_ENV": "production"
-    }
+    ]
   }
 }

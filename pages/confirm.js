@@ -3,10 +3,10 @@ import { Component } from 'react'
 import qs from 'querystring'
 import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
-import Router from 'next/router'
+import { Router } from '../routes'
 
-import Page from '../../components/page'
-import config from '../../config'
+import Page from '../components/page'
+import config from '../config'
 
 /*
  * this page confirms an email and temp token with our auth-api
@@ -43,7 +43,7 @@ class Confirm extends Component {
       window.localStorage.setItem('session', sessionStr)
       Cookie.set('session', encodedSessionStr, { secure: isProduction })
 
-      Router.push('/')
+      Router.pushRoute('stories')
     } else {
       const error = await res.text()
       this.setState({ error })

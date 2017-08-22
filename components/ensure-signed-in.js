@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from 'next/router'
+import { Router } from '../routes'
 
 /*
  * Causes page component to be redirected to `/sign-in` if there is no
@@ -21,7 +21,7 @@ const ensureSignedIn = Page => {
       // On the client redirect right away to the sign in page if
       // there's no session
       if (process.browser && !props.session) {
-        Router.push('/sign-in')
+        Router.pushRoute('sign-in')
       }
     }
 
@@ -29,7 +29,7 @@ const ensureSignedIn = Page => {
       // On the client redirect to the sign in page if the session
       // gets signed out in another tab
       if (process.browser && !nextProps.session) {
-        Router.push('/sign-in')
+        Router.pushRoute('sign-in')
       }
     }
 

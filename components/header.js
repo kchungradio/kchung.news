@@ -1,9 +1,9 @@
-import Link from 'next/link'
+import { Link } from '../routes'
 
 export default ({ session }) => (
   <div className='header'>
     <h1>
-      <Link href='/'>
+      <Link route='stories'>
         <a>
           KCHUNG News Body
         </a>
@@ -11,17 +11,21 @@ export default ({ session }) => (
     </h1>
 
     <nav>
-      <Link href='/'><a>stories</a></Link>
+      <Link route='stories'><a>stories</a></Link>
       <span> | </span>
 
       {session
-        ? <Link href='/:username'><a>{session.name}</a></Link>
-        : <Link href='/participate'><a>participate</a></Link>}
+        ? (
+          <Link route='authorStories' params={{ authorSlug: session.name }}>
+            <a>{session.name}</a>
+          </Link>
+        )
+        : <Link route='participate'><a>participate</a></Link>}
       <span> | </span>
 
       {session
-        ? <Link href='/sign-out'><a>sign out</a></Link>
-        : <Link href='/sign-in'><a>sign in</a></Link>}
+        ? <Link route='sign-out'><a>sign out</a></Link>
+        : <Link route='sign-in'><a>sign in</a></Link>}
     </nav>
 
     <br />

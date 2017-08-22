@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from 'next/router'
+import { Router } from '../routes'
 import Cookie from 'js-cookie'
 
 import Page from '../components/page'
@@ -10,7 +10,7 @@ class SignOut extends React.Component {
       window.localStorage.removeItem('session')
       Cookie.remove('session')
     }
-    Router.push('/')
+    Router.pushRoute('stories')
   }
 
   render () {
