@@ -4,7 +4,6 @@ import qs from 'querystring'
 import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
 import Router from 'next/router'
-import base64 from 'base-64'
 
 import Page from '../../components/page'
 import config from '../../config'
@@ -38,7 +37,7 @@ class Confirm extends Component {
       let { email, name, token } = await res.json()
       const session = { email, name, token }
       const sessionStr = JSON.stringify(session)
-      const encodedSessionStr = base64.encode(sessionStr)
+      const encodedSessionStr = window.btoa(sessionStr)
 
       // store the session for the benefit of client and server
       window.localStorage.setItem('session', sessionStr)

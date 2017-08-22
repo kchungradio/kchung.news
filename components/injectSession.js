@@ -1,5 +1,4 @@
 import React from 'react'
-import base64 from 'base-64'
 
 /*
  * Dredges up a `session` object from cookie or localStorage and, if present,
@@ -18,6 +17,8 @@ const getSessionFromLocalStorage = () => {
 }
 
 const getSessionFromCookie = (req) => {
+  // this only runs on the server
+
   const { cookie } = req.headers
 
   if (cookie) {
@@ -31,7 +32,8 @@ const getSessionFromCookie = (req) => {
       // split on first equals sign because of base64 padding
       // https://stackoverflow.com/a/4607799/1386245
       const encodedSessionStr = sessionCookie.split(/=(.+)/)[1]
-      const sessionStr = base64.decode(encodedSessionStr)
+      const sessionStr = Buffer.from(encodedSessionStr, 'base64')
+        .toString('ascii')
       const session = JSON.parse(sessionStr)
 
       if (session) {
