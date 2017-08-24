@@ -4,6 +4,9 @@ import moment from 'moment'
 // TODO: use react-transition group
 // https://reactcommunity.org/react-transition-group
 
+// TODO: prevent double click text selection:
+// https://stackoverflow.com/a/28726111
+
 class Story extends Component {
   state = {
     showDetails: false
@@ -14,26 +17,27 @@ class Story extends Component {
     const { showDetails } = this.state
 
     return (
-      <div className='story' key={story.title}>
+      <div className='story'
+        onClick={() => this.setState({ showDetails: !showDetails })}
+      >
 
-        <div className='main'
-          onClick={() => {
-            // TODO: prevent double click text selection:
-            // https://stackoverflow.com/a/28726111
-            this.setState({showDetails: !showDetails})
-          }}
-        >
-          <span className='date'>
-            {moment(story.published_at).format('MMMM Do, YYYY')}
-          </span>
-          <span className='title'>
-            {story.title}
-          </span>
-        </div>
+        <span className='author'>
+          {story.authorName}
+        </span>
 
-        {showDetails &&
-          <div className='details'>details</div>
-        }
+        <span className='date'>
+          {moment(story.published_at).format('MMMM Do, YYYY')}
+        </span>
+
+        <span className='title'>
+          {story.title}
+        </span>
+
+        {showDetails && (
+          <div className='details'>
+            {story.description}
+          </div>
+        )}
 
         <style jsx>{`
           .story {
@@ -42,26 +46,21 @@ class Story extends Component {
           .main {
             cursor: pointer;
           }
-          .date {
+          .date, .author {
             display: inline-block;
-            width: 180px;
-            text-align: right;
             margin-right: 30px;
             font-size: 85%;
-          }
-          .details {
-            padding-left: 10px;
           }
 
           @media (max-width: 500px) {
             .story {
               margin-bottom: 15px;
             }
-            .date {
+            .date, .author {
               display: block;
               width: inherit;
               text-align: inherit;
-              font-size: 11px;
+              font-size: 14px;
               margin-bottom: 3px;
             }
           }
