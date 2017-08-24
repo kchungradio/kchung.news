@@ -16,7 +16,10 @@ export default ({ session }) => (
 
       {session
         ? (
-          <Link route='authorStories' params={{ authorSlug: session.name }}>
+          <Link
+            route='authorStories'
+            params={{ authorSlug: session.slug }}
+          >
             <a>{session.name}</a>
           </Link>
         )

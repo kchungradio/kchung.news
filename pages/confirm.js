@@ -34,8 +34,7 @@ class Confirm extends Component {
     )
 
     if (res.ok) {
-      let { email, name, token } = await res.json()
-      const session = { email, name, token }
+      const session = await res.json()
       const sessionStr = JSON.stringify(session)
       const encodedSessionStr = window.btoa(sessionStr)
 

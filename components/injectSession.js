@@ -55,7 +55,7 @@ const injectSession = Page => {
         ? await Page.getInitialProps(ctx)
         : {}
 
-      // session should be { email, name, token }
+      // session should be { email, name, slug, token }
       const session = process.browser
         ? getSessionFromLocalStorage()
         : getSessionFromCookie(ctx.req)
