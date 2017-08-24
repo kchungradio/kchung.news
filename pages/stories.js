@@ -1,20 +1,29 @@
-/* global fetch */
-
 import { Component } from 'react'
-import 'isomorphic-fetch'
+import request from 'axios'
 
 import Page from '../components/page'
 import Story from '../components/story'
-
 import config from '../config'
 
 class NewsBody extends Component {
-  static async getInitialProps () {
-    const res = await fetch(config.api.stories_url)
-    const json = await res.json()
-    const stories = json.slice().sort((a, b) =>
+  static async getInitialProps ({ query }) {
+    // query.authorSlug comes from ../routes.js
+    const { authorSlug } = query
+
+    // set request parameters based on query
+    let options = {}
+    if (authorSlug) {
+      options.params = { authorSlug }
+    }
+
+    // get stories from api
+    const res = await request.get(config.api.stories_url, options)
+
+    // sort by date descending
+    const stories = res.data.slice().sort((a, b) =>
       new Date(b.date) - new Date(a.date)
     )
+
     return { stories }
   }
 
@@ -24,7 +33,10 @@ class NewsBody extends Component {
     return (
       <div>
         {stories.map(story =>
-          <Story story={story} />
+          <Story
+            key={`${story.author}-${story.date}`}
+            story={story}
+          />
         )}
       </div>
     )
