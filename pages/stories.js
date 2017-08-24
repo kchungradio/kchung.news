@@ -32,12 +32,18 @@ class NewsBody extends Component {
 
     return (
       <div>
+
+        {stories.length === 0 &&
+          <span>No stories here...</span>
+        }
+
         {stories.map(story =>
           <Story
             key={`${story.author}-${story.date}`}
             story={story}
           />
         )}
+
       </div>
     )
   }
