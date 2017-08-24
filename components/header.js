@@ -11,7 +11,7 @@ export default ({ session }) => (
     </h1>
 
     <nav>
-      <Link route='stories'><a>stories</a></Link>
+      <Link route='stories'><a>Stories</a></Link>
       <span> | </span>
 
       {session
@@ -23,12 +23,12 @@ export default ({ session }) => (
             <a>{session.name}</a>
           </Link>
         )
-        : <Link route='participate'><a>participate</a></Link>}
+        : <Link route='participate'><a>Participate</a></Link>}
       <span> | </span>
 
       {session
-        ? <Link route='sign-out'><a>sign out</a></Link>
-        : <Link route='sign-in'><a>sign in</a></Link>}
+        ? <Link route='sign-out'><a>Sign out</a></Link>
+        : <Link route='sign-in'><a>Sign in</a></Link>}
     </nav>
 
     <br />
