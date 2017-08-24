@@ -6,13 +6,13 @@ config.api = {}
 config.s3 = {}
 config.voscast = {}
 
-config.api.stories_url = prod
+config.api.storiesUrl = prod
   ? 'https://kchung.news/api/stories'
   : 'http://localhost:3001'
-config.api.auth_url = prod
+config.api.authUrl = prod
   ? 'https://kchung.news/api/auth'
   : 'http://localhost:3002'
-config.s3.root_url = 'http://archive.kchung.news/'
+config.s3.rootUrl = 'http://archive.kchung.news/'
 config.voscast.url = 'http://s2.voscast.com:9208/;&type=mp3'
 
 export default config

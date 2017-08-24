@@ -30,7 +30,7 @@ class Confirm extends Component {
 
     // get session
     const res = await fetch(
-      `${config.api.auth_url}/confirm?${qs.stringify(query)}`
+      `${config.api.authUrl}/confirm?${qs.stringify(query)}`
     )
 
     if (res.ok) {

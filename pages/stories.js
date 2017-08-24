@@ -17,7 +17,7 @@ class NewsBody extends Component {
     }
 
     // get stories from api
-    const res = await request.get(config.api.stories_url, options)
+    const res = await request.get(config.api.storiesUrl, options)
 
     // sort by date descending
     const stories = res.data.slice().sort((a, b) =>
