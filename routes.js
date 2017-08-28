@@ -17,8 +17,8 @@ const routes = module.exports = nextRoutes()
  */
 
 routes.add('stories', '/', 'stories')
+routes.add('new-story')
 routes.add('participate')
-routes.add('upload')
 routes.add('sign-in')
 routes.add('sign-out')
 routes.add('confirm', '/registration/confirm', 'confirm')

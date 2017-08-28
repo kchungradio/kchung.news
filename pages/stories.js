@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Router } from '../routes'
 import request from 'axios'
 
 import Page from '../components/page'
@@ -24,18 +25,27 @@ class NewsBody extends Component {
       new Date(b.date) - new Date(a.date)
     )
 
-    return { stories }
+    return { slug: authorSlug, stories }
   }
 
   render () {
-    const { stories } = this.props
+    const { session, slug, stories } = this.props
 
     return (
       <div>
 
-        {stories.length === 0 &&
+        {slug === session.slug && (
+          <button
+            className='small'
+            onClick={() => Router.pushRoute('/new-story')}
+          >
+            New Story
+          </button>
+        )}
+
+        {stories.length === 0 && (
           <span>No stories here...</span>
-        }
+        )}
 
         {stories.map(story =>
           <Story

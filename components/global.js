@@ -30,6 +30,17 @@ export default () => (
         background: red;
         color: white;
       }
+      button.small {
+        background-color: white;
+        color: red;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        outline: none;
+      }
+      button.small:active {
+        background-color: #eee;
+      }
       hr {
         width: 97%;
         height: 1px;

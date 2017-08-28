@@ -42,8 +42,6 @@ class Story extends Component {
         <style jsx>{`
           .story {
             margin-bottom: 10px;
-          }
-          .main {
             cursor: pointer;
           }
           .date, .author {
