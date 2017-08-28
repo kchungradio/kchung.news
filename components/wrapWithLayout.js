@@ -23,7 +23,7 @@ const wrapWithLayout = Page => (
 
           <style jsx>{`
             .layout {
-              padding: 30px 40px;
+              padding: 20px 40px;
             }
           `}</style>
         </div>

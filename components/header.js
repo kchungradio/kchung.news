@@ -35,7 +35,6 @@ export default ({ session }) => (
 
     <style jsx> {`
       h1 {
-        text-transform: lowercase;
         letter-spacing: 0.25rem;
         font-size: 8.423vw;
       }
