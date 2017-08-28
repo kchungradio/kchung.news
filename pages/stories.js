@@ -25,16 +25,16 @@ class NewsBody extends Component {
       new Date(b.date) - new Date(a.date)
     )
 
-    return { slug: authorSlug, stories }
+    return { authorSlug, stories }
   }
 
   render () {
-    const { session, slug, stories } = this.props
+    const { session, authorSlug, stories } = this.props
 
     return (
       <div>
 
-        {slug === session.slug && (
+        {authorSlug === session.slug && (
           <button
             className='small'
             onClick={() => Router.pushRoute('/new-story')}
@@ -49,7 +49,7 @@ class NewsBody extends Component {
 
         {stories.map(story =>
           <Story
-            key={`${story.author}-${story.date}`}
+            key={`${story.authorSlug}-${story.date}`}
             story={story}
           />
         )}
