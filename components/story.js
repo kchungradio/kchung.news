@@ -26,7 +26,7 @@ class Story extends Component {
         </span>
 
         <span className='date'>
-          {moment(story.published_at).format('MMMM Do, YYYY')}
+          {moment(story.publishedAt).format('MMMM Do, YYYY')}
         </span>
 
         <span className='title'>

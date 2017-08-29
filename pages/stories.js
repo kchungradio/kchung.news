@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import { Router } from '../routes'
 import request from 'axios'
 
+import { Router } from '../routes'
 import Page from '../components/page'
 import Story from '../components/story'
 import config from '../config'
@@ -22,7 +22,7 @@ class NewsBody extends Component {
 
     // sort by date descending
     const stories = res.data.slice().sort((a, b) =>
-      new Date(b.date) - new Date(a.date)
+      new Date(b.publishedAt) - new Date(a.publishedAt)
     )
 
     return { authorSlug, stories }
@@ -49,7 +49,7 @@ class NewsBody extends Component {
 
         {stories.map(story =>
           <Story
-            key={`${story.authorSlug}-${story.date}`}
+            key={`${story.authorSlug}-${story.createdAt}`}
             story={story}
           />
         )}
