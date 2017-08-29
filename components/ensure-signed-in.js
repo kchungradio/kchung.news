@@ -1,4 +1,5 @@
-import React from 'react'
+import { Component } from 'react'
+
 import { Router } from '../routes'
 
 /*
@@ -7,7 +8,7 @@ import { Router } from '../routes'
  */
 
 const ensureSignedIn = Page => {
-  return class EnsureSignedIn extends React.Component {
+  return class EnsureSignedIn extends Component {
     static getInitialProps (ctx) {
       // If the page has a prop fetcher invoke it
       return Page.getInitialProps

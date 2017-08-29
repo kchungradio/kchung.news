@@ -1,10 +1,13 @@
-import React from 'react'
+import { Component } from 'react'
 
 /*
- * Dredges up a `session` object from cookie or localStorage and, if present,
- * injects it as a prop. Also keeps track of the current session in
- * component state so that multiple tabs open in the same browser can react
- * to sign ins/outs.
+ * Dredges up a `session` object from cookie or localStorage and,
+ * if present, injects it as a prop. Also keeps track of the current
+ * session in component state so that multiple tabs open in the same
+ * browser can react to sign ins/outs.
+ *
+ * If you want the session prop in child components, you must
+ * pass it down.
  */
 
 const getSessionFromLocalStorage = () => {
@@ -44,7 +47,7 @@ const getSessionFromCookie = (req) => {
 }
 
 const injectSession = Page => {
-  return class InjectSession extends React.Component {
+  return class InjectSession extends Component {
     // we need state so that we can trigger an update of children
     // components when the session changes
     state = {}

@@ -22,7 +22,7 @@ class Story extends Component {
       >
 
         <span className='author'>
-          {story.authorName}
+          {story.author}
         </span>
 
         <span className='date'>

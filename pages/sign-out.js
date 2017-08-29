@@ -1,10 +1,10 @@
-import React from 'react'
-import { Router } from '../routes'
+import { Component } from 'react'
 import Cookie from 'js-cookie'
 
+import { Router } from '../routes'
 import Page from '../components/page'
 
-class SignOut extends React.Component {
+class SignOut extends Component {
   componentDidMount () {
     if (process.browser) {
       window.localStorage.removeItem('session')

@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 
 import Global from '../components/global'
 import Header from '../components/header'
 
 const wrapWithLayout = Page => (
-  class WrapWithLayout extends React.Component {
+  class WrapWithLayout extends Component {
     static getInitialProps (ctx) {
       return Page.getInitialProps
         ? Page.getInitialProps(ctx)

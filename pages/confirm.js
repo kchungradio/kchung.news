@@ -3,8 +3,8 @@ import { Component } from 'react'
 import qs from 'querystring'
 import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
-import { Router } from '../routes'
 
+import { Router } from '../routes'
 import Page from '../components/page'
 import config from '../config'
 
