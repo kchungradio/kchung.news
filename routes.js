@@ -13,6 +13,9 @@ const routes = module.exports = nextRoutes()
  * Note: No author can be named the same as any of the routes.
  *   TODO: make a name check to prevent this
  *
+ * If you change a route, make sure you check all Link and
+ * Router components
+ *
  * See https://github.com/fridays/next-routes
  */
 

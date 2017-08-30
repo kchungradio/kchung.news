@@ -13,9 +13,7 @@ class NewsBody extends Component {
 
     // set request parameters based on query
     let options = {}
-    if (authorSlug) {
-      options.params = { authorSlug }
-    }
+    if (authorSlug) options.params = { authorSlug }
 
     // get stories from api
     const res = await request.get(config.api.storiesUrl, options)
@@ -29,12 +27,21 @@ class NewsBody extends Component {
   }
 
   render () {
-    const { session, authorSlug, stories } = this.props
+    const {
+      session,
+      url,
+      authorSlug,
+      stories
+    } = this.props
+
+    const isHome = url.pathname === '/stories' && !authorSlug
+    const isUsersPage = authorSlug === session.slug
+    const noStories = stories.length === 0
 
     return (
       <div>
 
-        {authorSlug === session.slug && (
+        {(isHome || isUsersPage) && (
           <button
             className='small'
             onClick={() => Router.pushRoute('/new-story')}
@@ -43,7 +50,7 @@ class NewsBody extends Component {
           </button>
         )}
 
-        {stories.length === 0 && (
+        {noStories && (
           <span>No stories here...</span>
         )}
 
