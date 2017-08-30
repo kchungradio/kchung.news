@@ -30,6 +30,21 @@ export default () => (
         background: red;
         color: white;
       }
+      input, textarea {
+        font-family: courier, sans-serif;
+        font-size: 14px;
+        background-color: red;
+        color: white;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+      }
+      input::placeholder, textarea::placeholder {
+        color: white;
+      }
       button.small {
         background-color: white;
         color: red;
@@ -48,6 +63,7 @@ export default () => (
         margin: 1em 0 1em auto;
         background-color: #979797;
       }
+      .error { font-size: 12px; }
       .red { color: red; }
       .darkgrey { color: darkgrey; }
       .hidden {
