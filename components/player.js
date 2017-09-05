@@ -12,7 +12,9 @@ export default class Player extends Component {
   }
 
   playPause = () => {
-    this.setState({ playing: !this.state.playing })
+    this.setState(prevState => ({
+      playing: !prevState.playing
+    }))
   }
   onProgress = state => {
     // only update time slider if not currently seeking
