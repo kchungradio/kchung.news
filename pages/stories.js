@@ -41,7 +41,7 @@ class NewsBody extends Component {
     return (
       <div>
 
-        {(isHome || isUsersPage) && (
+        {session && (isHome || isUsersPage) && (
           <button
             className='small'
             onClick={() => Router.pushRoute('/new-story')}
