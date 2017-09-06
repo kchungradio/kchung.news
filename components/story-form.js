@@ -9,18 +9,18 @@ import UploadField from '../components/upload-field'
 
 class UploadForm extends Component {
   state = {
-    fields: {},
+    fields: this.props.storyToEdit || {},
     fieldErrors: {},
     submitted: false
   }
 
   handleFormSubmit = async event => {
     event.preventDefault()
-    // XXX user can still submit multiple times even though we're disabling
-    //     the button with this setState call
+    // XXX user can still submit multiple times even though we're
+    //     disabling the button with this setState call
     this.setState({ submitted: true })
 
-    const { session } = this.props
+    const { session, storyToEdit } = this.props
 
     if (!session) return
     if (!this.validateForm()) return
@@ -41,25 +41,28 @@ class UploadForm extends Component {
     const story = {
       ...fields,
       authorSlug: session.slug,
-      author: session.name,
-      publishedAt: new Date().toISOString()
+      author: session.name
+    }
+    if (!storyToEdit) {
+      story.publishedAt = new Date().toISOString()
     }
 
     console.log('story', story)
 
-    // 📫
-    // TODO: use axios.post here
+    // 📫 TODO: use axios
+    const method = storyToEdit ? 'PUT' : 'POST'
+    const storyPath = storyToEdit ? `/${storyToEdit.titleSlug}` : ''
+    const apiUrl = `${config.api.storiesUrl}${storyPath}`
     try {
-      await fetch(config.api.storiesUrl, {
-        method: 'POST',
+      await fetch(apiUrl, {
+        method,
         body: JSON.stringify(story)
       })
     } catch (err) {
       console.error(err)
     }
 
-    // clear form and redirect
-    this.setState({ fields: {} })
+    // route to user's stories
     Router.pushRoute(`/${session.slug}`)
   }
 
@@ -101,8 +104,12 @@ class UploadForm extends Component {
   }
 
   render () {
-    const { session } = this.props
+    const { session, storyToEdit } = this.props
     const { fields, submitted } = this.state
+
+    if (Array.isArray(fields.tags)) {
+      fields.tags = fields.tags.join(' ')
+    }
 
     return (
       <div className='form-container'>
@@ -165,6 +172,7 @@ class UploadForm extends Component {
             form='story-form'
             type='submit'
             className='submit'
+            value={storyToEdit ? 'Save' : 'Create new story'}
             disabled={submitted || !this.validateForm()}
           />
 
@@ -175,9 +183,9 @@ class UploadForm extends Component {
             width: 80%;
           }
           .submit {
-            width: 88px;
             background-color: white;
             color: red;
+            width: auto;
             margin: 8px 10px;
             border-radius: 2px;
           }

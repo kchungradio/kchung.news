@@ -21,6 +21,7 @@ const routes = module.exports = nextRoutes()
 
 routes.add('stories', '/', 'stories')
 routes.add('new-story')
+routes.add('edit-story', '/edit/:storySlug')
 routes.add('participate')
 routes.add('sign-in')
 routes.add('sign-out')

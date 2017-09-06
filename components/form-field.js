@@ -33,6 +33,7 @@ export default class Field extends Component {
         placeholder={this.props.placeholder}
         value={this.props.value}
         onChange={this.onChange}
+        spellCheck={false}
       />
     )
   }

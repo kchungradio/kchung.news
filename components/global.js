@@ -43,7 +43,7 @@ export default () => (
         outline: none;
       }
       input::placeholder, textarea::placeholder {
-        color: white;
+        color: #ddd;
       }
       button.small {
         background-color: white;

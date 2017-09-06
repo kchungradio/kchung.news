@@ -8,7 +8,7 @@ import config from '../config'
 
 class NewsBody extends Component {
   static async getInitialProps ({ query }) {
-    // query.authorSlug comes from ../routes.js
+    // query.authorSlug comes from url defined in ../routes.js
     const { authorSlug } = query
 
     // set request parameters based on query
