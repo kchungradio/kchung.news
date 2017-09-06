@@ -34,8 +34,8 @@ class NewsBody extends Component {
       stories
     } = this.props
 
-    const isHome = url.pathname === '/stories' && !authorSlug
-    const isUsersPage = authorSlug === session.slug
+    const isHome = (url.pathname === '/stories') && !authorSlug
+    const isUsersPage = session && (authorSlug === session.slug)
     const noStories = stories.length === 0
 
     return (
