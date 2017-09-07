@@ -30,7 +30,7 @@ export default () => (
         background: red;
         color: white;
       }
-      input, textarea {
+      input[type=text], textarea {
         font-family: courier, sans-serif;
         font-size: 14px;
         background-color: red;
@@ -42,19 +42,34 @@ export default () => (
         border-bottom: 2px solid white;
         outline: none;
       }
-      input::placeholder, textarea::placeholder {
+      input[type=text]::placeholder, textarea::placeholder {
         color: #ddd;
       }
-      button.small {
+      button, input[type=submit] {
         background-color: white;
         color: red;
         border: none;
         border-radius: 2px;
         cursor: pointer;
         outline: none;
+        width: auto;
       }
-      button.small:active {
+      button:active, input[type=submit]:active {
         background-color: #eee;
+      }
+      button:disabled, input[type=submit]:disabled {
+        background-color: grey;
+        color: white;
+      }
+      button:disabled:hover, input[type=submit]:disabled:hover {
+        cursor: not-allowed;
+      }
+      .btn-md {
+        padding: 6px 12px;
+      }
+      .btn-lg {
+        padding: 10px 16px;
+        font-size: 12px;
       }
       hr {
         width: 97%;

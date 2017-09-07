@@ -29,6 +29,7 @@ export default class Field extends Component {
   renderInput = () => {
     return (
       <input
+        type='text'
         name={this.props.name}
         placeholder={this.props.placeholder}
         value={this.props.value}

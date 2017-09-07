@@ -153,25 +153,27 @@ class UploadForm extends Component {
             onChange={this.handleInputChange}
           />
 
-          <UploadField
-            label='select an audio file:'
-            mimeType='audio/*'
-            onUploadFinish={this.onAudioUploadFinish}
-            session={session}
-          />
+          <div className='upload-group'>
+            <UploadField
+              label='select an audio file:'
+              mimeType='audio/*'
+              onUploadFinish={this.onAudioUploadFinish}
+              session={session}
+            />
 
-          <UploadField
-            label='select photo(s):'
-            mimeType='image/*'
-            multiple
-            onUploadFinish={this.onImageUploadFinish}
-            session={session}
-          />
+            <UploadField
+              label='select photo(s):'
+              mimeType='image/*'
+              multiple
+              onUploadFinish={this.onImageUploadFinish}
+              session={session}
+            />
+          </div>
 
           <input
             form='story-form'
             type='submit'
-            className='submit'
+            className='btn-lg'
             value={storyToEdit ? 'Save' : 'Create new story'}
             disabled={submitted || !this.validateForm()}
           />
@@ -182,22 +184,11 @@ class UploadForm extends Component {
           .form-container {
             width: 80%;
           }
-          .submit {
-            background-color: white;
-            color: red;
-            width: auto;
-            margin: 8px 10px;
-            border-radius: 2px;
+          .upload-group {
+            padding: 15px 0 10px 0;
           }
-          .submit:active {
-            background-color: #eee;
-          }
-          .submit:disabled {
-            background-color: grey;
-            color: white;
-          }
-          .submit:disabled:hover {
-            cursor: not-allowed;
+          input[type=submit] {
+            margin: 10px 0;
           }
         `}</style>
 

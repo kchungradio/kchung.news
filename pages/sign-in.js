@@ -28,7 +28,7 @@ class SignInForm extends Component {
   handleFormSubmit = async event => {
     event.preventDefault()
     const { email, emailSent } = this.state
-    // if (emailSent) return
+    if (emailSent) return
 
     if (validator.isEmail(email)) {
       this.setState({ error: null })
@@ -67,7 +67,7 @@ class SignInForm extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
+        <form id='sign-in-form' onSubmit={this.handleFormSubmit}>
           <p>Sign in with your email:</p>
           <br />
           <input
@@ -80,8 +80,14 @@ class SignInForm extends Component {
           <p>{message}</p>
           <p>{error}</p>
           <br />
-          {/* !emailSent && <button type='submit'>sign in</button> */}
-          <button type='submit'>sign in</button>
+          {!emailSent && (
+            <input
+              form='sign-in-form'
+              type='submit'
+              className='btn-md'
+              value='sign in'
+            />
+          )}
         </form>
 
         <style jsx>{`
@@ -90,13 +96,11 @@ class SignInForm extends Component {
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: 33%;
+            margin-top: 100px;
           }
-          input {
-            width: 80%;
-          }
-          button {
-            background-color: white;
+          input[type=text] {
+            width: 50%;
+            text-align: center;
           }
         `}</style>
       </div>

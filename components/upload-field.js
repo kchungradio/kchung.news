@@ -43,7 +43,7 @@ export default class extends Component {
 
   render () {
     return (
-      <div>
+      <div className='upload'>
 
         <p>{this.props.label}</p>
 
@@ -62,6 +62,7 @@ export default class extends Component {
 
         <style jsx>{`
           p { font-size: 14px; }
+          .upload { margin: 15px 0; }
         `}</style>
 
       </div>
