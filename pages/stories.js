@@ -51,7 +51,7 @@ class NewsBody extends Component {
         )}
 
         {noStories && (
-          <span>No stories here...</span>
+          <p>No stories here...</p>
         )}
 
         {stories.map(story =>

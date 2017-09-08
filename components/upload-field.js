@@ -34,6 +34,7 @@ export default class extends Component {
   componentWillMount () {
     const { session } = this.props
 
+    // TODO: change to jwt
     const credentialsString = `${session.email}:${session.token}`
     const base64EncodedCredentials = process.browser
       ? window.btoa(credentialsString)

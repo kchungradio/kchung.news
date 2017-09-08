@@ -40,6 +40,7 @@ class UploadForm extends Component {
     // our user's story
     const story = {
       ...fields,
+      authorId: session.id,
       authorSlug: session.slug,
       author: session.name
     }
@@ -47,7 +48,8 @@ class UploadForm extends Component {
       story.publishedAt = new Date().toISOString()
     }
 
-    console.log('story', story)
+    const type = storyToEdit ? 'edit' : 'new'
+    console.log(`${type}-story`, story)
 
     // 📫 TODO: use axios
     const method = storyToEdit ? 'PUT' : 'POST'
