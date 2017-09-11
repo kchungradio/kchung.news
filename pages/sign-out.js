@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Cookie from 'js-cookie'
 
 import { Router } from '../routes'
-import Page from '../components/page'
+import SecurePage from '../components/secure-page'
 
 class SignOut extends Component {
   componentDidMount () {
@@ -20,4 +20,4 @@ class SignOut extends Component {
   }
 }
 
-export default Page(SignOut)
+export default SecurePage(SignOut)

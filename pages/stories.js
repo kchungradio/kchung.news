@@ -42,12 +42,14 @@ class NewsBody extends Component {
       <div>
 
         {session && (isHome || isUsersPage) && (
-          <button
-            className='small'
-            onClick={() => Router.pushRoute('/new-story')}
-          >
-            New Story
-          </button>
+          <div>
+            <button onClick={() => Router.pushRoute('/new-story')}>
+              New Story
+            </button>
+            <button onClick={() => Router.pushRoute('/edit-profile')}>
+              Edit Profile
+            </button>
+          </div>
         )}
 
         {noStories && (
@@ -60,6 +62,12 @@ class NewsBody extends Component {
             story={story}
           />
         )}
+
+        <style jsx>{`
+          button {
+            margin: 0 10px 10px 0;
+          }
+        `}</style>
 
       </div>
     )
