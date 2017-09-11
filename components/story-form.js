@@ -55,6 +55,7 @@ class UploadForm extends Component {
     const method = storyToEdit ? 'PUT' : 'POST'
     const storyPath = storyToEdit ? `/${storyToEdit.titleSlug}` : ''
     const apiUrl = `${config.api.storiesUrl}${storyPath}`
+    // XXX: i'm not sure that this try block catches http error codes...
     try {
       await fetch(apiUrl, {
         method,
@@ -89,18 +90,18 @@ class UploadForm extends Component {
     return true
   }
 
-  onAudioUploadFinish = ({ filename, publicUrl }) => {
+  onAudioUploadFinish = ({ originalFilename, filename, publicUrl }) => {
     const { fields } = this.state
     if (!fields.audio) fields.audio = {}
 
-    fields.audio = { filename, publicUrl }
+    fields.audio = { originalFilename, filename, publicUrl }
     this.setState({ fields })
   }
-  onImageUploadFinish = ({ filename, publicUrl }) => {
+  onImageUploadFinish = ({ originalFilename, filename, publicUrl }) => {
     const { fields } = this.state
     if (!fields.images) fields.images = []
 
-    const image = { filename, publicUrl }
+    const image = { originalFilename, filename, publicUrl }
     fields.images = [ ...fields.images, image ]
     this.setState({ fields })
   }
@@ -119,7 +120,7 @@ class UploadForm extends Component {
         <form id='story-form' onSubmit={this.handleFormSubmit}>
 
           <Field
-            placeholder='Story Title'
+            placeholder='* Story Title'
             name='title'
             value={fields.title || ''}
             onChange={this.handleInputChange}
@@ -157,7 +158,7 @@ class UploadForm extends Component {
 
           <div className='upload-group'>
             <UploadField
-              label='select an audio file:'
+              label='* select an audio file'
               mimeType='audio/*'
               onUploadFinish={this.onAudioUploadFinish}
               session={session}

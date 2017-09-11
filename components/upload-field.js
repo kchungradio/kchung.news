@@ -24,11 +24,8 @@ export default class extends Component {
   }
   onUploadError = err => console.error(err)
   onUploadFinish = signedResult => {
-    const { filename, publicUrl } = signedResult
-
-    console.log('onUploadFinish', { filename, publicUrl })
-
-    this.props.onUploadFinish({ filename, publicUrl })
+    console.log('onUploadFinish:signedResult', signedResult)
+    this.props.onUploadFinish(signedResult)
   }
 
   componentWillMount () {
