@@ -162,6 +162,7 @@ class UploadForm extends Component {
               mimeType='audio/*'
               onUploadFinish={this.onAudioUploadFinish}
               session={session}
+              value={fields.audio && fields.audio.originalFilename}
             />
 
             <UploadField

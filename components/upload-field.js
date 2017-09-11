@@ -56,6 +56,8 @@ export default class extends Component {
           multiple={this.props.multiple}
         />
 
+        <span>{this.props.value}</span>
+
         <ProgressBar completed={this.state.progress} />
 
         <style jsx>{`
