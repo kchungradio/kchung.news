@@ -7,7 +7,7 @@ import Page from '../components/page'
 import config from '../config'
 
 const checkEmailWithServer = email => {
-  return fetch(`${config.api.authUrl}/signIn`, {
+  return fetch(`${config.api.authUrl}/sign-in`, {
     method: 'POST',
     body: JSON.stringify({ email })
   })

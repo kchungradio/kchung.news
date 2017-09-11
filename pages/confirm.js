@@ -1,11 +1,11 @@
 /* global fetch */
 import { Component } from 'react'
 import qs from 'querystring'
-import Cookie from 'js-cookie'
 import 'isomorphic-fetch'
 
 import { Router } from '../routes'
 import Page from '../components/page'
+import saveSession from '../lib/session'
 import config from '../config'
 
 /*
@@ -13,8 +13,6 @@ import config from '../config'
  * if confirmed, the auth-api should return a long lived token,
  * which this page will store locally
  */
-
-const isProduction = process.env.NODE_ENV === 'production'
 
 class Confirm extends Component {
   state = {
@@ -35,12 +33,8 @@ class Confirm extends Component {
 
     if (res.ok) {
       const session = await res.json()
-      const sessionStr = JSON.stringify(session)
-      const encodedSessionStr = window.btoa(sessionStr)
 
-      // store the session for the benefit of client and server
-      window.localStorage.setItem('session', sessionStr)
-      Cookie.set('session', encodedSessionStr, { secure: isProduction })
+      saveSession(session)
 
       Router.pushRoute('stories')
     } else {
