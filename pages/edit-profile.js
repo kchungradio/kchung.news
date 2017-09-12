@@ -24,6 +24,7 @@ class ProfileForm extends Component {
     const { newName } = this.state
 
     // TODO: send auth header
+    // TODO: make sure they're not using a name that already exists
 
     // urls
     const authApiUrl = `${config.api.authUrl}/user/${session.slug}`
