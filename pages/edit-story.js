@@ -5,6 +5,8 @@ import config from '../config'
 import SecurePage from '../components/secure-page'
 import StoryForm from '../components/story-form'
 
+// TODO: make more container components
+
 class EditStory extends Component {
   static async getInitialProps ({ query }) {
     // query.storySlug comes from url defined in ../routes.js

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Router } from '../routes'
 import moment from 'moment'
 
 // TODO: use react-transition group
@@ -15,7 +16,6 @@ const StoryDetails = ({ story }) => (
         {story.location}
       </span>
     )}
-
 
     <div className='top-row'>
       <div className='play'>
@@ -76,7 +76,7 @@ class Story extends Component {
   }
 
   render () {
-    const { story } = this.props
+    const { story, isUsersStory } = this.props
     const { showDetails } = this.state
 
     return (
@@ -93,9 +93,18 @@ class Story extends Component {
           {moment(story.publishedAt).format('MMMM Do, YYYY')}
         </span>
 
-        <div className='title'>
+        <span className='title'>
           {story.title}
-        </div>
+        </span>
+
+        {isUsersStory && (
+          <button onClick={e => {
+            e.stopPropagation()
+            Router.pushRoute(`/edit/${story.titleSlug}`)
+          }}>
+            edit
+          </button>
+        )}
 
         {showDetails && <StoryDetails story={story} />}
 
@@ -103,6 +112,9 @@ class Story extends Component {
           .story {
             margin-bottom: 10px;
             cursor: pointer;
+          }
+          .title {
+            margin-right: 30px;
           }
           .date, .author {
             display: inline-block;

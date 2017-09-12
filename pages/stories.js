@@ -58,8 +58,9 @@ class NewsBody extends Component {
 
         {stories.map(story =>
           <Story
-            key={`${story.authorSlug}-${story.createdAt}`}
+            key={`${story.authorId}-${story.createdAt}`}
             story={story}
+            isUsersStory={session.id === story.authorId}
           />
         )}
 
