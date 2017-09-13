@@ -9,6 +9,7 @@ import config from '../config'
 
 class NewsBody extends Component {
   state = {
+    playing: false,
     playerStory: {}
   }
 
@@ -31,7 +32,17 @@ class NewsBody extends Component {
     return { authorSlug, stories }
   }
 
-  setPlayerStory = story => this.setState({ playerStory: story })
+  onStoryPlayClick = story => this.setState({
+    playing: true,
+    playerStory: story
+  })
+
+  setPlayState = state => this.setState({ playing: state })
+  togglePlayPause = () => {
+    this.setState(prevState => ({
+      playing: !prevState.playing
+    }))
+  }
 
   render () {
     const {
@@ -40,7 +51,7 @@ class NewsBody extends Component {
       authorSlug,
       stories
     } = this.props
-    const { playerStory } = this.state
+    const { playing, playerStory } = this.state
 
     const isHome = (url.pathname === '/stories') && !authorSlug
     const isUsersPage = session && (authorSlug === session.slug)
@@ -68,8 +79,8 @@ class NewsBody extends Component {
           <Story
             key={`${story.authorId}_${story.createdAt}`}
             story={story}
-            isUsersStory={session.id === story.authorId}
-            onPlayClick={this.setPlayerStory}
+            isUsersStory={session && session.id === story.authorId}
+            onPlayClick={this.onStoryPlayClick}
           />
         )}
 
@@ -77,7 +88,9 @@ class NewsBody extends Component {
           <Player
             url={playerStory.audio && playerStory.audio.publicUrl}
             title={playerStory.title}
-            stream={false}
+            playing={playing}
+            setPlayState={this.setPlayState}
+            togglePlayPause={this.togglePlayPause}
           />
         )}
 

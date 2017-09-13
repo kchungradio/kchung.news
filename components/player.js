@@ -5,45 +5,31 @@ import Duration from './duration'
 
 export default class Player extends Component {
   state = {
-    playing: true,
-    played: 0,
+    playedPercent: 0,
     playedSeconds: 0,
-    loaded: 0,
     duration: 0
   }
 
-  playPause = () => {
-    this.setState(prevState => ({
-      playing: !prevState.playing
-    }))
-  }
-  onProgress = state => {
+  onProgress = ({ played: playedPercent, playedSeconds }) => {
     // only update time slider if not currently seeking
     if (!this.state.seeking) {
-      this.setState(state)
+      this.setState({ playedPercent, playedSeconds })
     }
   }
   onSeekMouseDown = e => {
     this.setState({ seeking: true })
   }
   onSeekChange = e => {
-    this.setState({ played: parseFloat(e.target.value) })
+    this.setState({ playedPercent: parseFloat(e.target.value) })
   }
   onSeekMouseUp = e => {
     this.setState({ seeking: false })
     this.player.seekTo(parseFloat(e.target.value))
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    // if the url has changed then start playing
-    if (prevProps.url !== this.props.url) {
-      this.setState({ playing: true })
-    }
-  }
-
   render () {
-    const { url, title } = this.props
-    const { playing, played, playedSeconds, duration } = this.state
+    const { url, title, playing, setPlayState, togglePlayPause } = this.props
+    const { playedPercent, playedSeconds, duration } = this.state
 
     return (
       <div className='player'>
@@ -56,20 +42,21 @@ export default class Player extends Component {
           playing={playing}
           onReady={() => console.log('onReady')}
           onStart={() => console.log('onStart')}
-          onPlay={() => this.setState({ playing: true })}
-          onPause={() => this.setState({ playing: false })}
+          onPlay={() => setPlayState(true)}
+          onPause={() => setPlayState(false)}
           onBuffer={() => console.log('onBuffer')}
-          onEnded={() => this.setState({ playing: false })}
+          onEnded={() => setPlayState(false)}
           onError={e => console.log('onError', e)}
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
           fileConfig={{forceAudio: true}}
+          progressFrequency={1000}
         />
 
         <img
           className='play-button'
           src={`/static/${playing ? 'pause' : 'play'}.svg`}
-          onClick={this.playPause}
+          onClick={togglePlayPause}
         />
 
         <div className='stack'>
@@ -83,7 +70,7 @@ export default class Player extends Component {
 
           <input
             type='range' min={0} max={1} step='any'
-            value={played}
+            value={playedPercent}
             onMouseDown={this.onSeekMouseDown}
             onChange={this.onSeekChange}
             onMouseUp={this.onSeekMouseUp}
