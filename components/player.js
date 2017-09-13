@@ -5,8 +5,9 @@ import Duration from './duration'
 
 export default class Player extends Component {
   state = {
-    playing: false,
+    playing: true,
     played: 0,
+    playedSeconds: 0,
     loaded: 0,
     duration: 0
   }
@@ -33,9 +34,16 @@ export default class Player extends Component {
     this.player.seekTo(parseFloat(e.target.value))
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    // if the url has changed then start playing
+    if (prevProps.url !== this.props.url) {
+      this.setState({ playing: true })
+    }
+  }
+
   render () {
-    const { url, title, stream } = this.props
-    const { playing, played, duration } = this.state
+    const { url, title } = this.props
+    const { playing, played, playedSeconds, duration } = this.state
 
     return (
       <div className='player'>
@@ -58,23 +66,22 @@ export default class Player extends Component {
           fileConfig={{forceAudio: true}}
         />
 
-        <img className='play-button'
+        <img
+          className='play-button'
           src={`/static/${playing ? 'pause' : 'play'}.svg`}
           onClick={this.playPause}
         />
 
         <div className='stack'>
-          <div className={`title${stream && ' stream'}`}>
+          <div className='title'>
             <span>{title}</span>
           </div>
 
-          <Duration
-            className={`duration${stream && ' hidden'}`}
-            seconds={duration}
-          />
+          <Duration seconds={playedSeconds} />
+          /
+          <Duration seconds={duration} />
 
           <input
-            className={stream && 'hidden'}
             type='range' min={0} max={1} step='any'
             value={played}
             onMouseDown={this.onSeekMouseDown}
@@ -93,10 +100,8 @@ export default class Player extends Component {
             justify-content: flex-start;
             position: fixed;
             bottom: 0;
+            left: 0;
             width: 100%;
-            height: 70px;
-            min-width: 500px;
-            box-sizing: border-box;
             background: red;
           }
           img {
@@ -107,20 +112,6 @@ export default class Player extends Component {
           .stack {
             width: 100%;
             margin-right: 15px;
-          }
-          .title {
-            position: absolute;
-            top: 2px;
-          }
-          .title.stream {
-            position: relative;
-            top: 0;
-          }
-          :global(.duration) {
-            position: absolute;
-            top: 2px;
-            right: 15px;
-            font-size: 14px;
           }
 
           input[type=range] {

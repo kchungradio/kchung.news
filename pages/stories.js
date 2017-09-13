@@ -4,9 +4,14 @@ import request from 'axios'
 import { Router } from '../routes'
 import Page from '../components/page'
 import Story from '../components/story'
+import Player from '../components/player'
 import config from '../config'
 
 class NewsBody extends Component {
+  state = {
+    playerStory: {}
+  }
+
   static async getInitialProps ({ query }) {
     // query.authorSlug comes from url defined in ../routes.js
     const { authorSlug } = query
@@ -26,6 +31,8 @@ class NewsBody extends Component {
     return { authorSlug, stories }
   }
 
+  setPlayerStory = story => this.setState({ playerStory: story })
+
   render () {
     const {
       session,
@@ -33,6 +40,7 @@ class NewsBody extends Component {
       authorSlug,
       stories
     } = this.props
+    const { playerStory } = this.state
 
     const isHome = (url.pathname === '/stories') && !authorSlug
     const isUsersPage = session && (authorSlug === session.slug)
@@ -58,9 +66,18 @@ class NewsBody extends Component {
 
         {stories.map(story =>
           <Story
-            key={`${story.authorId}-${story.createdAt}`}
+            key={`${story.authorId}_${story.createdAt}`}
             story={story}
             isUsersStory={session.id === story.authorId}
+            onPlayClick={this.setPlayerStory}
+          />
+        )}
+
+        {Object.keys(playerStory).length > 0 && (
+          <Player
+            url={playerStory.audio && playerStory.audio.publicUrl}
+            title={playerStory.title}
+            stream={false}
           />
         )}
 

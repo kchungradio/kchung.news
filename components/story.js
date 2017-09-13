@@ -8,7 +8,7 @@ import moment from 'moment'
 // TODO: prevent double click text selection:
 // https://stackoverflow.com/a/28726111
 
-const StoryDetails = ({ story }) => (
+const StoryDetails = ({ story, onPlayClick }) => (
   <div className='details'>
 
     {story.location && (
@@ -18,9 +18,14 @@ const StoryDetails = ({ story }) => (
     )}
 
     <div className='top-row'>
-      <div className='play'>
-        play
-      </div>
+      <img
+        className='play-button'
+        src={'/static/play.svg'}
+        onClick={e => {
+          e.stopPropagation()
+          onPlayClick(story)
+        }}
+      />
       <div className='description'>
         {story.description}
       </div>
@@ -43,8 +48,11 @@ const StoryDetails = ({ story }) => (
     */}
 
     <style jsx>{`
-      .play {
-        margin-top: 5px;
+      img {
+        width: 40px;
+        height: 40px;
+        margin: 5px 0;
+        cursor: pointer;
       }
       .description {
         font-size: 85%;
@@ -76,7 +84,7 @@ class Story extends Component {
   }
 
   render () {
-    const { story, isUsersStory } = this.props
+    const { story, isUsersStory, onPlayClick } = this.props
     const { showDetails } = this.state
 
     return (
@@ -106,7 +114,12 @@ class Story extends Component {
           </button>
         )}
 
-        {showDetails && <StoryDetails story={story} />}
+        {showDetails && (
+          <StoryDetails
+            story={story}
+            onPlayClick={onPlayClick}
+          />
+        )}
 
         <style jsx>{`
           .story {
