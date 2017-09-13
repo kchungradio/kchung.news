@@ -13,7 +13,7 @@ const checkEmailWithServer = email => {
   })
 }
 
-class SignInForm extends Component {
+class SignIn extends Component {
   state = {
     email: '',
     emailSent: false,
@@ -108,4 +108,5 @@ class SignInForm extends Component {
   }
 }
 
-export default Page(SignInForm)
+export { SignIn }
+export default Page(SignIn)

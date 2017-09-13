@@ -4,6 +4,8 @@ import request from 'axios'
 import { Router } from '../routes'
 import Page from '../components/page'
 import Story from '../components/story'
+import { Participate } from '../pages/participate'
+import { SignIn } from '../pages/sign-in'
 import Player from '../components/player'
 import config from '../config'
 
@@ -13,7 +15,14 @@ class NewsBody extends Component {
     playerStory: {}
   }
 
-  static async getInitialProps ({ query }) {
+  static async getInitialProps ({ asPath, query }) {
+    // if url is participate then just return participate = true
+    if (asPath === '/participate') {
+      return { participate: true }
+    } else if (asPath === '/sign-in') {
+      return { signIn: true }
+    }
+
     // query.authorSlug comes from url defined in ../routes.js
     const { authorSlug } = query
 
@@ -49,13 +58,18 @@ class NewsBody extends Component {
       session,
       url,
       authorSlug,
-      stories
+      stories,
+      participate,
+      signIn
     } = this.props
-    const { playing, playerStory } = this.state
+    const {
+      playing,
+      playerStory
+    } = this.state
 
     const isHome = (url.pathname === '/stories') && !authorSlug
     const isUsersPage = session && (authorSlug === session.slug)
-    const noStories = stories.length === 0
+    const noStories = stories && stories.length === 0
 
     return (
       <div>
@@ -71,17 +85,25 @@ class NewsBody extends Component {
           </div>
         )}
 
-        {noStories && (
-          <p>No stories here...</p>
-        )}
+        {/*
+          nasty hack to show participate and sign-in w/out stopping player
+          by just showing them all on the same page
+          when issue #88 gets addressed then we'll solve this elegantly
+          https://github.com/zeit/next.js/issues/88
+        */}
 
-        {stories.map(story =>
-          <Story
-            key={`${story.authorId}_${story.createdAt}`}
-            story={story}
-            isUsersStory={session && session.id === story.authorId}
-            onPlayClick={this.onStoryPlayClick}
-          />
+        {participate ? <Participate /> : signIn ? <SignIn /> : (
+          <div>
+            {noStories && <p>No stories here...</p>}
+            {stories.map(story =>
+              <Story
+                key={`${story.authorId}_${story.createdAt}`}
+                story={story}
+                isUsersStory={session && session.id === story.authorId}
+                onPlayClick={this.onStoryPlayClick}
+              />
+            )}
+          </div>
         )}
 
         {Object.keys(playerStory).length > 0 && (
