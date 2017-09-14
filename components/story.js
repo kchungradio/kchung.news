@@ -2,6 +2,8 @@ import { Component } from 'react'
 import { Router } from '../routes'
 import moment from 'moment'
 
+import Images from './images'
+
 // TODO: use react-transition group
 // https://reactcommunity.org/react-transition-group
 
@@ -11,25 +13,23 @@ import moment from 'moment'
 const StoryDetails = ({ story, onPlayClick }) => (
   <div className='details'>
 
+    <img
+      className='play-button'
+      src={'/static/play.svg'}
+      onClick={e => onPlayClick(story)}
+    />
+
     {story.location && (
-      <span className='location'>
+      <div className='location'>
         {story.location}
-      </span>
+      </div>
     )}
 
-    <div className='top-row'>
-      <img
-        className='play-button'
-        src={'/static/play.svg'}
-        onClick={e => {
-          e.stopPropagation()
-          onPlayClick(story)
-        }}
-      />
-      <div className='description'>
-        {story.description}
-      </div>
+    <div className='description'>
+      {story.description}
     </div>
+
+    {story.images && <Images images={story.images} />}
 
     {/*
     {story.series && (
@@ -48,30 +48,18 @@ const StoryDetails = ({ story, onPlayClick }) => (
     */}
 
     <style jsx>{`
+      .details {
+        padding-bottom: 15px;
+      }
       img {
         width: 40px;
         height: 40px;
-        margin: 5px 0;
+        margin: 5px 0 -4px 0;
         cursor: pointer;
       }
-      .description {
+      .description, .location {
         font-size: 85%;
         margin-top: 5px;
-      }
-      .location {
-        display: inline-block;
-        margin-right: 30px;
-        font-size: 85%;
-      }
-
-      @media (max-width: 500px) {
-        .location {
-          display: block;
-          width: inherit;
-          text-align: inherit;
-          font-size: 14px;
-          margin-bottom: 3px;
-        }
       }
     `}</style>
 
@@ -88,31 +76,33 @@ class Story extends Component {
     const { showDetails } = this.state
 
     return (
-      <div
-        className='story'
-        onClick={() => this.setState({ showDetails: !showDetails })}
-      >
+      <div className='story'>
 
-        <span className='author'>
-          {story.author}
-        </span>
+        <div
+          className='story-main'
+          onClick={() => this.setState({ showDetails: !showDetails })}
+        >
+          <span className='author'>
+            {story.author}
+          </span>
 
-        <span className='date'>
-          {moment(story.publishedAt).format('MMMM Do, YYYY')}
-        </span>
+          <span className='date'>
+            {moment(story.publishedAt).format('MMMM Do, YYYY')}
+          </span>
 
-        <span className='title'>
-          {story.title}
-        </span>
+          <span className='title'>
+            {story.title}
+          </span>
 
-        {isUsersStory && (
-          <button onClick={e => {
-            e.stopPropagation()
-            Router.pushRoute(`/edit/${story.titleSlug}`)
-          }}>
-            edit
-          </button>
-        )}
+          {isUsersStory && (
+            <button onClick={e => {
+              e.stopPropagation()
+              Router.pushRoute(`/edit/${story.titleSlug}`)
+            }}>
+              edit
+            </button>
+          )}
+        </div>
 
         {showDetails && (
           <StoryDetails
@@ -124,6 +114,8 @@ class Story extends Component {
         <style jsx>{`
           .story {
             margin-bottom: 10px;
+          }
+          .story-main {
             cursor: pointer;
           }
           .title {
