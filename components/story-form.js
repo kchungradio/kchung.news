@@ -184,7 +184,13 @@ class UploadForm extends Component {
             value={storyToEdit ? 'Save' : 'Create new story'}
             disabled={submitted || !this.validateForm()}
           />
-
+          <button
+            type='button'
+            className='btn-lg'
+            onClick={e => Router.pushRoute('stories')}
+          >
+            Cancel
+          </button>
         </form>
 
         <style jsx>{`
@@ -195,7 +201,7 @@ class UploadForm extends Component {
             padding: 15px 0 10px 0;
           }
           input[type=submit] {
-            margin: 10px 0;
+            margin: 10px 10px 10px 0;
           }
         `}</style>
 
