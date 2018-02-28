@@ -30,11 +30,6 @@
   "scripts": {
     "dev": "PORT=3000 node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
-  },
-  "now": {
-    "alias": [
-      "dev.kchung.news"
-    ]
+    "start": "node server.js"
   }
 }

@@ -46,6 +46,7 @@ class ProfileForm extends Component {
       Router.pushRoute(`/${session.slug}`)
     } catch (err) {
       console.error(err)
+      // TODO: set error with err.message
       this.setError(`Name changing didn't work for some reason. Email web@kchungradio.org`)
     }
   }

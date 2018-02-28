@@ -1,0 +1,9 @@
+{
+  "alias": [
+    "kchung.news",
+    "dev.kchung.news"
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
