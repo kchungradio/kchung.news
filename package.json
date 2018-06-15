@@ -28,8 +28,8 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "dev": "PORT=3000 node server.js",
-    "build": "next build",
-    "start": "node server.js"
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "build": "next build"
   }
 }
