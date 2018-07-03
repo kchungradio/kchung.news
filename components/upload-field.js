@@ -2,7 +2,6 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import ReactS3Uploader from 'react-s3-uploader'
-import ProgressBar from 'react-progressbar'
 
 import config from '../config'
 
@@ -15,7 +14,7 @@ export default class extends Component {
   }
 
   state = {
-    progress: 0
+    progress: null
   }
 
   onUploadProgress = (percent, message) => {
@@ -56,9 +55,11 @@ export default class extends Component {
           multiple={this.props.multiple}
         />
 
-        <span>{this.props.value}</span>
+        {Number.isInteger(this.state.progress) && (
+          <div>{this.state.progress}% uploaded</div>
+        )}
 
-        <ProgressBar completed={this.state.progress} />
+        <div>{this.props.value}</div>
 
         <style jsx>{`
           p { font-size: 14px; }
