@@ -2,6 +2,9 @@ import { Component } from 'react'
 import ReactPlayer from 'react-player'
 
 import Duration from './duration'
+import config from '../config'
+
+const { primary, secondary } = config.colors
 
 export default class Player extends Component {
   state = {
@@ -114,9 +117,9 @@ export default class Player extends Component {
             height: 26px;
             cursor: pointer;
             box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            background: #fff;
+            background: ${primary};
             border-radius: 0px;
-            border: 0px solid #f00;
+            border: 0px solid ${secondary};
             border-width: 12px 0;
           }
           input[type=range]::-webkit-slider-thumb {
@@ -125,22 +128,22 @@ export default class Player extends Component {
             height: 25px;
             width: 2px;
             border-radius: 0px;
-            background: #fff;
+            background: ${primary};
             cursor: pointer;
             -webkit-appearance: none;
             margin-top: -11.5px;
           }
           input[type=range]:focus::-webkit-slider-runnable-track {
-            background: #fff;
+            background: ${primary};
           }
           input[type=range]::-moz-range-track {
             width: 100%;
             height: 2px;
             cursor: pointer;
             box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
-            background: #fff;
+            background: ${primary};
             border-radius: 0px;
-            border: 0px solid #f00;
+            border: 0px solid ${secondary};
             border-width: 12px 0;
           }
           input[type=range]::-moz-range-thumb {
@@ -149,7 +152,7 @@ export default class Player extends Component {
             height: 25px;
             width: 2px;
             border-radius: 0px;
-            background: #fff;
+            background: ${primary};
             cursor: pointer;
           }
           input[type=range]::-ms-track {
@@ -162,14 +165,14 @@ export default class Player extends Component {
           }
           input[type=range]::-ms-fill-lower {
             background: #e60000;
-            border: 0px solid #f00;
+            border: 0px solid ${secondary};
             border-width: 12px 0;
             border-radius: 0px;
             box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
           }
           input[type=range]::-ms-fill-upper {
-            background: #fff;
-            border: 0px solid #f00;
+            background: ${primary};
+            border: 0px solid ${secondary};
             border-width: 12px 0;
             border-radius: 0px;
             box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
@@ -180,15 +183,15 @@ export default class Player extends Component {
             height: 25px;
             width: 2px;
             border-radius: 0px;
-            background: #fff;
+            background: ${primary};
             cursor: pointer;
             height: 2px;
           }
           input[type=range]:focus::-ms-fill-lower {
-            background: #fff;
+            background: ${primary};
           }
           input[type=range]:focus::-ms-fill-upper {
-            background: #fff;
+            background: ${primary};
           }
         `}</style>
       </div>
