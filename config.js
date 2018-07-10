@@ -6,6 +6,12 @@ config.api = {}
 config.s3 = {}
 config.voscast = {}
 
+config.colors = {
+  primary: 'black',
+  secondary: 'rgb(239, 123, 126)',
+  disabled: 'grey'
+}
+
 config.api.storiesUrl = prod
   ? 'https://kchung-newsbody-stories-api.now.sh'
   : 'http://localhost:3001'
