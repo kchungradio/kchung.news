@@ -58,7 +58,7 @@ const StoryDetails = ({ story, onPlayClick }) => (
         cursor: pointer;
       }
       .description, .location {
-        font-size: 85%;
+        font-size: 0.875em;
         margin-top: 5px;
       }
     `}</style>
@@ -124,7 +124,7 @@ class Story extends Component {
           .date, .author {
             display: inline-block;
             margin-right: 30px;
-            font-size: 85%;
+            font-size: 0.875em;
           }
 
           @media (max-width: 500px) {
@@ -135,7 +135,7 @@ class Story extends Component {
               display: block;
               width: inherit;
               text-align: inherit;
-              font-size: 14px;
+              font-size: 0.875em;
               margin-bottom: 3px;
             }
           }

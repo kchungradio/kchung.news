@@ -1,5 +1,9 @@
 import Head from 'next/head'
 
+import config from '../config'
+
+const { primary, secondary } = config.colors
+
 export default () => (
   <div>
     <Head>
@@ -15,39 +19,39 @@ export default () => (
       }
       body {
         font-family: courier, sans-serif;
-        background: red;
-        color: white;
+        background: ${secondary};
+        color: ${primary};
       }
       a, a:link, a:visited, a:active {
         text-decoration: none;
-        color: white;
+        color: ${primary};
       }
       a:hover {
-        background: white;
-        color: red;
+        background: ${primary};
+        color: ${secondary};
       }
       h1 a:hover {
-        background: red;
-        color: white;
+        background: ${secondary};
+        color: ${primary};
       }
       input[type=text], textarea {
         font-family: courier, sans-serif;
-        font-size: 14px;
-        background-color: red;
-        color: white;
+        font-size: 0.875em;
+        background-color: ${secondary};
+        color: ${primary};
         width: 100%;
         padding: 12px 20px;
         margin: 10px 0;
         border: none;
-        border-bottom: 2px solid white;
+        border-bottom: 2px solid ${primary};
         outline: none;
       }
       input[type=text]::placeholder, textarea::placeholder {
         color: #ddd;
       }
       button, input[type=submit] {
-        background-color: white;
-        color: red;
+        background-color: ${primary};
+        color: ${secondary};
         border: none;
         border-radius: 2px;
         cursor: pointer;
@@ -59,7 +63,7 @@ export default () => (
       }
       button:disabled, input[type=submit]:disabled {
         background-color: grey;
-        color: white;
+        color: ${primary};
       }
       button:disabled:hover, input[type=submit]:disabled:hover {
         cursor: not-allowed;
@@ -69,7 +73,7 @@ export default () => (
       }
       .btn-lg {
         padding: 10px 16px;
-        font-size: 12px;
+        font-size: 0.75em;
       }
       hr {
         width: 97%;
@@ -78,7 +82,7 @@ export default () => (
         margin: 1em 0 1em auto;
         background-color: #979797;
       }
-      .error { font-size: 12px; }
+      .error { font-size: 0.75em; }
       .red { color: red; }
       .darkgrey { color: darkgrey; }
       .hidden {

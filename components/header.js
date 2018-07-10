@@ -5,7 +5,10 @@ export default ({ session }) => (
     <h1>
       <Link route='stories'>
         <a>
-          KCHUNG News Body
+          <img
+            src='/static/newsbody_flat_black.png'
+            alt='KCHUNG News Body'
+          />
         </a>
       </Link>
     </h1>
@@ -37,6 +40,9 @@ export default ({ session }) => (
       h1 {
         letter-spacing: 0.25rem;
         font-size: 8.423vw;
+      }
+      img {
+        width: 100%;
       }
       nav {
         padding-top: 5px;
