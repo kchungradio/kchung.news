@@ -2,7 +2,7 @@ import { Component } from 'react'
 import ReactPlayer from 'react-player'
 
 import Duration from './duration'
-import config from '../config'
+import config from '../../config'
 
 const { primary, secondary } = config.colors
 
