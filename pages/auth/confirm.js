@@ -3,10 +3,10 @@ import { Component } from 'react'
 import qs from 'querystring'
 import 'isomorphic-fetch'
 
-import { Router } from '../routes'
-import Page from '../components/hoc/page'
-import saveSession from '../lib/session'
-import config from '../config'
+import { Router } from '../../routes'
+import Page from '../../components/hoc/page'
+import saveSession from '../../lib/session'
+import config from '../../config'
 
 /*
  * this page confirms an email and temp token with our auth-api
