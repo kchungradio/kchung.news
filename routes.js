@@ -28,12 +28,12 @@ const routes = module.exports = nextRoutes()
  * https://github.com/zeit/next.js/issues/88
  */
 
-routes.add('stories', '/', 'stories')
+routes.add('stories', '/')
 routes.add('new-story')
 routes.add('edit-story', '/edit/:storySlug')
 routes.add('edit-profile')
 routes.add('participate', '/participate', 'stories')
 routes.add('sign-in', '/sign-in', 'stories')
-routes.add('sign-out')
-routes.add('confirm', '/registration/confirm', 'confirm')
+routes.add('sign-out', '/sign-out', 'auth/sign-out')
+routes.add('confirm', '/registration/confirm', 'auth/confirm')
 routes.add('authorStories', '/:authorSlug', 'stories')
