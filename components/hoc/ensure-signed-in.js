@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-import { Router } from '../routes'
+import { Router } from '../../routes'
 
 /*
  * Causes page component to be redirected to `/sign-in` if there is no

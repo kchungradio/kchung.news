@@ -3,7 +3,7 @@
 import { Component } from 'react'
 import validator from 'validator'
 
-import Page from '../components/page'
+import Page from '../components/hoc/page'
 import config from '../config'
 
 const checkEmailWithServer = email => {

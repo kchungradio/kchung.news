@@ -4,7 +4,7 @@ import qs from 'querystring'
 import 'isomorphic-fetch'
 
 import { Router } from '../routes'
-import Page from '../components/page'
+import Page from '../components/hoc/page'
 import saveSession from '../lib/session'
 import config from '../config'
 

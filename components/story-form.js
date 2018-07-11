@@ -4,8 +4,8 @@ import { Component } from 'react'
 
 import { Router } from '../routes'
 import config from '../config'
-import Field from '../components/form-field'
-import UploadField from '../components/upload-field'
+import Field from './form-field'
+import UploadField from './upload-field'
 
 class UploadForm extends Component {
   state = {

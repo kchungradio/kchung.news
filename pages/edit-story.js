@@ -2,7 +2,7 @@ import { Component } from 'react'
 import request from 'axios'
 
 import config from '../config'
-import SecurePage from '../components/secure-page'
+import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/story-form'
 
 // TODO: make more container components

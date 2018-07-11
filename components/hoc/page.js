@@ -1,6 +1,6 @@
 import injectSession from './inject-session'
 import wrapWithLayout from './wrap-with-layout'
-import compose from '../lib/compose'
+import compose from '../../lib/compose'
 
 /*
  * some middleware we use on every page

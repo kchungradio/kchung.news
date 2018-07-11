@@ -1,7 +1,7 @@
 import { Component } from 'react'
 
-import Global from '../components/global'
-import Header from '../components/header'
+import Global from '../global'
+import Header from '../header'
 
 const wrapWithLayout = Page => (
   class WrapWithLayout extends Component {

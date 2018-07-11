@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Cookie from 'js-cookie'
 
 import { Router } from '../routes'
-import SecurePage from '../components/secure-page'
+import SecurePage from '../components/hoc/secure-page'
 
 class SignOut extends Component {
   componentDidMount () {
