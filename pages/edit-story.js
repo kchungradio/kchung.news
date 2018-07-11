@@ -2,8 +2,8 @@ import { Component } from 'react'
 import request from 'axios'
 
 import config from '../config'
-import SecurePage from '../components/secure-page'
-import StoryForm from '../components/story-form'
+import SecurePage from '../components/hoc/secure-page'
+import StoryForm from '../components/forms/story-form'
 
 // TODO: make more container components
 

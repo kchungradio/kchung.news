@@ -3,8 +3,8 @@
 import { Component } from 'react'
 import validator from 'validator'
 
-import Page from '../components/page'
-import config from '../config'
+import Page from '../../components/hoc/page'
+import config from '../../config'
 
 const checkEmailWithServer = email => {
   return fetch(`${config.api.authUrl}/sign-in`, {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ReactS3Uploader from 'react-s3-uploader'
 
-import config from '../config'
+import config from '../../config'
 
 export default class extends Component {
   static propTypes = {

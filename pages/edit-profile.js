@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import request from 'axios'
 
-import SecurePage from '../components/secure-page'
+import SecurePage from '../components/hoc/secure-page'
 import { Router } from '../routes'
 import slugify from '../lib/slugify'
 import saveSession from '../lib/session'

@@ -2,10 +2,10 @@ import { Component } from 'react'
 import request from 'axios'
 
 import { Router } from '../routes'
-import Page from '../components/page'
+import Page from '../components/hoc/page'
 import Story from '../components/story'
-import { Participate } from '../pages/participate'
-import { SignIn } from '../pages/sign-in'
+import { Participate } from './participate'
+import { SignIn } from './auth/sign-in'
 import Player from '../components/player'
 import config from '../config'
 
