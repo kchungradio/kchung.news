@@ -3,7 +3,7 @@ import request from 'axios'
 
 import config from '../config'
 import SecurePage from '../components/hoc/secure-page'
-import StoryForm from '../components/story-form'
+import StoryForm from '../components/forms/story-form'
 
 // TODO: make more container components
 
