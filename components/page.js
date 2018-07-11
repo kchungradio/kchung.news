@@ -1,5 +1,5 @@
-import injectSession from './injectSession'
-import wrapWithLayout from './wrapWithLayout'
+import injectSession from './inject-session'
+import wrapWithLayout from './wrap-with-layout'
 import compose from '../lib/compose'
 
 /*
