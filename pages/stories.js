@@ -4,15 +4,9 @@ import request from 'axios'
 import { Router } from '../routes'
 import Page from '../components/hoc/page'
 import Story from '../components/story'
-import Player from '../components/player'
 import config from '../config'
 
 class NewsBody extends Component {
-  state = {
-    playing: false,
-    playerStory: {}
-  }
-
   static async getInitialProps ({ query }) {
     // query.authorSlug comes from url defined in ../routes.js
     const { authorSlug } = query
@@ -32,28 +26,13 @@ class NewsBody extends Component {
     return { authorSlug, stories }
   }
 
-  onStoryPlayClick = story => this.setState({
-    playing: true,
-    playerStory: story
-  })
-
-  setPlayState = state => this.setState({ playing: state })
-  togglePlayPause = () => {
-    this.setState(prevState => ({
-      playing: !prevState.playing
-    }))
-  }
-
   render () {
     const {
       session,
       authorSlug,
-      stories
+      stories,
+      onStoryPlayClick
     } = this.props
-    const {
-      playing,
-      playerStory
-    } = this.state
 
     const isHome = !authorSlug
     const isUsersPage = session && (authorSlug === session.slug)
@@ -80,20 +59,10 @@ class NewsBody extends Component {
               key={`${story.authorId}_${story.createdAt}`}
               story={story}
               isUsersStory={session && session.id === story.authorId}
-              onPlayClick={this.onStoryPlayClick}
+              onPlayClick={onStoryPlayClick}
             />
           ))}
         </div>
-
-        {Object.keys(playerStory).length > 0 && (
-          <Player
-            audioUrl={playerStory.audio && playerStory.audio.publicUrl}
-            title={playerStory.title}
-            playing={playing}
-            setPlayState={this.setPlayState}
-            togglePlayPause={this.togglePlayPause}
-          />
-        )}
 
         <style jsx>{`
           button {
