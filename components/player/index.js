@@ -31,7 +31,7 @@ export default class Player extends Component {
   }
 
   render () {
-    const { url, title, playing, setPlayState, togglePlayPause } = this.props
+    const { audioUrl, title, playing, setPlayState, togglePlayPause } = this.props
     const { playedPercent, playedSeconds, duration } = this.state
 
     return (
@@ -41,7 +41,7 @@ export default class Player extends Component {
           className='react-player'
           width='0'
           height='0'
-          url={url}
+          url={audioUrl}
           playing={playing}
           onReady={() => console.log('onReady')}
           onStart={() => console.log('onStart')}

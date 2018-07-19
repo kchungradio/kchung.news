@@ -19,21 +19,12 @@ const routes = module.exports = nextRoutes()
  * See https://github.com/fridays/next-routes
  */
 
-/*
- * i had to point participate and sign-in routes to stories.js to
- * keep the player playing through route transitions, at least on
- * the pages that a non-logged-in user has access to
- *
- * when issue #88 gets addressed then we'll solve this elegantly
- * https://github.com/zeit/next.js/issues/88
- */
-
 routes.add('stories', '/')
+routes.add('participate')
 routes.add('new-story')
 routes.add('edit-story', '/edit/:storySlug')
 routes.add('edit-profile')
-routes.add('participate', '/participate', 'stories')
-routes.add('sign-in', '/sign-in', 'stories')
+routes.add('sign-in', '/sign-in', 'auth/sign-in')
 routes.add('sign-out', '/sign-out', 'auth/sign-out')
 routes.add('confirm', '/registration/confirm', 'auth/confirm')
 routes.add('authorStories', '/:authorSlug', 'stories')
