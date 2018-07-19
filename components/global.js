@@ -47,7 +47,8 @@ export default () => (
         outline: none;
       }
       input[type=text]::placeholder, textarea::placeholder {
-        color: #ddd;
+        color: ${primary};
+        opacity: 0.4;
       }
       button, input[type=submit] {
         background-color: ${primary};
@@ -59,11 +60,10 @@ export default () => (
         width: auto;
       }
       button:active, input[type=submit]:active {
-        background-color: #eee;
+        opacity: 0.6;
       }
       button:disabled, input[type=submit]:disabled {
-        background-color: grey;
-        color: ${primary};
+        opacity: 0.4;
       }
       button:disabled:hover, input[type=submit]:disabled:hover {
         cursor: not-allowed;
@@ -80,7 +80,8 @@ export default () => (
         height: 1px;
         border: none;
         margin: 1em 0 1em auto;
-        background-color: #979797;
+        background-color: ${primary};
+        opacity: 0.6;
       }
       .error { font-size: 0.75em; }
       .red { color: red; }
