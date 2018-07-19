@@ -92,7 +92,7 @@ export default class Player extends Component {
             bottom: 0;
             left: 0;
             width: 100%;
-            background: red;
+            background: ${secondary};
           }
           img {
             width: 55px;
@@ -108,30 +108,26 @@ export default class Player extends Component {
             -webkit-appearance: none;
             width: 100%;
             margin: 11.5px 0;
+            padding: 12px 0;
+            background: ${secondary};
           }
           input[type=range]:focus {
             outline: none;
           }
           input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
-            height: 26px;
+            height: 2px;
             cursor: pointer;
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
             background: ${primary};
-            border-radius: 0px;
             border: 0px solid ${secondary};
-            border-width: 12px 0;
           }
           input[type=range]::-webkit-slider-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 0px solid #000000;
-            height: 25px;
-            width: 2px;
-            border-radius: 0px;
-            background: ${primary};
-            cursor: pointer;
             -webkit-appearance: none;
+            width: 2px;
+            height: 25px;
             margin-top: -11.5px;
+            cursor: pointer;
+            background: ${primary};
           }
           input[type=range]:focus::-webkit-slider-runnable-track {
             background: ${primary};
@@ -140,20 +136,15 @@ export default class Player extends Component {
             width: 100%;
             height: 2px;
             cursor: pointer;
-            box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
             background: ${primary};
-            border-radius: 0px;
             border: 0px solid ${secondary};
-            border-width: 12px 0;
           }
           input[type=range]::-moz-range-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 0px solid #000000;
-            height: 25px;
             width: 2px;
-            border-radius: 0px;
-            background: ${primary};
+            height: 25px;
             cursor: pointer;
+            background: ${primary};
+            border: 0px solid ${primary};
           }
           input[type=range]::-ms-track {
             width: 100%;
@@ -164,28 +155,19 @@ export default class Player extends Component {
             color: transparent;
           }
           input[type=range]::-ms-fill-lower {
-            background: #e60000;
+            background: ${primary};
             border: 0px solid ${secondary};
-            border-width: 12px 0;
-            border-radius: 0px;
-            box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
           }
           input[type=range]::-ms-fill-upper {
             background: ${primary};
             border: 0px solid ${secondary};
-            border-width: 12px 0;
-            border-radius: 0px;
-            box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
           }
           input[type=range]::-ms-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 0px solid #000000;
-            height: 25px;
             width: 2px;
-            border-radius: 0px;
-            background: ${primary};
+            height: 25px;
             cursor: pointer;
-            height: 2px;
+            background: ${primary};
+            border: 0px solid ${primary};
           }
           input[type=range]:focus::-ms-fill-lower {
             background: ${primary};

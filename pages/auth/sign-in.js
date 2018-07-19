@@ -108,5 +108,4 @@ class SignIn extends Component {
   }
 }
 
-export { SignIn }
 export default Page(SignIn)
