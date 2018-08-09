@@ -4,7 +4,9 @@
   "description": "KCHUNG Newsbody Website",
   "author": "Tim Phillips <tim@kchungradio.org>",
   "dependencies": {
+    "apollo-boost": "^0.1.13",
     "axios": "^0.16.2",
+    "graphql": "^0.13.2",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.1.4",
     "moment": "^2.18.1",
@@ -13,6 +15,7 @@
     "prop-types": "^15.5.10",
     "qs": "^6.5.0",
     "react": "^16.4.1",
+    "react-apollo": "^2.1.11",
     "react-dom": "^16.4.1",
     "react-html-parser": "^1.0.3",
     "react-player": "^0.17.2",
