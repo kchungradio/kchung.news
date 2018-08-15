@@ -20,6 +20,7 @@ const routes = module.exports = nextRoutes()
  */
 
 routes.add('stories', '/')
+routes.add('stories-gql')
 routes.add('participate')
 routes.add('new-story')
 routes.add('edit-story', '/edit/:storySlug')
@@ -27,4 +28,4 @@ routes.add('edit-profile')
 routes.add('sign-in', '/sign-in', 'auth/sign-in')
 routes.add('sign-out', '/sign-out', 'auth/sign-out')
 routes.add('confirm', '/registration/confirm', 'auth/confirm')
-routes.add('authorStories', '/:authorSlug', 'stories')
+routes.add('authorStories', '/:authorSlug', 'stories-gql')

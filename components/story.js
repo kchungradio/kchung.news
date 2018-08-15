@@ -83,11 +83,11 @@ class Story extends Component {
           onClick={() => this.setState({ showDetails: !showDetails })}
         >
           <span className='author'>
-            {story.author}
+            {story.author && story.author.name}
           </span>
 
           <span className='date'>
-            {moment(story.publishedAt).format('MMMM Do, YYYY')}
+            {moment(story.published_at).format('MMMM Do, YYYY')}
           </span>
 
           <span className='title'>
@@ -97,7 +97,7 @@ class Story extends Component {
           {isUsersStory && (
             <button onClick={e => {
               e.stopPropagation()
-              Router.pushRoute(`/edit/${story.titleSlug}`)
+              Router.pushRoute(`/edit/${story.slug}`)
             }}>
               edit
             </button>
