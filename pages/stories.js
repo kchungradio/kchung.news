@@ -5,11 +5,6 @@ import { Router } from '../routes'
 import Page from '../components/hoc/page'
 import Story from '../components/story'
 
-Stories.getInitialProps = async ({ query: { authorSlug } }) => {
-  // query.authorSlug comes from url defined in ../routes.js
-  return { authorSlug }
-}
-
 function Stories ({
   data: { loading, error, stories },
   session,
@@ -18,14 +13,9 @@ function Stories ({
   if (error) return <div className='error'>Error loading stories.</div>
   if (loading) return <div>Loading...</div>
 
-  let authorSlug
-  const isHome = !authorSlug
-  const isUsersPage = session && (authorSlug === session.slug)
-  const noStories = stories && stories.length === 0
-
   return (
     <div>
-      {session && (isHome || isUsersPage) && (
+      {session && (
         <div>
           <button onClick={() => Router.pushRoute('new-story')}>
             New Story
@@ -37,7 +27,7 @@ function Stories ({
       )}
 
       <div>
-        {noStories && <p>No stories here...</p>}
+        {stories && !stories.length && <p>No stories here...</p>}
         {stories.map(story => (
           <Story
             key={story.id}
