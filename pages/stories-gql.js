@@ -64,7 +64,7 @@ const allStories = gql`{
     slug
     description
     location
-    published_at
+    publishedAt
     audio { filename }
     images { filename }
     author { id, name }
