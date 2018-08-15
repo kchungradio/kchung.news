@@ -66,7 +66,7 @@ class UploadForm extends Component {
     }
 
     // route to user's stories
-    Router.pushRoute(`/${session.slug}`)
+    Router.pushRoute('channel', { authorSlug: session.slug })
   }
 
   handleInputChange = ({ name, value, error }) => {
