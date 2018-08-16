@@ -1,4 +1,4 @@
-import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import { Router } from '../routes'
@@ -6,13 +6,9 @@ import Page from '../components/hoc/page'
 import Story from '../components/story'
 
 function Stories ({
-  data: { loading, error, stories },
   session,
   onStoryPlayClick
 }) {
-  if (error) return <div className='error'>Error loading stories.</div>
-  if (loading) return <div>Loading...</div>
-
   return (
     <div>
       {session && (
@@ -26,17 +22,25 @@ function Stories ({
         </div>
       )}
 
-      <div>
-        {stories && !stories.length && <p>No stories here...</p>}
-        {stories.map(story => (
-          <Story
-            key={story.id}
-            story={story}
-            isUsersStory={session && session.id === story.author.id}
-            onPlayClick={onStoryPlayClick}
-          />
-        ))}
-      </div>
+      <Query query={allStories}>
+        {({ loading, error, data }) => {
+          if (error) return <div>Error loading stories.</div>
+          if (loading) return <div>Loading...</div>
+
+          const stories = data.stories
+
+          if (!stories.length) return <div>No stories here...</div>
+
+          return stories.map(story => (
+            <Story
+              key={story.id}
+              story={story}
+              isUsersStory={session && session.id === story.author.id}
+              onPlayClick={onStoryPlayClick}
+            />
+          ))
+        }}
+      </Query>
 
       <style jsx>{`
         button {
@@ -61,4 +65,4 @@ const allStories = gql`{
   }
 }`
 
-export default graphql(allStories)(Page(Stories))
+export default Page(Stories)
