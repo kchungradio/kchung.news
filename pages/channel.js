@@ -5,10 +5,8 @@ import { Router } from '../routes'
 import Page from '../components/hoc/page'
 import Story from '../components/story'
 
-Channel.getInitialProps = async ({ query: { authorSlug } }) => {
-  // query.authorSlug comes from url defined in ../routes.js
-  return { authorSlug }
-}
+// query.authorSlug comes from url defined in ../routes.js
+Channel.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
 
 function Channel ({
   session,
