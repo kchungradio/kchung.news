@@ -31,7 +31,7 @@ function Channel ({
 
       <Query query={authorStories} variables={{ slug: authorSlug }}>
         {({ loading, error, data }) => {
-          if (error) return <div className='error'>Error loading stories.</div>
+          if (error) return <div>Error loading stories.</div>
           if (loading) return <div>Loading...</div>
 
           const stories = data.storiesByAuthorSlug
