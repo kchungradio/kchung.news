@@ -12,7 +12,6 @@ const routes = module.exports = nextRoutes()
  */
 
 routes.add('stories', '/')
-routes.add('stories-gql')
 routes.add('channel', '/channel/:authorSlug')
 routes.add('participate')
 
