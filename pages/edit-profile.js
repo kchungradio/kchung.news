@@ -43,7 +43,7 @@ class ProfileForm extends Component {
       saveSession(session)
 
       // route to user's stories
-      Router.pushRoute(`/${session.slug}`)
+      Router.pushRoute('channel', { authorSlug: session.slug })
     } catch (err) {
       console.error(err)
       // TODO: set error with err.message

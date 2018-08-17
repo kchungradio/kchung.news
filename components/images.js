@@ -1,9 +1,11 @@
+import config from '../config'
+
 export default ({ images }) => (
   <div className='images'>
     {images.map(image => (
       <img
         key={image.filename}
-        src={image.publicUrl}
+        src={config.s3.rootUrl + image.filename}
       />
     ))}
 

@@ -5,13 +5,20 @@ import { Router } from '../routes'
 import Page from '../components/hoc/page'
 import Story from '../components/story'
 
-function Stories ({
+// query.authorSlug comes from url defined in ../routes.js
+Channel.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
+
+function Channel ({
   session,
+  authorSlug,
   onStoryPlayClick
 }) {
+  const isHome = !authorSlug
+  const isUsersPage = session && (authorSlug === session.slug)
+
   return (
     <div>
-      {session && (
+      {session && (isHome || isUsersPage) && (
         <div>
           <button onClick={() => Router.pushRoute('new-story')}>
             New Story
@@ -22,12 +29,12 @@ function Stories ({
         </div>
       )}
 
-      <Query query={allStories}>
+      <Query query={authorStories} variables={{ slug: authorSlug }}>
         {({ loading, error, data }) => {
           if (error) return <div>Error loading stories.</div>
           if (loading) return <div>Loading...</div>
 
-          const stories = data.stories
+          const stories = data.storiesByAuthorSlug
 
           if (!stories.length) return <div>No stories here...</div>
 
@@ -51,18 +58,20 @@ function Stories ({
   )
 }
 
-const allStories = gql`{
-  stories {
-    id
-    title
-    slug
-    description
-    location
-    publishedAt
-    audio { filename }
-    images { filename }
-    author { id, name }
+const authorStories = gql`
+  query StoriesByAuthorSlug ($slug: String!) {
+    storiesByAuthorSlug (slug: $slug) {
+      id
+      title
+      slug
+      description
+      location
+      publishedAt
+      audio { filename }
+      images { filename }
+      author { id, name }
+    }
   }
-}`
+`
 
-export default Page(Stories)
+export default Page(Channel)
