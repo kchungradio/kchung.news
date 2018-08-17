@@ -1,7 +1,8 @@
+import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { Router } from '../routes'
+import SessionButtons from '../components/session-buttons'
 import Page from '../components/hoc/page'
 import Story from '../components/story'
 
@@ -10,17 +11,8 @@ function Stories ({
   onStoryPlayClick
 }) {
   return (
-    <div>
-      {session && (
-        <div>
-          <button onClick={() => Router.pushRoute('new-story')}>
-            New Story
-          </button>
-          <button onClick={() => Router.pushRoute('edit-profile')}>
-            Edit Profile
-          </button>
-        </div>
-      )}
+    <React.Fragment>
+      {session && <SessionButtons />}
 
       <Query query={allStories}>
         {({ loading, error, data }) => {
@@ -41,13 +33,7 @@ function Stories ({
           ))
         }}
       </Query>
-
-      <style jsx>{`
-        button {
-          margin: 0 10px 10px 0;
-        }
-      `}</style>
-    </div>
+    </React.Fragment>
   )
 }
 
