@@ -3,8 +3,8 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import SessionButtons from '../components/session-buttons'
+import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
-import Story from '../components/story'
 
 function Stories ({
   session,
@@ -19,18 +19,11 @@ function Stories ({
           if (error) return <div>Error loading stories.</div>
           if (loading) return <div>Loading...</div>
 
-          const stories = data.stories
-
-          if (!stories.length) return <div>No stories here...</div>
-
-          return stories.map(story => (
-            <Story
-              key={story.id}
-              story={story}
-              isUsersStory={session && session.id === story.author.id}
-              onPlayClick={onStoryPlayClick}
-            />
-          ))
+          return <StoriesList
+            stories={data.stories}
+            isUsersStory={story => session.id === story.author.id}
+            onStoryPlayClick={onStoryPlayClick}
+          />
         }}
       </Query>
     </React.Fragment>
