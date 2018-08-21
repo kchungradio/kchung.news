@@ -1,9 +1,5 @@
-/* global fetch */
-
 import { Component } from 'react'
 
-import { Router } from '../../routes'
-import config from '../../config'
 import Field from './form-field'
 import UploadField from './upload-field'
 
@@ -16,57 +12,30 @@ class UploadForm extends Component {
 
   handleFormSubmit = async event => {
     event.preventDefault()
-    // XXX user can still submit multiple times even though we're
-    //     disabling the button with this setState call
+
     this.setState({ submitted: true })
 
-    const { session, storyToEdit } = this.props
+    const { session, storyToEdit, onSubmit } = this.props
 
     if (!session) return
     if (!this.validateForm()) return
 
-    const { fields } = this.state
+    const story = this.state.fields
 
-    // trim all trimable inputs
-    for (let key in fields) {
-      if (fields[key].trim) {
-        fields[key] = fields[key].trim()
+    // trim all trimable fields
+    for (let key in story) {
+      if (story[key].trim) {
+        story[key] = story[key].trim()
       }
     }
 
-    // split tags to an array on whitespace or comma
-    if (fields.tags) fields.tags = fields.tags.split(/[ ,]+/)
-
-    // our user's story
-    const story = {
-      ...fields,
-      authorId: session.id,
-      authorSlug: session.slug,
-      author: session.name
-    }
+    if (story.tags) story.tags = story.tags.split(/[ ,]+/)
+    story.author_id = session.id // TODO: jwt in Auth header
     if (!storyToEdit) {
       story.publishedAt = new Date().toISOString()
     }
 
-    const type = storyToEdit ? 'edit' : 'new'
-    console.log(`${type}-story`, story)
-
-    // 📫 TODO: use axios
-    const method = storyToEdit ? 'PUT' : 'POST'
-    const storyPath = storyToEdit ? `/${storyToEdit.titleSlug}` : ''
-    const apiUrl = `${config.api.storiesUrl}${storyPath}`
-    // XXX: i'm not sure that this try block catches http error codes...
-    try {
-      await fetch(apiUrl, {
-        method,
-        body: JSON.stringify(story)
-      })
-    } catch (err) {
-      console.error(err)
-    }
-
-    // route to user's stories
-    Router.pushRoute('channel', { authorSlug: session.slug })
+    onSubmit(story)
   }
 
   handleInputChange = ({ name, value, error }) => {
@@ -94,20 +63,20 @@ class UploadForm extends Component {
     const { fields } = this.state
     if (!fields.audio) fields.audio = {}
 
-    fields.audio = { originalFilename, filename, publicUrl }
+    fields.audio = { originalFilename, filename }
     this.setState({ fields })
   }
-  onImageUploadFinish = ({ originalFilename, filename, publicUrl }) => {
+  onImageUploadFinish = ({ originalFilename, filename }) => {
     const { fields } = this.state
     if (!fields.images) fields.images = []
 
-    const image = { originalFilename, filename, publicUrl }
+    const image = { originalFilename, filename }
     fields.images = [ ...fields.images, image ]
     this.setState({ fields })
   }
 
   render () {
-    const { session, storyToEdit } = this.props
+    const { session, storyToEdit, onCancel, loading } = this.props
     const { fields, submitted } = this.state
 
     if (Array.isArray(fields.tags)) {
@@ -182,12 +151,12 @@ class UploadForm extends Component {
             type='submit'
             className='btn-lg'
             value={storyToEdit ? 'Save' : 'Create new story'}
-            disabled={submitted || !this.validateForm()}
+            disabled={loading || submitted || !this.validateForm()}
           />
           <button
             type='button'
             className='btn-lg'
-            onClick={e => Router.pushRoute('stories')}
+            onClick={onCancel}
           >
             Cancel
           </button>
