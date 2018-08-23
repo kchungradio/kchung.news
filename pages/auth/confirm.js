@@ -5,7 +5,7 @@ import 'isomorphic-fetch'
 
 import { Router } from '../../routes'
 import Page from '../../components/hoc/page'
-import saveSession from '../../lib/session'
+import saveToken from '../../lib/save-token'
 import config from '../../config'
 
 /*
@@ -26,16 +26,14 @@ class Confirm extends Component {
   async componentDidMount () {
     const { query } = this.props
 
-    // get session
+    // get token
     const res = await fetch(
       `${config.api.authUrl}/confirm?${qs.stringify(query)}`
     )
 
     if (res.ok) {
-      const session = await res.json()
-
-      saveSession(session)
-
+      const token = await res.text()
+      saveToken(token)
       Router.pushRoute('stories')
     } else {
       const error = await res.text()

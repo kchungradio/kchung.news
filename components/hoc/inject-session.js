@@ -1,20 +1,23 @@
+import jwt from 'jsonwebtoken'
+
 import { Component } from 'react'
 
 /*
- * Dredges up a `session` object from cookie or localStorage and,
- * if present, injects it as a prop. Also keeps track of the current
- * session in component state so that multiple tabs open in the same
- * browser can react to sign ins/outs.
+ * Dredges up a json web token (jwt) from cookie or localStorage and,
+ * if present, injects its payload as a prop. Also keeps track of the
+ * current session in component state so that multiple tabs open in
+ * the same browser can react to sign ins/outs.
  *
  * If you want the session prop in child components, you must
  * pass it down.
  */
 
 const getSessionFromLocalStorage = () => {
-  const sessionStr = window.localStorage.getItem('session')
-  const session = JSON.parse(sessionStr)
+  const token = window.localStorage.getItem('jwt')
+  const session = jwt.decode(token)
 
   if (session) {
+    session.token = token
     return session
   }
 }
@@ -25,21 +28,18 @@ const getSessionFromCookie = (req) => {
   const { cookie } = req.headers
 
   if (cookie) {
-    const sessionCookie = cookie
+    const jwtCookie = cookie
       .split(';')
       .map(s => s.trim())
-      .find(s => s.startsWith('session='))
+      .find(s => s.startsWith('jwt='))
 
-    // pull out and cleanup session
-    if (sessionCookie) {
-      // split on first equals sign because of base64 padding
-      // https://stackoverflow.com/a/4607799/1386245
-      const encodedSessionStr = sessionCookie.split(/=(.+)/)[1]
-      const sessionStr = Buffer.from(encodedSessionStr, 'base64')
-        .toString('ascii')
-      const session = JSON.parse(sessionStr)
+    if (jwtCookie) {
+      // split on first equals sign
+      const token = jwtCookie.split(/=(.+)/)[1]
+      const session = jwt.decode(token)
 
       if (session) {
+        session.token = token
         return session
       }
     }
