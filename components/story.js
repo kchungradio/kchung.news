@@ -94,7 +94,7 @@ class Story extends Component {
             {story.title}
           </span>
 
-          {isUsersStory && (
+          {isUsersStory() && (
             <button onClick={e => {
               e.stopPropagation()
               Router.pushRoute('edit-story', { storySlug: story.slug })

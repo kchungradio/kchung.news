@@ -21,7 +21,7 @@ function Stories ({
 
           return <StoriesList
             stories={data.stories}
-            isUsersStory={story => session.id === story.author.id}
+            isUsersStory={story => session && session.id === story.author.id}
             onStoryPlayClick={onStoryPlayClick}
           />
         }}
