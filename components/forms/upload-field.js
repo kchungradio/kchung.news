@@ -27,17 +27,6 @@ export default class extends Component {
     this.props.onUploadFinish(signedResult)
   }
 
-  componentWillMount () {
-    const { session } = this.props
-
-    // TODO: change to jwt
-    const credentialsString = `${session.email}:${session.token}`
-    const base64EncodedCredentials = process.browser
-      ? window.btoa(credentialsString)
-      : Buffer.from(credentialsString).toString('base64')
-    this.basicCredentials = `Basic ${base64EncodedCredentials}`
-  }
-
   render () {
     return (
       <div className='upload'>
@@ -47,7 +36,7 @@ export default class extends Component {
         <ReactS3Uploader
           server={config.api.storiesUrl}
           signingUrl='/s3/sign'
-          signingUrlHeaders={{ Authorization: this.basicCredentials }}
+          signingUrlHeaders={{ Authorization: `Bearer ${this.props.session.token}` }}
           accept={this.props.mimeType}
           onProgress={this.onUploadProgress}
           onError={this.onUploadError}
