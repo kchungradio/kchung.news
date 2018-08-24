@@ -1,6 +1,7 @@
+import { Component } from 'react'
 import jwt from 'jsonwebtoken'
 
-import { Component } from 'react'
+import { Router } from '../../routes'
 
 /*
  * Dredges up a json web token (jwt) from cookie or localStorage and,
@@ -58,10 +59,22 @@ const injectSession = Page => {
         ? await Page.getInitialProps(ctx)
         : {}
 
-      // session should be { email, name, slug, token }
+      // session should be { email, name, slug, id, token, iat, exp, aud, iss }
       const session = process.browser
         ? getSessionFromLocalStorage()
         : getSessionFromCookie(ctx.req)
+
+      // if expired, redirect to sign-out
+      if (session && new Date().getTime() / 1000 > session.exp) {
+        if (ctx.res) {
+          ctx.res.writeHead(302, {
+            Location: '/auth/sign-out'
+          })
+          ctx.res.end()
+        } else {
+          Router.pushRoute('sign-out')
+        }
+      }
 
       // Inject any initial props and session
       return { ...initialProps, session }
