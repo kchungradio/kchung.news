@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import Cookie from 'js-cookie'
 
 import {
   getSessionFromLocalStorage,
@@ -34,6 +35,16 @@ const injectSession = Page => {
 
       // Inject any initial props and session
       return { ...initialProps, session }
+    }
+
+    constructor (props) {
+      super(props)
+
+      // remove old tokens
+      if (process.browser) {
+        window.localStorage.removeItem('session')
+        Cookie.remove('session')
+      }
     }
 
     render () {
