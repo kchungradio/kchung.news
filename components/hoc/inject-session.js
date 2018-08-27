@@ -1,7 +1,9 @@
 import { Component } from 'react'
-import jwt from 'jsonwebtoken'
 
-import { Router } from '../../routes'
+import {
+  getSessionFromLocalStorage,
+  getSessionFromCookie
+} from '../../lib/session'
 
 /*
  * Dredges up a json web token (jwt) from cookie or localStorage and,
@@ -12,40 +14,6 @@ import { Router } from '../../routes'
  * If you want the session prop in child components, you must
  * pass it down.
  */
-
-const getSessionFromLocalStorage = () => {
-  const token = window.localStorage.getItem('jwt')
-  const session = jwt.decode(token)
-
-  if (session) {
-    session.token = token
-    return session
-  }
-}
-
-const getSessionFromCookie = (req) => {
-  // this only runs on the server
-
-  const { cookie } = req.headers
-
-  if (cookie) {
-    const jwtCookie = cookie
-      .split(';')
-      .map(s => s.trim())
-      .find(s => s.startsWith('jwt='))
-
-    if (jwtCookie) {
-      // split on first equals sign
-      const token = jwtCookie.split(/=(.+)/)[1]
-      const session = jwt.decode(token)
-
-      if (session) {
-        session.token = token
-        return session
-      }
-    }
-  }
-}
 
 const injectSession = Page => {
   return class InjectSession extends Component {
@@ -63,18 +31,6 @@ const injectSession = Page => {
       const session = process.browser
         ? getSessionFromLocalStorage()
         : getSessionFromCookie(ctx.req)
-
-      // if expired, redirect to sign-out
-      if (session && new Date().getTime() / 1000 > session.exp) {
-        if (ctx.res) {
-          ctx.res.writeHead(302, {
-            Location: '/auth/sign-out'
-          })
-          ctx.res.end()
-        } else {
-          Router.pushRoute('sign-out')
-        }
-      }
 
       // Inject any initial props and session
       return { ...initialProps, session }
