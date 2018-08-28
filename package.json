@@ -5,6 +5,7 @@
   "author": "Tim Phillips <tim@kchungradio.org>",
   "dependencies": {
     "apollo-boost": "^0.1.13",
+    "apollo-link-context": "^1.0.8",
     "axios": "^0.16.2",
     "graphql": "^0.13.2",
     "isomorphic-fetch": "^2.2.1",

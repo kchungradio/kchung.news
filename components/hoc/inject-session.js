@@ -1,10 +1,7 @@
 import { Component } from 'react'
 import Cookie from 'js-cookie'
 
-import {
-  getSessionFromLocalStorage,
-  getSessionFromCookie
-} from '../../lib/session'
+import { getSession } from '../../lib/session'
 
 /*
  * Dredges up a json web token (jwt) from cookie or localStorage and,
@@ -29,9 +26,7 @@ const injectSession = Page => {
         : {}
 
       // session should be { email, name, slug, id, token, iat, exp, aud, iss }
-      const session = process.browser
-        ? getSessionFromLocalStorage()
-        : getSessionFromCookie(ctx.req)
+      const session = getSession(ctx.req)
 
       // Inject any initial props and session
       return { ...initialProps, session }
