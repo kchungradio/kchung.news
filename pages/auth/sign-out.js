@@ -1,14 +1,13 @@
 import { Component } from 'react'
-import Cookie from 'js-cookie'
 
+import destroyToken from '../../lib/destroy-token'
 import { Router } from '../../routes'
 import SecurePage from '../../components/hoc/secure-page'
 
 class SignOut extends Component {
   componentDidMount () {
     if (process.browser) {
-      window.localStorage.removeItem('session')
-      Cookie.remove('session')
+      destroyToken()
     }
     Router.pushRoute('stories')
   }

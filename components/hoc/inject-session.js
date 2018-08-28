@@ -1,50 +1,17 @@
 import { Component } from 'react'
+import Cookie from 'js-cookie'
+
+import { getSession } from '../../lib/session'
 
 /*
- * Dredges up a `session` object from cookie or localStorage and,
- * if present, injects it as a prop. Also keeps track of the current
- * session in component state so that multiple tabs open in the same
- * browser can react to sign ins/outs.
+ * Dredges up a json web token (jwt) from cookie or localStorage and,
+ * if present, injects its payload as a prop. Also keeps track of the
+ * current session in component state so that multiple tabs open in
+ * the same browser can react to sign ins/outs.
  *
  * If you want the session prop in child components, you must
  * pass it down.
  */
-
-const getSessionFromLocalStorage = () => {
-  const sessionStr = window.localStorage.getItem('session')
-  const session = JSON.parse(sessionStr)
-
-  if (session) {
-    return session
-  }
-}
-
-const getSessionFromCookie = (req) => {
-  // this only runs on the server
-
-  const { cookie } = req.headers
-
-  if (cookie) {
-    const sessionCookie = cookie
-      .split(';')
-      .map(s => s.trim())
-      .find(s => s.startsWith('session='))
-
-    // pull out and cleanup session
-    if (sessionCookie) {
-      // split on first equals sign because of base64 padding
-      // https://stackoverflow.com/a/4607799/1386245
-      const encodedSessionStr = sessionCookie.split(/=(.+)/)[1]
-      const sessionStr = Buffer.from(encodedSessionStr, 'base64')
-        .toString('ascii')
-      const session = JSON.parse(sessionStr)
-
-      if (session) {
-        return session
-      }
-    }
-  }
-}
 
 const injectSession = Page => {
   return class InjectSession extends Component {
@@ -58,13 +25,21 @@ const injectSession = Page => {
         ? await Page.getInitialProps(ctx)
         : {}
 
-      // session should be { email, name, slug, token }
-      const session = process.browser
-        ? getSessionFromLocalStorage()
-        : getSessionFromCookie(ctx.req)
+      // session should be { email, name, slug, id, token, iat, exp, aud, iss }
+      const session = getSession(ctx.req)
 
       // Inject any initial props and session
       return { ...initialProps, session }
+    }
+
+    constructor (props) {
+      super(props)
+
+      // remove old tokens
+      if (process.browser) {
+        window.localStorage.removeItem('session')
+        Cookie.remove('session')
+      }
     }
 
     render () {

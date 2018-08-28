@@ -1,6 +1,7 @@
 import { Component } from 'react'
 
 import { Router } from '../../routes'
+import destroyToken from '../../lib/destroy-token'
 
 /*
  * Causes page component to be redirected to `/sign-in` if there is no
@@ -19,10 +20,18 @@ const ensureSignedIn = Page => {
     constructor (props) {
       super(props)
 
-      // On the client redirect right away to the sign in page if
-      // there's no session
-      if (process.browser && !props.session) {
-        Router.pushRoute('sign-in')
+      // in the browser
+      if (process.browser) {
+        // if no session, sign in
+        if (!props.session) {
+          Router.pushRoute('sign-in')
+        }
+
+        // if expired, destroy token and sign in
+        if (props.session && new Date().getTime() / 1000 > props.session.exp) {
+          destroyToken()
+          Router.pushRoute('sign-in')
+        }
       }
     }
 
