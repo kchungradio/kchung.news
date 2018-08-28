@@ -1,7 +1,6 @@
 import { Component } from 'react'
 
 import { Router } from '../../routes'
-import { getSessionFromLocalStorage } from '../../lib/session'
 import destroyToken from '../../lib/destroy-token'
 
 /*
