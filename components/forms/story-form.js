@@ -30,7 +30,7 @@ class UploadForm extends Component {
     }
 
     if (story.tags) story.tags = story.tags.split(/[ ,]+/)
-    story.author_id = session.id // TODO: jwt in Auth header
+
     if (!storyToEdit) {
       story.publishedAt = new Date().toISOString()
     }
