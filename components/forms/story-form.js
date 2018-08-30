@@ -3,18 +3,18 @@ import { Component } from 'react'
 import Field from './form-field'
 import UploadField from './upload-field'
 
+const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
+
 class UploadForm extends Component {
   state = {
-    fields: this.props.storyToEdit || {},
+    fields: JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename) || {},
     fieldErrors: {},
     submitted: false
   }
 
   handleFormSubmit = async event => {
     event.preventDefault()
-
     this.setState({ submitted: true })
-
     const { session, storyToEdit, onSubmit } = this.props
 
     if (!session) return
@@ -22,9 +22,12 @@ class UploadForm extends Component {
 
     const story = this.state.fields
 
+    delete story.id
+    delete story.slug
+
     // trim all trimable fields
     for (let key in story) {
-      if (story[key].trim) {
+      if (story[key] && story[key].trim) {
         story[key] = story[key].trim()
       }
     }

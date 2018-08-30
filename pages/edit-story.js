@@ -1,31 +1,67 @@
-import { Component } from 'react'
-import request from 'axios'
+import React from 'react'
+import gql from 'graphql-tag'
+import { Query, Mutation } from 'react-apollo'
 
-import config from '../config'
+import { Router } from '../routes'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-// TODO: make more container components
+const EditStory = ({ session, slug }) => (
+  <Query query={storyBySlug} variables={{ slug }}>
+    {({ loading, error, data }) => {
+      if (error) return <div>Error loading stories.</div>
+      if (loading) return <div>Loading...</div>
 
-class EditStory extends Component {
-  static async getInitialProps ({ query }) {
-    // query.storySlug comes from url defined in ../routes.js
-    const storyUrl = `${config.api.storiesUrl}/${query.storySlug}`
-    const res = await request.get(storyUrl)
+      return <Mutation mutation={updateStory}>
+        {(updateStory, { loading, error }) => (
+          <React.Fragment>
+            <StoryForm
+              session={session}
+              storyToEdit={data.story}
+              onSubmit={story => {
+                updateStory({ variables: { id: data.story.id, story } })
+                  .then(res => {
+                    console.log('res', JSON.stringify(res))
+                    Router.pushRoute('channel', { authorSlug: session.slug })
+                  })
+                  .catch(err => {
+                    console.error('error', JSON.stringify(err))
+                  })
+              }}
+              onCancel={() => Router.pushRoute('stories')}
+              loading={loading}
+            />
+            {error && <div>There was an error.</div>}
+          </React.Fragment>
+        )}
+      </Mutation>
+    }}
+  </Query>
+)
 
-    return { storyToEdit: res.data }
+EditStory.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
+
+const storyBySlug = gql`
+  query StoryBySlug($slug: String!) {
+    story: storyBySlug(slug: $slug) {
+      id
+      title
+      slug
+      description
+      location
+      publishedAt
+      audio { filename, originalFilename }
+      images { filename, originalFilename }
+    }
   }
+`
 
-  render () {
-    const { session, storyToEdit } = this.props
-
-    return (
-      <StoryForm
-        session={session}
-        storyToEdit={storyToEdit}
-      />
-    )
+const updateStory = gql`
+  mutation UpdateStory($id: Int!, $story: StoryUpdateInput!) {
+    updateStory(id: $id, input: $story) {
+      id
+    }
   }
-}
+`
 
 export default SecurePage(EditStory)
