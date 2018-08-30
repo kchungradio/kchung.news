@@ -26,7 +26,7 @@ function Channel ({
           if (loading) return <div>Loading...</div>
 
           return <StoriesList
-            stories={data.storiesByAuthorSlug}
+            stories={data.stories}
             isUsersStory={story => session && session.id === story.author.id}
             onStoryPlayClick={onStoryPlayClick}
           />
@@ -38,7 +38,7 @@ function Channel ({
 
 const authorStories = gql`
   query StoriesByAuthorSlug ($slug: String!) {
-    storiesByAuthorSlug (slug: $slug) {
+    stories: storiesByAuthorSlug (slug: $slug) {
       id
       title
       slug

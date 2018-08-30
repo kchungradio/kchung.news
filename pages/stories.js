@@ -30,18 +30,20 @@ function Stories ({
   )
 }
 
-const allStories = gql`{
-  stories {
-    id
-    title
-    slug
-    description
-    location
-    publishedAt
-    audio { filename }
-    images { filename }
-    author { id, name }
+const allStories = gql`
+  query AllStories {
+    stories {
+      id
+      title
+      slug
+      description
+      location
+      publishedAt
+      audio { filename }
+      images { filename }
+      author { id, name }
+    }
   }
-}`
+`
 
 export default Page(Stories)

@@ -1,20 +1,12 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+import { Mutation, withApollo } from 'react-apollo'
 
 import { Router } from '../routes'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-const addStory = gql`
-  mutation AddStory($story: StoryInput!) {
-    addStory(input: $story) {
-      id
-    }
-  }
-`
-
-const NewStory = ({ session }) => (
+const NewStory = ({ session, client }) => (
   <Mutation mutation={addStory}>
     {(addStory, { loading, error, data }) => (
       <React.Fragment>
@@ -25,6 +17,7 @@ const NewStory = ({ session }) => (
               .then(res => {
                 console.log('res', JSON.stringify(res))
                 Router.pushRoute('channel', { authorSlug: session.slug })
+                client.resetStore()
               })
               .catch(err => {
                 console.error('error', JSON.stringify(err))
@@ -39,4 +32,12 @@ const NewStory = ({ session }) => (
   </Mutation>
 )
 
-export default SecurePage(NewStory)
+const addStory = gql`
+  mutation AddStory($story: StoryInput!) {
+    addStory(input: $story) {
+      id
+    }
+  }
+`
+
+export default SecurePage(withApollo(NewStory))
