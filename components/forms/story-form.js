@@ -7,7 +7,7 @@ const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
 
 class UploadForm extends Component {
   state = {
-    fields: JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename) || {},
+    fields: (this.props.storyToEdit && JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename)) || {},
     fieldErrors: {},
     submitted: false
   }
@@ -79,7 +79,7 @@ class UploadForm extends Component {
   }
 
   render () {
-    const { session, storyToEdit, onCancel, loading } = this.props
+    const { session, storyToEdit, onCancel, onDelete, loading } = this.props
     const { fields, submitted } = this.state
 
     if (Array.isArray(fields.tags)) {
@@ -163,6 +163,13 @@ class UploadForm extends Component {
           >
             Cancel
           </button>
+          <button
+            type='button'
+            className='btn-lg'
+            onClick={() => onDelete(storyToEdit.id)}
+          >
+            Delete
+          </button>
         </form>
 
         <style jsx>{`
@@ -172,7 +179,8 @@ class UploadForm extends Component {
           .upload-group {
             padding: 15px 0 10px 0;
           }
-          input[type=submit] {
+          input[type=submit],
+          button {
             margin: 10px 10px 10px 0;
           }
         `}</style>

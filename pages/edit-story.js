@@ -14,25 +14,31 @@ const EditStory = ({ session, slug }) => (
 
       return <Mutation mutation={updateStory}>
         {(updateStory, { loading, error }) => (
-          <React.Fragment>
-            <StoryForm
-              session={session}
-              storyToEdit={data.story}
-              onSubmit={story => {
-                updateStory({ variables: { id: data.story.id, story } })
-                  .then(res => {
-                    console.log('res', JSON.stringify(res))
-                    Router.pushRoute('channel', { authorSlug: session.slug })
-                  })
-                  .catch(err => {
-                    console.error('error', JSON.stringify(err))
-                  })
-              }}
-              onCancel={() => Router.pushRoute('stories')}
-              loading={loading}
-            />
-            {error && <div>There was an error.</div>}
-          </React.Fragment>
+          <Mutation mutation={deleteStory}>
+            {(deleteStory, { loading2, error2 }) => (
+              <React.Fragment>
+                <StoryForm
+                  session={session}
+                  storyToEdit={data.story}
+                  onSubmit={story => {
+                    updateStory({ variables: { id: data.story.id, story } })
+                      .then(res => handleSuccess(res, session.slug))
+                      .catch(handleError)
+                  }}
+                  onDelete={id => {
+                    if (window.confirm('Are you sure you want to delete this story?')) {
+                      deleteStory({ variables: { id } })
+                        .then(res => handleSuccess(res, session.slug))
+                        .catch(handleError)
+                    }
+                  }}
+                  onCancel={() => Router.pushRoute('stories')}
+                  loading={loading || loading2}
+                />
+                {(error || error2) && <div>There was an error.</div>}
+              </React.Fragment>
+            )}
+          </Mutation>
         )}
       </Mutation>
     }}
@@ -63,5 +69,22 @@ const updateStory = gql`
     }
   }
 `
+
+const deleteStory = gql`
+  mutation DeleteStory($id: Int!) {
+    deleteStory(id: $id) {
+      id
+    }
+  }
+`
+
+function handleSuccess (res, slug) {
+  console.log('res', JSON.stringify(res))
+  Router.pushRoute('channel', { authorSlug: slug })
+}
+
+function handleError (err) {
+  console.error('error', JSON.stringify(err))
+}
 
 export default SecurePage(EditStory)
