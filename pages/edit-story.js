@@ -9,6 +9,9 @@ import { updateStory, deleteStory } from '../graphql/mutations'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
+// query.storySlug comes from url defined in ../routes.js
+EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
+
 function EditStoryPage ({ session, slug, client }) {
   return <Query query={storyBySlug} variables={{ slug }}>
     {({ loading, error, data }) => {
@@ -54,8 +57,6 @@ function EditStoryPage ({ session, slug, client }) {
     }}
   </Query>
 }
-
-EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
 
 function handleError (err) {
   console.error('error', JSON.stringify(err))
