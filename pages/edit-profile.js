@@ -1,9 +1,11 @@
 import React from 'react'
 import { Mutation } from 'react-apollo'
 
-import { updateAuthorName } from '../graphql/mutations'
-import ProfileForm from '../components/forms/profile-form'
 import { Router } from '../routes'
+
+import { updateAuthorName } from '../graphql/mutations'
+
+import ProfileForm from '../components/forms/profile-form'
 import SecurePage from '../components/hoc/secure-page'
 
 function EditProfilePage ({ session }) {
