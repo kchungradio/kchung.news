@@ -36,20 +36,11 @@ export default ({ session }) => (
     <br />
 
     <style jsx> {`
-      h1 {
-        letter-spacing: 0.25rem;
-        font-size: 8.423vw;
-      }
       img {
         width: 100%;
       }
       nav {
         padding-top: 5px;
-      }
-      @media (max-width: 500px) {
-        h1 {
-          font-size: 6.4vw;
-        }
       }
     `}</style>
   </div>

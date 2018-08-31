@@ -10,8 +10,8 @@ const { s3 } = config
 
 class KchungNews extends App {
   state = {
-    isPlaying: false,
     openStory: null,
+    isPlaying: false,
     playingStory: {}
   }
 
