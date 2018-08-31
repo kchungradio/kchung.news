@@ -10,12 +10,12 @@ import Images from './images'
 // TODO: prevent double click text selection:
 // https://stackoverflow.com/a/28726111
 
-const StoryDetails = ({ story, onPlayClick }) => (
+const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
   <div className='details'>
 
     <img
       className='play-button'
-      src={'/static/play.svg'}
+      src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
       onClick={e => onPlayClick(story)}
     />
 
@@ -68,7 +68,7 @@ const StoryDetails = ({ story, onPlayClick }) => (
 
 class Story extends Component {
   render () {
-    const { story, isUsersStory, showDetails, onClick, onPlayClick } = this.props
+    const { story, isUsersStory, showDetails, isPlaying, onClick, onPlayClick } = this.props
 
     return (
       <div className='story'>
@@ -102,6 +102,7 @@ class Story extends Component {
         {showDetails && (
           <StoryDetails
             story={story}
+            isPlaying={isPlaying}
             onPlayClick={onPlayClick}
           />
         )}

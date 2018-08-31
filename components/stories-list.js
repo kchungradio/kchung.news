@@ -4,6 +4,8 @@ export default function StoriesList ({
   stories,
   isUsersStory,
   openStory,
+  isPlaying,
+  playingStory,
   onStoryClick,
   onStoryPlayClick
 }) {
@@ -15,6 +17,7 @@ export default function StoriesList ({
       story={story}
       isUsersStory={() => isUsersStory(story)}
       showDetails={story.id === openStory}
+      isPlaying={isPlaying && story.id === playingStory.id}
       onClick={onStoryClick}
       onPlayClick={onStoryPlayClick}
     />
