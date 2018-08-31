@@ -8,9 +8,9 @@ import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
 // query.authorSlug comes from url defined in ../routes.js
-Channel.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
+ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
 
-function Channel ({
+function ChannelPage ({
   session,
   authorSlug,
   onStoryPlayClick
@@ -37,4 +37,4 @@ function Channel ({
   )
 }
 
-export default Page(Channel)
+export default Page(ChannelPage)

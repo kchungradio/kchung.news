@@ -9,8 +9,8 @@ import { updateStory, deleteStory } from '../graphql/mutations'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-const EditStory = ({ session, slug, client }) => (
-  <Query query={storyBySlug} variables={{ slug }}>
+function EditStoryPage ({ session, slug, client }) {
+  return <Query query={storyBySlug} variables={{ slug }}>
     {({ loading, error, data }) => {
       if (error) return <div>Error loading stories.</div>
       if (loading) return <div>Loading...</div>
@@ -53,12 +53,12 @@ const EditStory = ({ session, slug, client }) => (
       </Mutation>
     }}
   </Query>
-)
+}
 
-EditStory.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
+EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
 
 function handleError (err) {
   console.error('error', JSON.stringify(err))
 }
 
-export default SecurePage(withApollo(EditStory))
+export default SecurePage(withApollo(EditStoryPage))

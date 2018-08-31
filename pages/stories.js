@@ -7,7 +7,7 @@ import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
-function Stories ({
+function StoriesPage ({
   session,
   onStoryPlayClick
 }) {
@@ -31,4 +31,4 @@ function Stories ({
   )
 }
 
-export default Page(Stories)
+export default Page(StoriesPage)

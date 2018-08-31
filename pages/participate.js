@@ -1,5 +1,7 @@
 import Page from '../components/hoc/page'
 
-const Participate = () => <p>participate</p>
+function ParticipatePage () {
+  return <p>participate</p>
+}
 
-export default Page(Participate)
+export default Page(ParticipatePage)

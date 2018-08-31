@@ -8,8 +8,8 @@ import { addStory } from '../graphql/mutations'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-const NewStory = ({ session, client }) => (
-  <Mutation mutation={addStory}>
+function NewStoryPage ({ session, client }) {
+  return <Mutation mutation={addStory}>
     {(addStory, { loading, error, data }) => (
       <React.Fragment>
         <StoryForm
@@ -32,6 +32,6 @@ const NewStory = ({ session, client }) => (
       </React.Fragment>
     )}
   </Mutation>
-)
+}
 
-export default SecurePage(withApollo(NewStory))
+export default SecurePage(withApollo(NewStoryPage))
