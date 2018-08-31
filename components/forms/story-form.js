@@ -164,13 +164,15 @@ class UploadForm extends Component {
           >
             Cancel
           </button>
-          <button
-            type='button'
-            className='btn-lg'
-            onClick={() => onDelete(storyToEdit.id)}
-          >
-            Delete
-          </button>
+          {storyToEdit && (
+            <button
+              type='button'
+              className='btn-lg'
+              onClick={() => onDelete(storyToEdit.id)}
+            >
+              Delete
+            </button>
+          )}
         </form>
 
         <style jsx>{`
