@@ -33,6 +33,7 @@ class UploadForm extends Component {
       }
     }
 
+    // split tags to an array on whitespace or comma
     if (story.tags) story.tags = story.tags.split(/[ ,]+/)
 
     if (!storyToEdit) {
