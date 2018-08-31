@@ -29,7 +29,7 @@ class ProfileForm extends Component {
           <Field
             placeholder='Name'
             name='name'
-            value={name || ''}
+            value={name}
             onChange={this.handleInputChange}
           />
           <br />

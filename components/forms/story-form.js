@@ -42,6 +42,7 @@ class UploadForm extends Component {
   }
 
   handleInputChange = ({ name, value, error }) => {
+    // XXX: use functional setState
     const { fields, fieldErrors } = this.state
 
     fields[name] = value
@@ -94,7 +95,7 @@ class UploadForm extends Component {
           <Field
             placeholder='* Story Title'
             name='title'
-            value={fields.title || ''}
+            value={fields.title}
             onChange={this.handleInputChange}
             validate={val => (val ? false : 'Title is required')}
           />
@@ -103,28 +104,28 @@ class UploadForm extends Component {
             placeholder='Description'
             name='description'
             type='textarea'
-            value={fields.description || ''}
+            value={fields.description}
             onChange={this.handleInputChange}
           />
 
           <Field
             placeholder='Location'
             name='location'
-            value={fields.location || ''}
+            value={fields.location}
             onChange={this.handleInputChange}
           />
 
           <Field
             placeholder='Series Name'
             name='series'
-            value={fields.series || ''}
+            value={fields.series}
             onChange={this.handleInputChange}
           />
 
           <Field
             placeholder='Tags'
             name='tags'
-            value={fields.tags || ''}
+            value={fields.tags}
             onChange={this.handleInputChange}
           />
 
