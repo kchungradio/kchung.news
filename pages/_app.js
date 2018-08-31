@@ -10,8 +10,9 @@ const { s3 } = config
 
 class KchungNews extends App {
   state = {
-    playing: false,
-    playerStory: {}
+    isPlaying: false,
+    openStory: null,
+    playingStory: {}
   }
 
   static async getInitialProps ({ Component, router, ctx }) {
@@ -24,20 +25,33 @@ class KchungNews extends App {
     return { pageProps }
   }
 
-  setPlayState = state => this.setState({ playing: state })
+  setPlayState = state => this.setState({ isPlaying: state })
 
   togglePlayPause = () => this.setState(prevState => ({
-    playing: !prevState.playing
+    isPlaying: !prevState.isPlaying
   }))
 
-  onStoryPlayClick = story => this.setState({
-    playing: true,
-    playerStory: story
-  })
+  onStoryClick = storyId => {
+    this.setState(prevState => ({
+      openStory: prevState.openStory !== storyId ? storyId : null
+    }))
+  }
+
+  onStoryPlayClick = story => {
+    // if it's the same story, toggle
+    // if it's a different story, just play it
+    this.setState(prevState => ({
+      isPlaying: prevState.playingStory.id === story.id
+        ? !prevState.isPlaying
+        : true,
+      playingStory: story
+    }))
+  }
 
   render () {
     const { Component, pageProps, apolloClient } = this.props
-    const { playing, playerStory: { audio, title } } = this.state
+    const { openStory, isPlaying, playingStory } = this.state
+    const { audio, title } = playingStory
 
     const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
 
@@ -46,13 +60,17 @@ class KchungNews extends App {
         <ApolloProvider client={apolloClient}>
           <Component
             {...pageProps}
+            openStory={openStory}
+            isPlaying={isPlaying}
+            playingStory={playingStory}
+            onStoryClick={this.onStoryClick}
             onStoryPlayClick={this.onStoryPlayClick}
           />
           {audioUrl && (
             <Player
               audioUrl={audioUrl}
               title={title}
-              playing={playing}
+              isPlaying={isPlaying}
               setPlayState={this.setPlayState}
               togglePlayPause={this.togglePlayPause}
             />

@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import { Router } from '../routes'
 import moment from 'moment'
 
+import { Router } from '../routes'
 import Images from './images'
 
 // TODO: use react-transition group
@@ -10,12 +10,12 @@ import Images from './images'
 // TODO: prevent double click text selection:
 // https://stackoverflow.com/a/28726111
 
-const StoryDetails = ({ story, onPlayClick }) => (
+const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
   <div className='details'>
 
     <img
       className='play-button'
-      src={'/static/play.svg'}
+      src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
       onClick={e => onPlayClick(story)}
     />
 
@@ -67,20 +67,15 @@ const StoryDetails = ({ story, onPlayClick }) => (
 )
 
 class Story extends Component {
-  state = {
-    showDetails: false
-  }
-
   render () {
-    const { story, isUsersStory, onPlayClick } = this.props
-    const { showDetails } = this.state
+    const { story, isUsersStory, showDetails, isPlaying, onClick, onPlayClick } = this.props
 
     return (
       <div className='story'>
 
         <div
           className='story-main'
-          onClick={() => this.setState({ showDetails: !showDetails })}
+          onClick={() => onClick(story.id)}
         >
           <span className='author'>
             {story.author && story.author.name}
@@ -107,6 +102,7 @@ class Story extends Component {
         {showDetails && (
           <StoryDetails
             story={story}
+            isPlaying={isPlaying}
             onPlayClick={onPlayClick}
           />
         )}

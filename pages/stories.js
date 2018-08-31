@@ -9,6 +9,10 @@ import Page from '../components/hoc/page'
 
 function StoriesPage ({
   session,
+  openStory,
+  isPlaying,
+  playingStory,
+  onStoryClick,
   onStoryPlayClick
 }) {
   return (
@@ -23,6 +27,10 @@ function StoriesPage ({
           return <StoriesList
             stories={data.stories}
             isUsersStory={story => session && session.id === story.author.id}
+            openStory={openStory}
+            isPlaying={isPlaying}
+            playingStory={playingStory}
+            onStoryClick={onStoryClick}
             onStoryPlayClick={onStoryPlayClick}
           />
         }}
