@@ -18,7 +18,7 @@ function NewStoryPage ({ session, client }) {
             addStory({ variables: { story } })
               .then(res => {
                 console.log('res', JSON.stringify(res))
-                Router.pushRoute('channel', { authorSlug: session.slug })
+                Router.pushRoute('stories')
                 client.resetStore()
               })
               .catch(err => {

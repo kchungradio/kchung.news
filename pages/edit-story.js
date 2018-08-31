@@ -27,7 +27,7 @@ function EditStoryPage ({ session, slug, client }) {
                     updateStory({ variables: { id: data.story.id, story } })
                       .then(res => {
                         console.log('res', JSON.stringify(res))
-                        Router.pushRoute('channel', { authorSlug: slug })
+                        Router.pushRoute('stories')
                       })
                       .catch(handleError)
                   }}
@@ -36,7 +36,7 @@ function EditStoryPage ({ session, slug, client }) {
                       deleteStory({ variables: { id } })
                         .then(res => {
                           console.log('res', JSON.stringify(res))
-                          Router.pushRoute('channel', { authorSlug: slug })
+                          Router.pushRoute('stories')
                           client.resetStore()
                         })
                         .catch(handleError)
