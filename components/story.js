@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import { Router } from '../routes'
 import moment from 'moment'
 
+import { Router } from '../routes'
 import Images from './images'
 
 // TODO: use react-transition group
@@ -67,20 +67,15 @@ const StoryDetails = ({ story, onPlayClick }) => (
 )
 
 class Story extends Component {
-  state = {
-    showDetails: false
-  }
-
   render () {
-    const { story, isUsersStory, onPlayClick } = this.props
-    const { showDetails } = this.state
+    const { story, isUsersStory, showDetails, onClick, onPlayClick } = this.props
 
     return (
       <div className='story'>
 
         <div
           className='story-main'
-          onClick={() => this.setState({ showDetails: !showDetails })}
+          onClick={() => onClick(story.id)}
         >
           <span className='author'>
             {story.author && story.author.name}

@@ -13,6 +13,8 @@ ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug
 function ChannelPage ({
   session,
   authorSlug,
+  openStory,
+  onStoryClick,
   onStoryPlayClick
 }) {
   const isUsersPage = session && (authorSlug === session.slug)
@@ -29,6 +31,8 @@ function ChannelPage ({
           return <StoriesList
             stories={data.stories}
             isUsersStory={story => session && session.id === story.author.id}
+            openStory={openStory}
+            onStoryClick={onStoryClick}
             onStoryPlayClick={onStoryPlayClick}
           />
         }}
