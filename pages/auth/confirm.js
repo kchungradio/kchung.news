@@ -46,7 +46,7 @@ class ConfirmPage extends Component {
 
     return (
       <div>
-        {error ? <p>{error}</p> : <div>signing in...</div>}
+        {error ? <p>{error}</p> : <div><i>Signing in...</i></div>}
       </div>
     )
   }

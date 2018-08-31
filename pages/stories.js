@@ -17,8 +17,8 @@ function StoriesPage ({
 
       <Query query={allStories}>
         {({ loading, error, data }) => {
-          if (error) return <div>Error loading stories.</div>
-          if (loading) return <div>Loading...</div>
+          if (error) return <div><i>Error loading stories.</i></div>
+          if (loading) return <div><i>Loading...</i></div>
 
           return <StoriesList
             stories={data.stories}
