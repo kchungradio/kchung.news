@@ -31,7 +31,7 @@ export default class Player extends Component {
   }
 
   render () {
-    const { audioUrl, title, playing, setPlayState, togglePlayPause } = this.props
+    const { audioUrl, title, isPlaying, setPlayState, togglePlayPause } = this.props
     const { playedPercent, playedSeconds, duration } = this.state
 
     return (
@@ -42,7 +42,7 @@ export default class Player extends Component {
           width='0'
           height='0'
           url={audioUrl}
-          playing={playing}
+          playing={isPlaying}
           onReady={() => console.log('onReady')}
           onStart={() => console.log('onStart')}
           onPlay={() => setPlayState(true)}
@@ -58,7 +58,7 @@ export default class Player extends Component {
 
         <img
           className='play-button'
-          src={`/static/${playing ? 'pause' : 'play'}.svg`}
+          src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
         />
 

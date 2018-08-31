@@ -37,14 +37,21 @@ class KchungNews extends App {
     }))
   }
 
-  onStoryPlayClick = story => this.setState({
-    isPlaying: true,
-    playingStory: story
-  })
+  onStoryPlayClick = story => {
+    // if it's the same story, toggle
+    // if it's a different story, just play it
+    this.setState(prevState => ({
+      isPlaying: prevState.playingStory.id === story.id
+        ? !prevState.isPlaying
+        : true,
+      playingStory: story
+    }))
+  }
 
   render () {
     const { Component, pageProps, apolloClient } = this.props
-    const { openStory, isPlaying, playingStory: { audio, title } } = this.state
+    const { openStory, isPlaying, playingStory } = this.state
+    const { audio, title } = playingStory
 
     const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
 
@@ -54,6 +61,8 @@ class KchungNews extends App {
           <Component
             {...pageProps}
             openStory={openStory}
+            isPlaying={isPlaying}
+            playingStory={playingStory}
             onStoryClick={this.onStoryClick}
             onStoryPlayClick={this.onStoryPlayClick}
           />
@@ -61,7 +70,7 @@ class KchungNews extends App {
             <Player
               audioUrl={audioUrl}
               title={title}
-              playing={isPlaying}
+              isPlaying={isPlaying}
               setPlayState={this.setPlayState}
               togglePlayPause={this.togglePlayPause}
             />
