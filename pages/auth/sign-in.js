@@ -84,7 +84,7 @@ class SignInPage extends Component {
             <input
               form='sign-in-form'
               type='submit'
-              className='btn-md'
+              className='btn-lg'
               value='sign in'
             />
           )}
