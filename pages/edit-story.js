@@ -1,8 +1,11 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Query, Mutation, withApollo } from 'react-apollo'
 
 import { Router } from '../routes'
+
+import { storyBySlug } from '../graphql/queries'
+import { updateStory, deleteStory } from '../graphql/mutations'
+
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
@@ -53,44 +56,6 @@ const EditStory = ({ session, slug, client }) => (
 )
 
 EditStory.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
-
-const storyBySlug = gql`
-  query StoryBySlug($slug: String!) {
-    story: storyBySlug(slug: $slug) {
-      id
-      title
-      slug
-      description
-      location
-      publishedAt
-      audio { filename, originalFilename }
-      images { filename, originalFilename }
-    }
-  }
-`
-
-const updateStory = gql`
-  mutation UpdateStory($id: Int!, $story: StoryUpdateInput!) {
-    updateStory(id: $id, input: $story) {
-      id
-      title
-      slug
-      description
-      location
-      publishedAt
-      audio { filename }
-      images { filename }
-    }
-  }
-`
-
-const deleteStory = gql`
-  mutation DeleteStory($id: Int!) {
-    deleteStory(id: $id) {
-      id
-    }
-  }
-`
 
 function handleError (err) {
   console.error('error', JSON.stringify(err))

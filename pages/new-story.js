@@ -1,8 +1,10 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Mutation, withApollo } from 'react-apollo'
 
 import { Router } from '../routes'
+
+import { addStory } from '../graphql/mutations'
+
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
@@ -31,13 +33,5 @@ const NewStory = ({ session, client }) => (
     )}
   </Mutation>
 )
-
-const addStory = gql`
-  mutation AddStory($story: StoryInput!) {
-    addStory(input: $story) {
-      id
-    }
-  }
-`
 
 export default SecurePage(withApollo(NewStory))

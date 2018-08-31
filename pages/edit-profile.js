@@ -1,7 +1,7 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 
+import { updateAuthorName } from '../graphql/mutations'
 import ProfileForm from '../components/forms/profile-form'
 import { Router } from '../routes'
 import SecurePage from '../components/hoc/secure-page'
@@ -29,14 +29,6 @@ function EditProfilePage ({ session }) {
     )}
   </Mutation>
 }
-
-const updateAuthorName = gql`
-  mutation UpdateAuthorName($id: Int!, $name: String!) {
-    updateAuthorName(id: $id, name: $name) {
-      id
-    }
-  }
-`
 
 function handleError (err) {
   console.error('error', JSON.stringify(err))

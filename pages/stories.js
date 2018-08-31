@@ -1,6 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+
+import { allStories } from '../graphql/queries'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
@@ -29,21 +30,5 @@ function Stories ({
     </React.Fragment>
   )
 }
-
-const allStories = gql`
-  query AllStories {
-    stories {
-      id
-      title
-      slug
-      description
-      location
-      publishedAt
-      audio { filename }
-      images { filename }
-      author { id, name }
-    }
-  }
-`
 
 export default Page(Stories)

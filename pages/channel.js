@@ -1,6 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+
+import { storiesByAuthorSlug } from '../graphql/queries'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
@@ -20,7 +21,7 @@ function Channel ({
     <React.Fragment>
       {isUsersPage && <SessionButtons />}
 
-      <Query query={authorStories} variables={{ slug: authorSlug }}>
+      <Query query={storiesByAuthorSlug} variables={{ slug: authorSlug }}>
         {({ loading, error, data }) => {
           if (error) return <div>Error loading stories.</div>
           if (loading) return <div>Loading...</div>
@@ -35,21 +36,5 @@ function Channel ({
     </React.Fragment>
   )
 }
-
-const authorStories = gql`
-  query StoriesByAuthorSlug ($slug: String!) {
-    stories: storiesByAuthorSlug (slug: $slug) {
-      id
-      title
-      slug
-      description
-      location
-      publishedAt
-      audio { filename }
-      images { filename }
-      author { id, name }
-    }
-  }
-`
 
 export default Page(Channel)
