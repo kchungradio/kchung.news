@@ -20,10 +20,11 @@ class UploadForm extends Component {
     if (!session) return
     if (!this.validateForm()) return
 
-    const story = this.state.fields
+    const story = { ...this.state.fields }
 
     delete story.id
     delete story.slug
+    delete story.author
 
     // trim all trimable fields
     for (let key in story) {
@@ -42,13 +43,12 @@ class UploadForm extends Component {
   }
 
   handleInputChange = ({ name, value, error }) => {
-    // XXX: use functional setState
-    const { fields, fieldErrors } = this.state
-
-    fields[name] = value
-    fieldErrors[name] = error
-
-    this.setState({ fields, fieldErrors })
+    this.setState(prevState => {
+      const { fields, fieldErrors } = prevState
+      fields[name] = value
+      fieldErrors[name] = error
+      return { fields, fieldErrors }
+    })
   }
 
   validateForm = () => {
