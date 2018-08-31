@@ -32,7 +32,7 @@ export default class Field extends Component {
         type='text'
         name={this.props.name}
         placeholder={this.props.placeholder}
-        value={this.props.value}
+        value={this.props.value || ''}
         onChange={this.onChange}
         spellCheck={false}
       />
@@ -43,7 +43,7 @@ export default class Field extends Component {
       <textarea
         name={this.props.name}
         placeholder={this.props.placeholder}
-        value={this.props.value}
+        value={this.props.value || ''}
         onChange={this.onChange}
       />
     )

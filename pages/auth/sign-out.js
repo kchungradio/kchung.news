@@ -4,7 +4,7 @@ import destroyToken from '../../lib/destroy-token'
 import { Router } from '../../routes'
 import SecurePage from '../../components/hoc/secure-page'
 
-class SignOut extends Component {
+class SignOutPage extends Component {
   componentDidMount () {
     if (process.browser) {
       destroyToken()
@@ -19,4 +19,4 @@ class SignOut extends Component {
   }
 }
 
-export default SecurePage(SignOut)
+export default SecurePage(SignOutPage)

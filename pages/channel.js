@@ -1,15 +1,16 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+
+import { storiesByAuthorSlug } from '../graphql/queries'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
 // query.authorSlug comes from url defined in ../routes.js
-Channel.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
+ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
 
-function Channel ({
+function ChannelPage ({
   session,
   authorSlug,
   onStoryPlayClick
@@ -20,13 +21,13 @@ function Channel ({
     <React.Fragment>
       {isUsersPage && <SessionButtons />}
 
-      <Query query={authorStories} variables={{ slug: authorSlug }}>
+      <Query query={storiesByAuthorSlug} variables={{ slug: authorSlug }}>
         {({ loading, error, data }) => {
-          if (error) return <div>Error loading stories.</div>
-          if (loading) return <div>Loading...</div>
+          if (error) return <div><i>Error loading stories.</i></div>
+          if (loading) return <div><i>Loading...</i></div>
 
           return <StoriesList
-            stories={data.storiesByAuthorSlug}
+            stories={data.stories}
             isUsersStory={story => session && session.id === story.author.id}
             onStoryPlayClick={onStoryPlayClick}
           />
@@ -36,20 +37,4 @@ function Channel ({
   )
 }
 
-const authorStories = gql`
-  query StoriesByAuthorSlug ($slug: String!) {
-    storiesByAuthorSlug (slug: $slug) {
-      id
-      title
-      slug
-      description
-      location
-      publishedAt
-      audio { filename }
-      images { filename }
-      author { id, name }
-    }
-  }
-`
-
-export default Page(Channel)
+export default Page(ChannelPage)

@@ -1,31 +1,65 @@
-import { Component } from 'react'
-import request from 'axios'
+import React from 'react'
+import { Query, Mutation, withApollo } from 'react-apollo'
 
-import config from '../config'
+import { Router } from '../routes'
+
+import { storyBySlug } from '../graphql/queries'
+import { updateStory, deleteStory } from '../graphql/mutations'
+
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-// TODO: make more container components
+// query.storySlug comes from url defined in ../routes.js
+EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({ slug: storySlug })
 
-class EditStory extends Component {
-  static async getInitialProps ({ query }) {
-    // query.storySlug comes from url defined in ../routes.js
-    const storyUrl = `${config.api.storiesUrl}/${query.storySlug}`
-    const res = await request.get(storyUrl)
+function EditStoryPage ({ session, slug, client }) {
+  return <Query query={storyBySlug} variables={{ slug }}>
+    {({ loading, error, data }) => {
+      if (error) return <div><i>Error loading stories.</i></div>
+      if (loading) return <div><i>Loading...</i></div>
 
-    return { storyToEdit: res.data }
-  }
-
-  render () {
-    const { session, storyToEdit } = this.props
-
-    return (
-      <StoryForm
-        session={session}
-        storyToEdit={storyToEdit}
-      />
-    )
-  }
+      return <Mutation mutation={updateStory}>
+        {(updateStory, { loading, error }) => (
+          <Mutation mutation={deleteStory}>
+            {(deleteStory, { loading2, error2 }) => (
+              <React.Fragment>
+                <StoryForm
+                  session={session}
+                  storyToEdit={data.story}
+                  onSubmit={story => {
+                    updateStory({ variables: { id: data.story.id, story } })
+                      .then(res => {
+                        console.log('res', JSON.stringify(res))
+                        Router.pushRoute('stories')
+                      })
+                      .catch(handleError)
+                  }}
+                  onDelete={id => {
+                    if (window.confirm('Are you sure you want to delete this story?')) {
+                      deleteStory({ variables: { id } })
+                        .then(res => {
+                          console.log('res', JSON.stringify(res))
+                          Router.pushRoute('stories')
+                          client.resetStore()
+                        })
+                        .catch(handleError)
+                    }
+                  }}
+                  onCancel={() => Router.pushRoute('stories')}
+                  loading={loading || loading2}
+                />
+                {(error || error2) && <div>There was an error.</div>}
+              </React.Fragment>
+            )}
+          </Mutation>
+        )}
+      </Mutation>
+    }}
+  </Query>
 }
 
-export default SecurePage(EditStory)
+function handleError (err) {
+  console.error('error', JSON.stringify(err))
+}
+
+export default SecurePage(withApollo(EditStoryPage))

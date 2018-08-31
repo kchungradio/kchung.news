@@ -13,7 +13,7 @@ const checkEmailWithServer = email => {
   })
 }
 
-class SignIn extends Component {
+class SignInPage extends Component {
   state = {
     email: '',
     emailSent: false,
@@ -84,7 +84,7 @@ class SignIn extends Component {
             <input
               form='sign-in-form'
               type='submit'
-              className='btn-md'
+              className='btn-lg'
               value='sign in'
             />
           )}
@@ -108,4 +108,4 @@ class SignIn extends Component {
   }
 }
 
-export default Page(SignIn)
+export default Page(SignInPage)

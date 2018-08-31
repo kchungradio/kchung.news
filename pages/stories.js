@@ -1,12 +1,13 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+
+import { allStories } from '../graphql/queries'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
-function Stories ({
+function StoriesPage ({
   session,
   onStoryPlayClick
 }) {
@@ -16,8 +17,8 @@ function Stories ({
 
       <Query query={allStories}>
         {({ loading, error, data }) => {
-          if (error) return <div>Error loading stories.</div>
-          if (loading) return <div>Loading...</div>
+          if (error) return <div><i>Error loading stories.</i></div>
+          if (loading) return <div><i>Loading...</i></div>
 
           return <StoriesList
             stories={data.stories}
@@ -30,18 +31,4 @@ function Stories ({
   )
 }
 
-const allStories = gql`{
-  stories {
-    id
-    title
-    slug
-    description
-    location
-    publishedAt
-    audio { filename }
-    images { filename }
-    author { id, name }
-  }
-}`
-
-export default Page(Stories)
+export default Page(StoriesPage)

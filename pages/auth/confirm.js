@@ -14,7 +14,7 @@ import config from '../../config'
  * which this page will store locally
  */
 
-class Confirm extends Component {
+class ConfirmPage extends Component {
   state = {
     error: ''
   }
@@ -46,10 +46,10 @@ class Confirm extends Component {
 
     return (
       <div>
-        {error ? <p>{error}</p> : <div>signing in...</div>}
+        {error ? <p>{error}</p> : <div><i>Signing in...</i></div>}
       </div>
     )
   }
 }
 
-export default Page(Confirm)
+export default Page(ConfirmPage)
