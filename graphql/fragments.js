@@ -10,8 +10,8 @@ export const storyFragment = gql`
     series
     tags
     publishedAt
-    audio { filename, originalFilename }
-    images { filename, originalFilename }
+    audio { id, filename, originalFilename }
+    images { id, filename, originalFilename }
     author { id, name }
   }
 `

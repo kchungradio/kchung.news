@@ -135,20 +135,26 @@ class UploadForm extends Component {
               label='* select an audio file'
               mimeType='audio/*'
               onUploadFinish={this.onAudioUploadFinish}
-              session={session}
-              value={fields.audio && (
-                fields.audio.originalFilename ||
-                fields.audio.filename
-              )}
-            />
+              token={session.token}
+            >
+              <div>{fields.audio && fields.audio.originalFilename}</div>
+            </UploadField>
 
             <UploadField
               label='select photo(s):'
               mimeType='image/*'
               multiple
               onUploadFinish={this.onImageUploadFinish}
-              session={session}
-            />
+              token={session.token}
+            >
+              <div>
+                {fields.images && fields.images.map(image => (
+                  <div key={image.filename}>
+                    {image.originalFilename}
+                  </div>
+                ))}
+              </div>
+            </UploadField>
           </div>
 
           <input

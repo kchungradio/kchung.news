@@ -36,7 +36,7 @@ export default class extends Component {
         <ReactS3Uploader
           server={config.api.storiesUrl}
           signingUrl='/s3/sign'
-          signingUrlHeaders={{ Authorization: `Bearer ${this.props.session.token}` }}
+          signingUrlHeaders={{ Authorization: `Bearer ${this.props.token}` }}
           accept={this.props.mimeType}
           onProgress={this.onUploadProgress}
           onError={this.onUploadError}
@@ -48,7 +48,7 @@ export default class extends Component {
           <div>{this.state.progress}% uploaded</div>
         )}
 
-        <div>{this.props.value}</div>
+        <div>{this.props.children}</div>
 
         <style jsx>{`
           p { font-size: 0.875em; }
