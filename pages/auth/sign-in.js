@@ -27,6 +27,7 @@ class SignInPage extends Component {
   }
   handleFormSubmit = async event => {
     event.preventDefault()
+    // XXX use functional setState
     const { email, emailSent } = this.state
     if (emailSent) return
 
