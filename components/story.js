@@ -29,7 +29,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
       {story.description}
     </div>
 
-    {story.images && <Images images={story.images} />}
+    <Images images={story.images} />
 
     {/*
     {story.series && (

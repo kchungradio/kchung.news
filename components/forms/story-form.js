@@ -2,6 +2,7 @@ import { Component } from 'react'
 
 import Field from './form-field'
 import UploadField from './upload-field'
+import Images from '../images'
 
 const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
 
@@ -147,13 +148,7 @@ class UploadForm extends Component {
               onUploadFinish={this.onImageUploadFinish}
               token={session.token}
             >
-              <div>
-                {fields.images && fields.images.map(image => (
-                  <div key={image.filename}>
-                    {image.originalFilename}
-                  </div>
-                ))}
-              </div>
+              <Images images={fields.images} />
             </UploadField>
           </div>
 
