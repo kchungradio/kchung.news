@@ -1,7 +1,7 @@
 /* global fetch */
 
 import { Component } from 'react'
-import validator from 'validator'
+import isEmail from 'validator/lib/isEmail'
 
 import Page from '../../components/hoc/page'
 import config from '../../config'
@@ -31,7 +31,7 @@ class SignInPage extends Component {
     const { email, emailSent } = this.state
     if (emailSent) return
 
-    if (validator.isEmail(email)) {
+    if (isEmail(email)) {
       this.setState({ error: null })
       const res = await checkEmailWithServer(email)
       if (res.ok) {
