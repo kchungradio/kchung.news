@@ -1,7 +1,6 @@
-/* global fetch */
 import { Component } from 'react'
 import qs from 'querystring'
-import 'isomorphic-fetch'
+import fetch from 'isomorphic-unfetch'
 
 import { Router } from '../../routes'
 import Page from '../../components/hoc/page'

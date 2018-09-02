@@ -6,9 +6,7 @@
   "dependencies": {
     "apollo-boost": "^0.1.13",
     "apollo-link-context": "^1.0.8",
-    "axios": "^0.16.2",
     "graphql": "^0.13.2",
-    "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^2.1.1",
     "js-cookie": "^2.1.4",
     "jsonwebtoken": "^8.3.0",
@@ -20,10 +18,8 @@
     "react": "^16.4.1",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.1",
-    "react-html-parser": "^1.0.3",
     "react-player": "^0.17.2",
     "react-s3-uploader": "^4.8.0",
-    "slugify": "^1.2.1",
     "validator": "^8.0.0"
   },
   "devDependencies": {
