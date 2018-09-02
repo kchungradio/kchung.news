@@ -2,6 +2,7 @@ import { Component } from 'react'
 
 import Field from './form-field'
 import UploadField from './upload-field'
+import Images from '../images'
 
 const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
 
@@ -65,6 +66,7 @@ class UploadForm extends Component {
   }
 
   onAudioUploadFinish = ({ originalFilename, filename, publicUrl }) => {
+    // XXX use functional setState
     const { fields } = this.state
     if (!fields.audio) fields.audio = {}
 
@@ -72,6 +74,7 @@ class UploadForm extends Component {
     this.setState({ fields })
   }
   onImageUploadFinish = ({ originalFilename, filename }) => {
+    // XXX use functional setState
     const { fields } = this.state
     if (!fields.images) fields.images = []
 
@@ -79,6 +82,15 @@ class UploadForm extends Component {
     fields.images = [ ...fields.images, image ]
     this.setState({ fields })
   }
+
+  removeImage = id => this.setState(({ fields }) => (
+    {
+      fields: {
+        ...fields,
+        images: fields.images.filter(image => image.id !== id)
+      }
+    }
+  ))
 
   render () {
     const { session, storyToEdit, onCancel, onDelete, loading } = this.props
@@ -135,20 +147,23 @@ class UploadForm extends Component {
               label='* select an audio file'
               mimeType='audio/*'
               onUploadFinish={this.onAudioUploadFinish}
-              session={session}
-              value={fields.audio && (
-                fields.audio.originalFilename ||
-                fields.audio.filename
-              )}
-            />
+              token={session.token}
+            >
+              <div>{fields.audio && fields.audio.originalFilename}</div>
+            </UploadField>
 
             <UploadField
               label='select photo(s):'
               mimeType='image/*'
               multiple
               onUploadFinish={this.onImageUploadFinish}
-              session={session}
-            />
+              token={session.token}
+            >
+              <Images
+                images={fields.images}
+                onDelete={this.removeImage}
+              />
+            </UploadField>
           </div>
 
           <input
