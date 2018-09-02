@@ -34,7 +34,7 @@ export default class extends Component {
         <p>{this.props.label}</p>
 
         <ReactS3Uploader
-          server={config.api.storiesUrl}
+          server={config.api.s3UrlSigning}
           signingUrl='/s3/sign'
           signingUrlHeaders={{ Authorization: `Bearer ${this.props.token}` }}
           accept={this.props.mimeType}

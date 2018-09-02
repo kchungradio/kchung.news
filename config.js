@@ -9,14 +9,14 @@ config.colors = {
 }
 
 config.api = {}
-config.api.storiesUrl = prod
-  ? 'https://stories.api.kchung.news'
+config.api.s3UrlSigning = prod
+  ? 'https://s3-url-signing.api.kchung.news'
   : 'http://localhost:3001'
 config.api.graphql = prod
   ? 'https://graphql.api.kchung.news'
   : 'http://localhost:4000'
-config.api.authUrl = prod
-  ? 'https://auth.api.kchung.news'
+config.api.auth = prod
+  ? 'https://dev-auth.api.kchung.news'
   : 'http://localhost:3002'
 
 config.s3 = {}

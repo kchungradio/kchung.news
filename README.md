@@ -2,9 +2,10 @@
 
 ## Run locally
 
-Set up and run both of the following services locally:
-- https://github.com/kchungradio/newsbody-stories-api
-- https://github.com/kchungradio/auth-api
+Set up and run the following services locally:
+- https://github.com/kchungradio/news-s3-url-signing-api
+- https://github.com/kchungradio/news-auth-api
+- https://github.com/kchungradio/news-graphql-api
 
 `git clone` this repository.
 

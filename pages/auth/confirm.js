@@ -27,7 +27,7 @@ class ConfirmPage extends Component {
 
     // get token
     const res = await fetch(
-      `${config.api.authUrl}/confirm?${qs.stringify(query)}`
+      `${config.api.auth}/confirm?${qs.stringify(query)}`
     )
 
     if (res.ok) {

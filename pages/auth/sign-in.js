@@ -7,7 +7,7 @@ import Page from '../../components/hoc/page'
 import config from '../../config'
 
 const checkEmailWithServer = email => {
-  return fetch(`${config.api.authUrl}/sign-in`, {
+  return fetch(`${config.api.auth}/sign-in`, {
     method: 'POST',
     body: JSON.stringify({ email })
   })
