@@ -10,13 +10,13 @@ config.colors = {
 
 config.api = {}
 config.api.storiesUrl = prod
-  ? 'https://kchung-newsbody-stories-api.now.sh'
+  ? 'https://stories.api.kchung.news'
   : 'http://localhost:3001'
 config.api.graphql = prod
-  ? 'https://gql.kchung.news'
+  ? 'https://graphql.api.kchung.news'
   : 'http://localhost:4000'
 config.api.authUrl = prod
-  ? 'https://kchung-newsbody-auth-api.now.sh'
+  ? 'https://auth.api.kchung.news'
   : 'http://localhost:3002'
 
 config.s3 = {}

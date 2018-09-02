@@ -43,11 +43,8 @@ export default class Player extends Component {
           height='0'
           url={audioUrl}
           playing={isPlaying}
-          onReady={() => console.log('onReady')}
-          onStart={() => console.log('onStart')}
           onPlay={() => setPlayState(true)}
           onPause={() => setPlayState(false)}
-          onBuffer={() => console.log('onBuffer')}
           onEnded={() => setPlayState(false)}
           onError={e => console.log('onError', e)}
           onProgress={this.onProgress}
