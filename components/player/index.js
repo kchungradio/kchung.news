@@ -49,8 +49,8 @@ export default class Player extends Component {
           onError={e => console.log('onError', e)}
           onProgress={this.onProgress}
           onDuration={duration => this.setState({ duration })}
-          fileConfig={{forceAudio: true}}
-          progressFrequency={1000}
+          config={{ file: { forceAudio: true } }}
+          progressInterval={1000}
         />
 
         <img
