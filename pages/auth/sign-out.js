@@ -13,9 +13,7 @@ class SignOutPage extends Component {
   }
 
   render () {
-    return (
-      <div>signing out...</div>
-    )
+    return <div>signing out...</div>
   }
 }
 

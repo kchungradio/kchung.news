@@ -8,7 +8,9 @@ import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
 // query.authorSlug comes from url defined in ../routes.js
-ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({ authorSlug })
+ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({
+  authorSlug
+})
 
 function ChannelPage ({
   session,
@@ -19,7 +21,7 @@ function ChannelPage ({
   onStoryClick,
   onStoryPlayClick
 }) {
-  const isUsersPage = session && (authorSlug === session.slug)
+  const isUsersPage = session && authorSlug === session.slug
 
   return (
     <React.Fragment>
@@ -27,18 +29,32 @@ function ChannelPage ({
 
       <Query query={storiesByAuthorSlug} variables={{ slug: authorSlug }}>
         {({ loading, error, data }) => {
-          if (error) return <div><i>Error loading stories.</i></div>
-          if (loading) return <div><i>Loading...</i></div>
+          if (error) {
+            return (
+              <div>
+                <i>Error loading stories.</i>
+              </div>
+            )
+          }
+          if (loading) {
+            return (
+              <div>
+                <i>Loading...</i>
+              </div>
+            )
+          }
 
-          return <StoriesList
-            stories={data.stories}
-            isUsersStory={story => session && session.id === story.author.id}
-            openStory={openStory}
-            isPlaying={isPlaying}
-            playingStory={playingStory}
-            onStoryClick={onStoryClick}
-            onStoryPlayClick={onStoryPlayClick}
-          />
+          return (
+            <StoriesList
+              stories={data.stories}
+              isUsersStory={story => session && session.id === story.author.id}
+              openStory={openStory}
+              isPlaying={isPlaying}
+              playingStory={playingStory}
+              onStoryClick={onStoryClick}
+              onStoryPlayClick={onStoryPlayClick}
+            />
+          )
         }}
       </Query>
     </React.Fragment>

@@ -5,37 +5,42 @@ export default ({ session }) => (
     <h1>
       <Link route='stories'>
         <a>
-          <img
-            src='/static/newsbody_flat_black.png'
-            alt='KCHUNG News Body'
-          />
+          <img src='/static/newsbody_flat_black.png' alt='KCHUNG News Body' />
         </a>
       </Link>
     </h1>
 
     <nav>
-      <Link route='stories'><a>Stories</a></Link>
+      <Link route='stories'>
+        <a>Stories</a>
+      </Link>
       <span> | </span>
 
-      {session
-        ? (
-          <Link route='channel'
-            params={{ authorSlug: session.slug }}
-          >
-            <a>{session.name}</a>
-          </Link>
-        )
-        : <Link route='participate'><a>Participate</a></Link>}
+      {session ? (
+        <Link route='channel' params={{ authorSlug: session.slug }}>
+          <a>{session.name}</a>
+        </Link>
+      ) : (
+        <Link route='participate'>
+          <a>Participate</a>
+        </Link>
+      )}
       <span> | </span>
 
-      {session
-        ? <Link route='sign-out'><a>Sign out</a></Link>
-        : <Link route='sign-in'><a>Sign in</a></Link>}
+      {session ? (
+        <Link route='sign-out'>
+          <a>Sign out</a>
+        </Link>
+      ) : (
+        <Link route='sign-in'>
+          <a>Sign in</a>
+        </Link>
+      )}
     </nav>
 
     <br />
 
-    <style jsx> {`
+    <style jsx>{`
       img {
         width: 100%;
       }

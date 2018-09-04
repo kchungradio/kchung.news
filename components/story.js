@@ -12,22 +12,15 @@ import Images from './images'
 
 const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
   <div className='details'>
-
     <img
       className='play-button'
       src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
       onClick={e => onPlayClick(story)}
     />
 
-    {story.location && (
-      <div className='location'>
-        {story.location}
-      </div>
-    )}
+    {story.location && <div className='location'>{story.location}</div>}
 
-    <div className='description'>
-      {story.description}
-    </div>
+    <div className='description'>{story.description}</div>
 
     <Images images={story.images} />
 
@@ -57,43 +50,44 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
         margin: 5px 0 -4px 0;
         cursor: pointer;
       }
-      .description, .location {
+      .description,
+      .location {
         font-size: 0.875em;
         margin-top: 5px;
       }
     `}</style>
-
   </div>
 )
 
 class Story extends Component {
   render () {
-    const { story, isUsersStory, showDetails, isPlaying, onClick, onPlayClick } = this.props
+    const {
+      story,
+      isUsersStory,
+      showDetails,
+      isPlaying,
+      onClick,
+      onPlayClick
+    } = this.props
 
     return (
       <div className='story'>
-
-        <div
-          className='story-main'
-          onClick={() => onClick(story.id)}
-        >
-          <span className='author'>
-            {story.author && story.author.name}
-          </span>
+        <div className='story-main' onClick={() => onClick(story.id)}>
+          <span className='author'>{story.author && story.author.name}</span>
 
           <span className='date'>
             {moment(story.publishedAt).format('MMMM Do, YYYY')}
           </span>
 
-          <span className='title'>
-            {story.title}
-          </span>
+          <span className='title'>{story.title}</span>
 
           {isUsersStory() && (
-            <button onClick={e => {
-              e.stopPropagation()
-              Router.pushRoute('edit-story', { storySlug: story.slug })
-            }}>
+            <button
+              onClick={e => {
+                e.stopPropagation()
+                Router.pushRoute('edit-story', { storySlug: story.slug })
+              }}
+            >
               edit
             </button>
           )}
@@ -117,7 +111,8 @@ class Story extends Component {
           .title {
             margin-right: 30px;
           }
-          .date, .author {
+          .date,
+          .author {
             display: inline-block;
             margin-right: 30px;
             font-size: 0.875em;
@@ -127,7 +122,8 @@ class Story extends Component {
             .story {
               margin-bottom: 15px;
             }
-            .date, .author {
+            .date,
+            .author {
               display: block;
               width: inherit;
               text-align: inherit;
@@ -137,7 +133,6 @@ class Story extends Component {
           }
         `}</style>
       </div>
-
     )
   }
 }

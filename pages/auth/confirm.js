@@ -26,9 +26,7 @@ class ConfirmPage extends Component {
     const { query } = this.props
 
     // get token
-    const res = await fetch(
-      `${config.api.auth}/confirm?${qs.stringify(query)}`
-    )
+    const res = await fetch(`${config.api.auth}/confirm?${qs.stringify(query)}`)
 
     if (res.ok) {
       const token = await res.text()
@@ -45,7 +43,13 @@ class ConfirmPage extends Component {
 
     return (
       <div>
-        {error ? <p>{error}</p> : <div><i>Signing in...</i></div>}
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          <div>
+            <i>Signing in...</i>
+          </div>
+        )}
       </div>
     )
   }

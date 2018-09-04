@@ -3,12 +3,10 @@ import { Component } from 'react'
 import Global from '../global'
 import Header from '../header'
 
-const wrapWithLayout = Page => (
+const wrapWithLayout = Page =>
   class WrapWithLayout extends Component {
     static getInitialProps (ctx) {
-      return Page.getInitialProps
-        ? Page.getInitialProps(ctx)
-        : {}
+      return Page.getInitialProps ? Page.getInitialProps(ctx) : {}
     }
 
     render () {
@@ -33,6 +31,5 @@ const wrapWithLayout = Page => (
       )
     }
   }
-)
 
 export default wrapWithLayout

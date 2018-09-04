@@ -1,6 +1,6 @@
 const nextRoutes = require('next-routes')
 
-const routes = module.exports = nextRoutes()
+const routes = (module.exports = nextRoutes())
 
 /*
  * Pages and routes are defined here.

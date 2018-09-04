@@ -9,7 +9,10 @@ export default () => (
     <Head>
       <meta charSet='utf-8' />
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      <meta name='google-site-verification' content='bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y' />
+      <meta
+        name='google-site-verification'
+        content='bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y'
+      />
       <link rel='icon' type='image/x-icon' href='/static/favicon.ico' />
     </Head>
 
@@ -22,7 +25,10 @@ export default () => (
         background: ${secondary};
         color: ${primary};
       }
-      a, a:link, a:visited, a:active {
+      a,
+      a:link,
+      a:visited,
+      a:active {
         text-decoration: none;
         color: ${primary};
       }
@@ -34,7 +40,8 @@ export default () => (
         background: ${secondary};
         color: ${primary};
       }
-      input[type=text], textarea {
+      input[type='text'],
+      textarea {
         font-family: courier, sans-serif;
         font-size: 0.875em;
         background-color: ${secondary};
@@ -46,11 +53,13 @@ export default () => (
         border-bottom: 2px solid ${primary};
         outline: none;
       }
-      input[type=text]::placeholder, textarea::placeholder {
+      input[type='text']::placeholder,
+      textarea::placeholder {
         color: ${primary};
         opacity: 0.4;
       }
-      button, input[type=submit] {
+      button,
+      input[type='submit'] {
         background-color: ${primary};
         color: ${secondary};
         border: none;
@@ -59,13 +68,16 @@ export default () => (
         outline: none;
         width: auto;
       }
-      button:active, input[type=submit]:active {
+      button:active,
+      input[type='submit']:active {
         opacity: 0.6;
       }
-      button:disabled, input[type=submit]:disabled {
+      button:disabled,
+      input[type='submit']:disabled {
         opacity: 0.4;
       }
-      button:disabled:hover, input[type=submit]:disabled:hover {
+      button:disabled:hover,
+      input[type='submit']:disabled:hover {
         cursor: not-allowed;
       }
       .btn-md {
@@ -83,9 +95,15 @@ export default () => (
         background-color: ${primary};
         opacity: 0.6;
       }
-      .error { font-size: 0.75em; }
-      .red { color: red; }
-      .darkgrey { color: darkgrey; }
+      .error {
+        font-size: 0.75em;
+      }
+      .red {
+        color: red;
+      }
+      .darkgrey {
+        color: darkgrey;
+      }
       .hidden {
         display: none;
       }

@@ -12,9 +12,7 @@ const ensureSignedIn = Page => {
   return class EnsureSignedIn extends Component {
     static getInitialProps (ctx) {
       // If the page has a prop fetcher invoke it
-      return Page.getInitialProps
-        ? Page.getInitialProps(ctx)
-        : {}
+      return Page.getInitialProps ? Page.getInitialProps(ctx) : {}
     }
 
     constructor (props) {

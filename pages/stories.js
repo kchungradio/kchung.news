@@ -21,18 +21,32 @@ function StoriesPage ({
 
       <Query query={allStories}>
         {({ loading, error, data }) => {
-          if (error) return <div><i>Error loading stories.</i></div>
-          if (loading) return <div><i>Loading...</i></div>
+          if (error) {
+            return (
+              <div>
+                <i>Error loading stories.</i>
+              </div>
+            )
+          }
+          if (loading) {
+            return (
+              <div>
+                <i>Loading...</i>
+              </div>
+            )
+          }
 
-          return <StoriesList
-            stories={data.stories}
-            isUsersStory={story => session && session.id === story.author.id}
-            openStory={openStory}
-            isPlaying={isPlaying}
-            playingStory={playingStory}
-            onStoryClick={onStoryClick}
-            onStoryPlayClick={onStoryPlayClick}
-          />
+          return (
+            <StoriesList
+              stories={data.stories}
+              isUsersStory={story => session && session.id === story.author.id}
+              openStory={openStory}
+              isPlaying={isPlaying}
+              playingStory={playingStory}
+              onStoryClick={onStoryClick}
+              onStoryPlayClick={onStoryPlayClick}
+            />
+          )
         }}
       </Query>
     </React.Fragment>

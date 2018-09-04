@@ -31,13 +31,21 @@ export default class Player extends Component {
   }
 
   render () {
-    const { audioUrl, title, isPlaying, setPlayState, togglePlayPause } = this.props
+    const {
+      audioUrl,
+      title,
+      isPlaying,
+      setPlayState,
+      togglePlayPause
+    } = this.props
     const { playedPercent, playedSeconds, duration } = this.state
 
     return (
       <div className='player'>
         <ReactPlayer
-          ref={player => { this.player = player }}
+          ref={player => {
+            this.player = player
+          }}
           className='react-player'
           width='0'
           height='0'
@@ -63,13 +71,14 @@ export default class Player extends Component {
           <div className='title'>
             <span>{title}</span>
           </div>
-
           <Duration seconds={playedSeconds} />
           /
           <Duration seconds={duration} />
-
           <input
-            type='range' min={0} max={1} step='any'
+            type='range'
+            min={0}
+            max={1}
+            step='any'
             value={playedPercent}
             onMouseDown={this.onSeekMouseDown}
             onChange={this.onSeekChange}
@@ -101,24 +110,24 @@ export default class Player extends Component {
             margin-right: 15px;
           }
 
-          input[type=range] {
+          input[type='range'] {
             -webkit-appearance: none;
             width: 100%;
             margin: 11.5px 0;
             padding: 12px 0;
             background: ${secondary};
           }
-          input[type=range]:focus {
+          input[type='range']:focus {
             outline: none;
           }
-          input[type=range]::-webkit-slider-runnable-track {
+          input[type='range']::-webkit-slider-runnable-track {
             width: 100%;
             height: 2px;
             cursor: pointer;
             background: ${primary};
             border: 0px solid ${secondary};
           }
-          input[type=range]::-webkit-slider-thumb {
+          input[type='range']::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 2px;
             height: 25px;
@@ -126,24 +135,24 @@ export default class Player extends Component {
             cursor: pointer;
             background: ${primary};
           }
-          input[type=range]:focus::-webkit-slider-runnable-track {
+          input[type='range']:focus::-webkit-slider-runnable-track {
             background: ${primary};
           }
-          input[type=range]::-moz-range-track {
+          input[type='range']::-moz-range-track {
             width: 100%;
             height: 2px;
             cursor: pointer;
             background: ${primary};
             border: 0px solid ${secondary};
           }
-          input[type=range]::-moz-range-thumb {
+          input[type='range']::-moz-range-thumb {
             width: 2px;
             height: 25px;
             cursor: pointer;
             background: ${primary};
             border: 0px solid ${primary};
           }
-          input[type=range]::-ms-track {
+          input[type='range']::-ms-track {
             width: 100%;
             height: 2px;
             cursor: pointer;
@@ -151,25 +160,25 @@ export default class Player extends Component {
             border-color: transparent;
             color: transparent;
           }
-          input[type=range]::-ms-fill-lower {
+          input[type='range']::-ms-fill-lower {
             background: ${primary};
             border: 0px solid ${secondary};
           }
-          input[type=range]::-ms-fill-upper {
+          input[type='range']::-ms-fill-upper {
             background: ${primary};
             border: 0px solid ${secondary};
           }
-          input[type=range]::-ms-thumb {
+          input[type='range']::-ms-thumb {
             width: 2px;
             height: 25px;
             cursor: pointer;
             background: ${primary};
             border: 0px solid ${primary};
           }
-          input[type=range]:focus::-ms-fill-lower {
+          input[type='range']:focus::-ms-fill-lower {
             background: ${primary};
           }
-          input[type=range]:focus::-ms-fill-upper {
+          input[type='range']:focus::-ms-fill-upper {
             background: ${primary};
           }
         `}</style>

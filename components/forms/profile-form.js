@@ -23,7 +23,9 @@ class ProfileForm extends Component {
     return (
       <div className='form-container'>
         <br />
-        <small><i>Changing your name will sign you out.</i></small>
+        <small>
+          <i>Changing your name will sign you out.</i>
+        </small>
         <br />
         <form id='profile-form' onSubmit={this.handleFormSubmit}>
           <Field
@@ -40,11 +42,7 @@ class ProfileForm extends Component {
             value='Save'
             disabled={name === this.props.name || loading || submitted}
           />
-          <button
-            type='button'
-            className='btn-lg'
-            onClick={onCancel}
-          >
+          <button type='button' className='btn-lg' onClick={onCancel}>
             Cancel
           </button>
         </form>
@@ -53,7 +51,7 @@ class ProfileForm extends Component {
           .form-container {
             width: 80%;
           }
-          input[type=submit],
+          input[type='submit'],
           button {
             margin: 10px 10px 10px 0;
           }

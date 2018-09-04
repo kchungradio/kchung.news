@@ -59,12 +59,7 @@ class SignInPage extends Component {
   setError = error => this.setState({ error })
 
   render () {
-    const {
-      email,
-      emailSent,
-      message,
-      error
-    } = this.state
+    const { email, emailSent, message, error } = this.state
 
     return (
       <div>
@@ -99,7 +94,7 @@ class SignInPage extends Component {
             text-align: center;
             margin-top: 100px;
           }
-          input[type=text] {
+          input[type='text'] {
             width: 50%;
             text-align: center;
           }

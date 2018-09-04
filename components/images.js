@@ -2,16 +2,13 @@ import config from '../config'
 
 export default ({ images, onDelete }) => (
   <div>
-    {images && images.map(image => (
-      <div key={image.filename}>
-        <img src={config.s3.rootUrl + image.filename} />
-        {onDelete && (
-          <span onClick={() => onDelete(image.id)}>
-            &times;
-          </span>
-        )}
-      </div>
-    ))}
+    {images &&
+      images.map(image => (
+        <div key={image.filename}>
+          <img src={config.s3.rootUrl + image.filename} />
+          {onDelete && <span onClick={() => onDelete(image.id)}>&times;</span>}
+        </div>
+      ))}
 
     <style jsx>{`
       div {

@@ -17,7 +17,7 @@ export default class Field extends Component {
     error: false
   }
 
-  onChange = (event) => {
+  onChange = event => {
     const name = this.props.name
     const value = event.target.value
     const error = this.props.validate ? this.props.validate(value) : false
@@ -54,14 +54,10 @@ export default class Field extends Component {
 
     return (
       <div>
-
         {type === 'text' && this.renderInput()}
         {type === 'textarea' && this.renderTextArea()}
 
-        <span className='error'>
-          {this.state.error}
-        </span>
-
+        <span className='error'>{this.state.error}</span>
       </div>
     )
   }

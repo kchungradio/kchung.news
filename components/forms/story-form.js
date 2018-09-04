@@ -8,7 +8,10 @@ const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
 
 class UploadForm extends Component {
   state = {
-    fields: (this.props.storyToEdit && JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename)) || {},
+    fields:
+      (this.props.storyToEdit &&
+        JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename)) ||
+      {},
     fieldErrors: {},
     submitted: false
   }
@@ -55,8 +58,7 @@ class UploadForm extends Component {
 
   validateForm = () => {
     const { fields, fieldErrors } = this.state
-    const errMessages = Object.keys(fieldErrors)
-      .filter(k => fieldErrors[k])
+    const errMessages = Object.keys(fieldErrors).filter(k => fieldErrors[k])
 
     if (!fields.title) return false
     if (!fields.audio) return false
@@ -79,18 +81,17 @@ class UploadForm extends Component {
     if (!fields.images) fields.images = []
 
     const image = { originalFilename, filename }
-    fields.images = [ ...fields.images, image ]
+    fields.images = [...fields.images, image]
     this.setState({ fields })
   }
 
-  removeImage = id => this.setState(({ fields }) => (
-    {
+  removeImage = id =>
+    this.setState(({ fields }) => ({
       fields: {
         ...fields,
         images: fields.images.filter(image => image.id !== id)
       }
-    }
-  ))
+    }))
 
   render () {
     const { session, storyToEdit, onCancel, onDelete, loading } = this.props
@@ -102,9 +103,7 @@ class UploadForm extends Component {
 
     return (
       <div className='form-container'>
-
         <form id='story-form' onSubmit={this.handleFormSubmit}>
-
           <Field
             placeholder='* Story Title'
             name='title'
@@ -159,10 +158,7 @@ class UploadForm extends Component {
               onUploadFinish={this.onImageUploadFinish}
               token={session.token}
             >
-              <Images
-                images={fields.images}
-                onDelete={this.removeImage}
-              />
+              <Images images={fields.images} onDelete={this.removeImage} />
             </UploadField>
           </div>
 
@@ -173,11 +169,7 @@ class UploadForm extends Component {
             value={storyToEdit ? 'Save' : 'Create new story'}
             disabled={loading || submitted || !this.validateForm()}
           />
-          <button
-            type='button'
-            className='btn-lg'
-            onClick={onCancel}
-          >
+          <button type='button' className='btn-lg' onClick={onCancel}>
             Cancel
           </button>
           {storyToEdit && (
@@ -198,12 +190,11 @@ class UploadForm extends Component {
           .upload-group {
             padding: 15px 0 10px 0;
           }
-          input[type=submit],
+          input[type='submit'],
           button {
             margin: 10px 10px 10px 0;
           }
         `}</style>
-
       </div>
     )
   }

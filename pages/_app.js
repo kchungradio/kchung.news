@@ -27,9 +27,10 @@ class KchungNews extends App {
 
   setPlayState = state => this.setState({ isPlaying: state })
 
-  togglePlayPause = () => this.setState(prevState => ({
-    isPlaying: !prevState.isPlaying
-  }))
+  togglePlayPause = () =>
+    this.setState(prevState => ({
+      isPlaying: !prevState.isPlaying
+    }))
 
   onStoryClick = storyId => {
     this.setState(prevState => ({
@@ -41,9 +42,8 @@ class KchungNews extends App {
     // if it's the same story, toggle
     // if it's a different story, just play it
     this.setState(prevState => ({
-      isPlaying: prevState.playingStory.id === story.id
-        ? !prevState.isPlaying
-        : true,
+      isPlaying:
+        prevState.playingStory.id === story.id ? !prevState.isPlaying : true,
       playingStory: story
     }))
   }

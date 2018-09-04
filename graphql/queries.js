@@ -12,8 +12,8 @@ export const allStories = gql`
 `
 
 export const storiesByAuthorSlug = gql`
-  query StoriesByAuthorSlug ($slug: String!) {
-    stories: storiesByAuthorSlug (slug: $slug) {
+  query StoriesByAuthorSlug($slug: String!) {
+    stories: storiesByAuthorSlug(slug: $slug) {
       ...StoryFields
     }
   }
