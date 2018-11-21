@@ -1,21 +1,28 @@
 # KCHUNG News Body website 🗞
 
-## Run locally
+## Install stuff
 
-Set up and run the following services locally:
-- https://github.com/kchungradio/news-s3-url-signing-api
-- https://github.com/kchungradio/news-auth-api
-- https://github.com/kchungradio/news-graphql-api
+If you have a mac, follow the instructions to install homebrew at https://brew.sh/:
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Install node and yarn:
+```bash
+brew install node
+brew install yarn
+```
+
+## Run locally
 
 `git clone` this repository.
 
-Install dependencies and run:
+Install dependencies:
 ```bash
 yarn
-yarn dev
 ```
-_Or alternatively:_
+
+Run the site:
 ```bash
-npm install
-npm run dev
+yarn dev
 ```
