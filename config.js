@@ -1,4 +1,5 @@
-const prod = process.env.NODE_ENV === 'production'
+// const prod = process.env.NODE_ENV === 'production'
+const prod = true
 
 let config = {}
 
@@ -16,7 +17,7 @@ config.api.graphql = prod
   ? 'https://graphql.api.kchung.news'
   : 'http://localhost:4000'
 config.api.auth = prod
-  ? 'https://dev-auth.api.kchung.news'
+  ? 'https://auth.api.kchung.news'
   : 'http://localhost:3002'
 
 config.s3 = {}
