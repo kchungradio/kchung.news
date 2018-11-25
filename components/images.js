@@ -40,14 +40,26 @@ export default class Images extends Component {
 
     return (
       <React.Fragment>
-        {images.map((image, idx) => (
-          <div key={image.filename} onClick={() => this.openLightbox(idx)}>
-            <img src={config.s3.rootUrl + image.filename} />
-            {onDelete && (
-              <span onClick={() => onDelete(image.id)}>&times;</span>
-            )}
-          </div>
-        ))}
+        <ul>
+          {images.map((image, idx) => (
+            <li
+              key={image.filename + idx}
+              onClick={() => this.openLightbox(idx)}
+            >
+              <img src={config.s3.rootUrl + image.filename} />
+              {onDelete && (
+                <span
+                  onClick={e => {
+                    e.stopPropagation()
+                    onDelete(image.id)
+                  }}
+                >
+                  &times;
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
 
         <Lightbox
           images={imageObjects}
@@ -60,12 +72,23 @@ export default class Images extends Component {
         />
 
         <style jsx>{`
-          div {
+          ul,
+          li {
+            padding: 0;
+            margin: 0;
+          }
+          ul {
+            overflow-y: hidden;
+            white-space: nowrap;
+          }
+          li {
             display: inline-block;
+            margin-right: 14px;
+            cursor: pointer;
             position: relative;
           }
           img {
-            width: 150px;
+            height: 100px;
           }
           span {
             position: absolute;
