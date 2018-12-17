@@ -1,17 +1,20 @@
 import { Component } from 'react'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
 
 import Field from './form-field'
 import UploadField from './upload-field'
 import Images from '../images'
 
+import 'react-day-picker/lib/style.css'
+
 const omitTypename = (key, value) => (key === '__typename' ? undefined : value)
 
 class UploadForm extends Component {
   state = {
-    fields:
-      (this.props.storyToEdit &&
-        JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename)) ||
-      {},
+    fields: (this.props.storyToEdit &&
+      JSON.parse(JSON.stringify(this.props.storyToEdit), omitTypename)) || {
+      publishedAt: new Date().toISOString()
+    },
     fieldErrors: {},
     submitted: false
   }
@@ -19,7 +22,7 @@ class UploadForm extends Component {
   handleFormSubmit = async event => {
     event.preventDefault()
     this.setState({ submitted: true })
-    const { session, storyToEdit, onSubmit } = this.props
+    const { session, onSubmit } = this.props
 
     if (!session) return
     if (!this.validateForm()) return
@@ -40,10 +43,6 @@ class UploadForm extends Component {
     // split tags to an array on whitespace or comma
     if (story.tags) story.tags = story.tags.split(/[ ,]+/)
 
-    if (!storyToEdit) {
-      story.publishedAt = new Date().toISOString()
-    }
-
     onSubmit(story)
   }
 
@@ -54,6 +53,15 @@ class UploadForm extends Component {
       fieldErrors[name] = error
       return { fields, fieldErrors }
     })
+  }
+
+  handleDayChange = day => {
+    this.setState(prevState => ({
+      fields: {
+        ...prevState.fields,
+        publishedAt: day.toISOString()
+      }
+    }))
   }
 
   validateForm = () => {
@@ -85,13 +93,14 @@ class UploadForm extends Component {
     this.setState({ fields })
   }
 
-  removeImage = id =>
+  removeImage = id => {
     this.setState(({ fields }) => ({
       fields: {
         ...fields,
         images: fields.images.filter(image => image.id !== id)
       }
     }))
+  }
 
   render () {
     const { session, storyToEdit, onCancel, onDelete, loading } = this.props
@@ -160,6 +169,14 @@ class UploadForm extends Component {
             >
               <Images images={fields.images} onDelete={this.removeImage} />
             </UploadField>
+          </div>
+
+          <div>
+            <p>Published Date</p>
+            <DayPickerInput
+              value={fields.publishedAt}
+              onDayChange={this.handleDayChange}
+            />
           </div>
 
           <input

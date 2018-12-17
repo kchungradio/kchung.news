@@ -25,6 +25,9 @@ export default () => (
         background: ${secondary};
         color: ${primary};
       }
+      p {
+        font-size: 0.875em;
+      }
       a,
       a:link,
       a:visited,

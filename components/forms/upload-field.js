@@ -50,9 +50,6 @@ export default class extends Component {
         <div>{this.props.children}</div>
 
         <style jsx>{`
-          p {
-            font-size: 0.875em;
-          }
           .upload {
             margin: 15px 0;
           }
