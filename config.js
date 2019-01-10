@@ -11,13 +11,13 @@ config.colors = {
 
 config.api = {}
 config.api.s3UrlSigning = prod
-  ? 'https://s3-url-signing.api.kchung.news'
+  ? 'https://s3-url-signing.kchung.news'
   : 'http://localhost:3001'
 config.api.graphql = prod
-  ? 'https://graphql.api.kchung.news'
+  ? 'https://graphql.kchung.news'
   : 'http://localhost:4000'
 config.api.auth = prod
-  ? 'https://auth.api.kchung.news'
+  ? 'https://auth.kchung.news'
   : 'http://localhost:3002'
 
 config.s3 = {}

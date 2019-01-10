@@ -1,3 +1,6 @@
 {
-  "alias": "https://kchung.news"
+  "alias": [
+    "https://kchung.news",
+    "https://www.kchung.news"
+  ]
 }
