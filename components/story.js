@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import moment from 'moment'
+import format from 'date-fns/format'
 
 import { Router } from '../routes'
 import Images from './images'
@@ -76,7 +76,7 @@ class Story extends Component {
           <span className='author'>{story.author && story.author.name}</span>
 
           <span className='date'>
-            {moment(story.publishedAt).format('MMMM Do, YYYY')}
+            {format(story.publishedAt, 'MMMM Do, YYYY')}
           </span>
 
           <span className='title'>{story.title}</span>
