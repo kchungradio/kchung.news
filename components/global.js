@@ -25,7 +25,7 @@ export default () => (
         background: ${secondary};
         color: ${primary};
       }
-      p {
+      p, li {
         font-size: 0.875em;
       }
       a,
