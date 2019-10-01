@@ -16,15 +16,23 @@ const Header = ({ session }) => (
       </Link>
       <span> | </span>
 
-      {session ? (
-        <Link route="channel" params={{ authorSlug: session.slug }}>
-          <a>{session.name}</a>
-        </Link>
-      ) : (
-        <Link route="participate">
-          <a>Participate</a>
-        </Link>
+      {session && (
+        <>
+          <Link route="channel" params={{ authorSlug: session.slug }}>
+            <a>{session.name}</a>
+          </Link>
+          <span> | </span>
+        </>
       )}
+
+      <Link route="participate">
+        <a>Participate</a>
+      </Link>
+      <span> | </span>
+
+      <Link route="about">
+        <a>About</a>
+      </Link>
       <span> | </span>
 
       {session ? (
