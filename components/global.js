@@ -4,7 +4,7 @@ import config from '../config'
 
 const { primary, secondary } = config.colors
 
-export default () => (
+const Global = () => (
   <div>
     <Head>
       <meta charSet="utf-8" />
@@ -114,3 +114,5 @@ export default () => (
     `}</style>
   </div>
 )
+
+export default Global

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Router } from '../routes'
 
-export default () => (
+const SessionButtons = () => (
   <React.Fragment>
     <button onClick={() => Router.pushRoute('new-story')}>New Story</button>
     <button onClick={() => Router.pushRoute('edit-profile')}>
@@ -16,3 +16,5 @@ export default () => (
     `}</style>
   </React.Fragment>
 )
+
+export default SessionButtons

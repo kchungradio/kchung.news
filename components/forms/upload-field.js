@@ -5,7 +5,7 @@ import ReactS3Uploader from 'react-s3-uploader'
 
 import config from '../../config'
 
-export default class extends Component {
+export default class UploadField extends Component {
   static propTypes = {
     label: PropTypes.string,
     multiple: PropTypes.bool,

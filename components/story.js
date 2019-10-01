@@ -15,7 +15,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
     <img
       className="play-button"
       src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
-      onClick={e => onPlayClick(story)}
+      onClick={() => onPlayClick(story)}
     />
 
     {story.location && <div className="location">{story.location}</div>}

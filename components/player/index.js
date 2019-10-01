@@ -19,7 +19,7 @@ export default class Player extends Component {
       this.setState({ playedPercent, playedSeconds })
     }
   }
-  onSeekMouseDown = e => {
+  onSeekMouseDown = () => {
     this.setState({ seeking: true })
   }
   onSeekChange = e => {

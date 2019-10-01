@@ -1,6 +1,6 @@
 import { Link } from '../routes'
 
-export default ({ session }) => (
+const Header = ({ session }) => (
   <div className="header">
     <h1>
       <Link route="stories">
@@ -50,3 +50,5 @@ export default ({ session }) => (
     `}</style>
   </div>
 )
+
+export default Header

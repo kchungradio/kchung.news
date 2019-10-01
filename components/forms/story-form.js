@@ -80,7 +80,7 @@ class UploadForm extends Component {
     return true
   }
 
-  onAudioUploadFinish = ({ originalFilename, filename, publicUrl }) => {
+  onAudioUploadFinish = ({ originalFilename, filename }) => {
     // XXX use functional setState
     const { fields } = this.state
     if (!fields.audio) fields.audio = {}
