@@ -1,38 +1,38 @@
 import { Link } from '../routes'
 
 export default ({ session }) => (
-  <div className='header'>
+  <div className="header">
     <h1>
-      <Link route='stories'>
+      <Link route="stories">
         <a>
-          <img src='/static/newsbody_flat_black.png' alt='KCHUNG News Body' />
+          <img src="/static/newsbody_flat_black.png" alt="KCHUNG News Body" />
         </a>
       </Link>
     </h1>
 
     <nav>
-      <Link route='stories'>
+      <Link route="stories">
         <a>Stories</a>
       </Link>
       <span> | </span>
 
       {session ? (
-        <Link route='channel' params={{ authorSlug: session.slug }}>
+        <Link route="channel" params={{ authorSlug: session.slug }}>
           <a>{session.name}</a>
         </Link>
       ) : (
-        <Link route='participate'>
+        <Link route="participate">
           <a>Participate</a>
         </Link>
       )}
       <span> | </span>
 
       {session ? (
-        <Link route='sign-out'>
+        <Link route="sign-out">
           <a>Sign out</a>
         </Link>
       ) : (
-        <Link route='sign-in'>
+        <Link route="sign-in">
           <a>Sign in</a>
         </Link>
       )}

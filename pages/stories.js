@@ -7,7 +7,7 @@ import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 
-function StoriesPage ({
+function StoriesPage({
   session,
   openStory,
   isPlaying,

@@ -11,16 +11,16 @@ import Images from './images'
 // https://stackoverflow.com/a/28726111
 
 const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
-  <div className='details'>
+  <div className="details">
     <img
-      className='play-button'
+      className="play-button"
       src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
       onClick={e => onPlayClick(story)}
     />
 
-    {story.location && <div className='location'>{story.location}</div>}
+    {story.location && <div className="location">{story.location}</div>}
 
-    <div className='description'>{story.description}</div>
+    <div className="description">{story.description}</div>
 
     <Images images={story.images} />
 
@@ -60,7 +60,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
 )
 
 class Story extends Component {
-  render () {
+  render() {
     const {
       story,
       isUsersStory,
@@ -71,15 +71,15 @@ class Story extends Component {
     } = this.props
 
     return (
-      <div className='story'>
-        <div className='story-main' onClick={() => onClick(story.id)}>
-          <span className='author'>{story.author && story.author.name}</span>
+      <div className="story">
+        <div className="story-main" onClick={() => onClick(story.id)}>
+          <span className="author">{story.author && story.author.name}</span>
 
-          <span className='date'>
+          <span className="date">
             {format(story.publishedAt, 'MMMM Do, YYYY')}
           </span>
 
-          <span className='title'>{story.title}</span>
+          <span className="title">{story.title}</span>
 
           {isUsersStory() && (
             <button

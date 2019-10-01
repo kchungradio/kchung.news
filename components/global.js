@@ -7,13 +7,13 @@ const { primary, secondary } = config.colors
 export default () => (
   <div>
     <Head>
-      <meta charSet='utf-8' />
-      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta
-        name='google-site-verification'
-        content='bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y'
+        name="google-site-verification"
+        content="bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y"
       />
-      <link rel='icon' type='image/x-icon' href='/static/favicon.ico' />
+      <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
     </Head>
 
     <style jsx global>{`
@@ -25,7 +25,8 @@ export default () => (
         background: ${secondary};
         color: ${primary};
       }
-      p, li {
+      p,
+      li {
         font-size: 0.875em;
       }
       a,

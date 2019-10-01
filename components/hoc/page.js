@@ -9,4 +9,7 @@ import compose from '../../lib/compose'
  * so it's really a flow, not a compose
  */
 
-export default compose(injectSession, wrapWithLayout)
+export default compose(
+  injectSession,
+  wrapWithLayout
+)

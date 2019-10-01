@@ -5,14 +5,14 @@ import { Router } from '../../routes'
 import SecurePage from '../../components/hoc/secure-page'
 
 class SignOutPage extends Component {
-  componentDidMount () {
+  componentDidMount() {
     if (process.browser) {
       destroyToken()
     }
     Router.pushRoute('stories')
   }
 
-  render () {
+  render() {
     return <div>signing out...</div>
   }
 }

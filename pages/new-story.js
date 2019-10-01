@@ -8,10 +8,10 @@ import { addStory } from '../graphql/mutations'
 import SecurePage from '../components/hoc/secure-page'
 import StoryForm from '../components/forms/story-form'
 
-function NewStoryPage ({ session, client }) {
+function NewStoryPage({ session, client }) {
   return (
     <Mutation mutation={addStory}>
-      {(addStory, { loading, error, data }) => (
+      {(addStory, { loading, error }) => (
         <React.Fragment>
           <StoryForm
             session={session}

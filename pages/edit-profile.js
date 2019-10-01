@@ -8,7 +8,7 @@ import { updateAuthorName } from '../graphql/mutations'
 import ProfileForm from '../components/forms/profile-form'
 import SecurePage from '../components/hoc/secure-page'
 
-function EditProfilePage ({ session }) {
+function EditProfilePage({ session }) {
   return (
     <Mutation mutation={updateAuthorName}>
       {(updateAuthorName, { loading, error }) => (
@@ -34,7 +34,7 @@ function EditProfilePage ({ session }) {
   )
 }
 
-function handleError (err) {
+function handleError(err) {
   console.error('error', JSON.stringify(err))
 }
 

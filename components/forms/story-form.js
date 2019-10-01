@@ -107,7 +107,7 @@ class UploadForm extends Component {
     }))
   }
 
-  render () {
+  render() {
     const { session, storyToEdit, onCancel, onDelete, loading } = this.props
     const { fields, submitted } = this.state
 
@@ -116,49 +116,49 @@ class UploadForm extends Component {
     }
 
     return (
-      <div className='form-container'>
-        <form id='story-form' onSubmit={this.handleFormSubmit}>
+      <div className="form-container">
+        <form id="story-form" onSubmit={this.handleFormSubmit}>
           <Field
-            placeholder='* Story Title'
-            name='title'
+            placeholder="* Story Title"
+            name="title"
             value={fields.title}
             onChange={this.handleInputChange}
             validate={val => (val ? false : 'Title is required')}
           />
 
           <Field
-            placeholder='Description'
-            name='description'
-            type='textarea'
+            placeholder="Description"
+            name="description"
+            type="textarea"
             value={fields.description}
             onChange={this.handleInputChange}
           />
 
           <Field
-            placeholder='Location'
-            name='location'
+            placeholder="Location"
+            name="location"
             value={fields.location}
             onChange={this.handleInputChange}
           />
 
           <Field
-            placeholder='Series Name'
-            name='series'
+            placeholder="Series Name"
+            name="series"
             value={fields.series}
             onChange={this.handleInputChange}
           />
 
           <Field
-            placeholder='Tags'
-            name='tags'
+            placeholder="Tags"
+            name="tags"
             value={fields.tags}
             onChange={this.handleInputChange}
           />
 
-          <div className='upload-group'>
+          <div className="upload-group">
             <UploadField
-              label='* select an audio file'
-              mimeType='audio/*'
+              label="* select an audio file"
+              mimeType="audio/*"
               onUploadFinish={this.onAudioUploadFinish}
               token={session.token}
             >
@@ -166,8 +166,8 @@ class UploadForm extends Component {
             </UploadField>
 
             <UploadField
-              label='select photo(s):'
-              mimeType='image/*'
+              label="select photo(s):"
+              mimeType="image/*"
               multiple
               onUploadFinish={this.onImageUploadFinish}
               token={session.token}
@@ -193,19 +193,19 @@ class UploadForm extends Component {
           </div>
 
           <input
-            form='story-form'
-            type='submit'
-            className='btn-lg'
+            form="story-form"
+            type="submit"
+            className="btn-lg"
             value={storyToEdit ? 'Save' : 'Create new story'}
             disabled={loading || submitted || !this.validateForm()}
           />
-          <button type='button' className='btn-lg' onClick={onCancel}>
+          <button type="button" className="btn-lg" onClick={onCancel}>
             Cancel
           </button>
           {storyToEdit && (
             <button
-              type='button'
-              className='btn-lg'
+              type="button"
+              className="btn-lg"
               onClick={() => onDelete(storyToEdit.id)}
             >
               Delete
@@ -230,7 +230,7 @@ class UploadForm extends Component {
   }
 }
 
-function parseDate (str, format, locale) {
+function parseDate(str, format, locale) {
   const parsed = dateFnsParse(str, format, { locale })
   if (DateUtils.isDate(parsed)) {
     return parsed
@@ -238,7 +238,7 @@ function parseDate (str, format, locale) {
   return undefined
 }
 
-function formatDate (date, format, locale) {
+function formatDate(date, format, locale) {
   return dateFnsFormat(date, format, { locale })
 }
 

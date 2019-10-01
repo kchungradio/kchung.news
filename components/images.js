@@ -28,7 +28,7 @@ export default class Images extends Component {
     this.setState(prevState => ({ currentImage: prevState.currentImage + 1 }))
   }
 
-  render () {
+  render() {
     const { images, onDelete } = this.props
     const { lightboxIsOpen, currentImage } = this.state
 

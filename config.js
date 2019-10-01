@@ -16,9 +16,7 @@ config.api.s3UrlSigning = prod
 config.api.graphql = prod
   ? 'https://graphql.kchung.news'
   : 'http://localhost:4000'
-config.api.auth = prod
-  ? 'https://auth.kchung.news'
-  : 'http://localhost:3002'
+config.api.auth = prod ? 'https://auth.kchung.news' : 'http://localhost:3002'
 
 config.s3 = {}
 // config.s3.rootUrl = 'http://archive.kchung.news/'

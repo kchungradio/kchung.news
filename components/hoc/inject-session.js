@@ -19,7 +19,7 @@ const injectSession = Page => {
     // components when the session changes
     state = {}
 
-    static async getInitialProps (ctx) {
+    static async getInitialProps(ctx) {
       // Get the page's own initial props
       const initialProps = Page.getInitialProps
         ? await Page.getInitialProps(ctx)
@@ -32,7 +32,7 @@ const injectSession = Page => {
       return { ...initialProps, session }
     }
 
-    constructor (props) {
+    constructor(props) {
       super(props)
 
       // remove old tokens
@@ -42,19 +42,19 @@ const injectSession = Page => {
       }
     }
 
-    render () {
+    render() {
       // Pass on whatever props exist and state
       return <Page {...this.props} {...this.state} />
     }
 
-    componentWillMount () {
+    componentWillMount() {
       // Use component state to track the session
       if (process.browser) {
         window.addEventListener('storage', this.handleStorageChange)
       }
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
       // Stop tracking session
       if (process.browser) {
         window.removeEventListener('storage', this.handleStorageChange)

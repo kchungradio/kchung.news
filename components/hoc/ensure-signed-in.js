@@ -10,12 +10,12 @@ import destroyToken from '../../lib/destroy-token'
 
 const ensureSignedIn = Page => {
   return class EnsureSignedIn extends Component {
-    static getInitialProps (ctx) {
+    static getInitialProps(ctx) {
       // If the page has a prop fetcher invoke it
       return Page.getInitialProps ? Page.getInitialProps(ctx) : {}
     }
 
-    constructor (props) {
+    constructor(props) {
       super(props)
 
       // in the browser
@@ -33,7 +33,7 @@ const ensureSignedIn = Page => {
       }
     }
 
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
       // On the client redirect to the sign in page if the session
       // gets signed out in another tab
       if (process.browser && !nextProps.session) {
@@ -41,7 +41,7 @@ const ensureSignedIn = Page => {
       }
     }
 
-    render () {
+    render() {
       if (this.props.session) {
         return (
           <div>

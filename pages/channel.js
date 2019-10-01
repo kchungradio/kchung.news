@@ -12,7 +12,7 @@ ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({
   authorSlug
 })
 
-function ChannelPage ({
+function ChannelPage({
   session,
   authorSlug,
   openStory,

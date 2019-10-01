@@ -1,6 +1,6 @@
 import Story from '../components/story'
 
-export default function StoriesList ({
+export default function StoriesList({
   stories,
   isUsersStory,
   openStory,

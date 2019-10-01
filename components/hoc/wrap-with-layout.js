@@ -5,16 +5,16 @@ import Header from '../header'
 
 const wrapWithLayout = Page =>
   class WrapWithLayout extends Component {
-    static getInitialProps (ctx) {
+    static getInitialProps(ctx) {
       return Page.getInitialProps ? Page.getInitialProps(ctx) : {}
     }
 
-    render () {
+    render() {
       return (
-        <div className='background'>
+        <div className="background">
           <Global />
 
-          <div className='layout'>
+          <div className="layout">
             <Header session={this.props.session} />
             <Page {...this.props} />
           </div>

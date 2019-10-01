@@ -1,5 +1,3 @@
-/* global fetch */
-
 import { Component } from 'react'
 import isEmail from 'validator/lib/isEmail'
 
@@ -58,17 +56,17 @@ class SignInPage extends Component {
 
   setError = error => this.setState({ error })
 
-  render () {
+  render() {
     const { email, emailSent, message, error } = this.state
 
     return (
       <div>
-        <form id='sign-in-form' onSubmit={this.handleFormSubmit}>
+        <form id="sign-in-form" onSubmit={this.handleFormSubmit}>
           <p>Sign in with your email:</p>
           <br />
           <input
-            type='text'
-            name='email'
+            type="text"
+            name="email"
             value={email}
             onChange={this.handleInputChange}
           />
@@ -78,10 +76,10 @@ class SignInPage extends Component {
           <br />
           {!emailSent && (
             <input
-              form='sign-in-form'
-              type='submit'
-              className='btn-lg'
-              value='sign in'
+              form="sign-in-form"
+              type="submit"
+              className="btn-lg"
+              value="sign in"
             />
           )}
         </form>

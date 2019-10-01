@@ -30,7 +30,7 @@ export default class Player extends Component {
     this.player.seekTo(parseFloat(e.target.value))
   }
 
-  render () {
+  render() {
     const {
       audioUrl,
       title,
@@ -41,14 +41,14 @@ export default class Player extends Component {
     const { playedPercent, playedSeconds, duration } = this.state
 
     return (
-      <div className='player'>
+      <div className="player">
         <ReactPlayer
           ref={player => {
             this.player = player
           }}
-          className='react-player'
-          width='0'
-          height='0'
+          className="react-player"
+          width="0"
+          height="0"
           url={audioUrl}
           playing={isPlaying}
           onPlay={() => setPlayState(true)}
@@ -62,23 +62,23 @@ export default class Player extends Component {
         />
 
         <img
-          className='play-button'
+          className="play-button"
           src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
         />
 
-        <div className='stack'>
-          <div className='title'>
+        <div className="stack">
+          <div className="title">
             <span>{title}</span>
           </div>
           <Duration seconds={playedSeconds} />
           /
           <Duration seconds={duration} />
           <input
-            type='range'
+            type="range"
             min={0}
             max={1}
-            step='any'
+            step="any"
             value={playedPercent}
             onMouseDown={this.onSeekMouseDown}
             onChange={this.onSeekChange}

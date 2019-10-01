@@ -14,7 +14,7 @@ EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({
   slug: storySlug
 })
 
-function EditStoryPage ({ session, slug, client }) {
+function EditStoryPage({ session, slug, client }) {
   return (
     <Query query={storyBySlug} variables={{ slug }}>
       {({ loading, error, data }) => {
@@ -80,7 +80,7 @@ function EditStoryPage ({ session, slug, client }) {
   )
 }
 
-function handleError (err) {
+function handleError(err) {
   console.error('error', JSON.stringify(err))
 }
 

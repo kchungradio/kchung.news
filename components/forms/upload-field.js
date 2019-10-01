@@ -27,14 +27,14 @@ export default class extends Component {
     this.props.onUploadFinish(signedResult)
   }
 
-  render () {
+  render() {
     return (
-      <div className='upload'>
+      <div className="upload">
         <p>{this.props.label}</p>
 
         <ReactS3Uploader
           server={config.api.s3UrlSigning}
-          signingUrl='/s3/sign'
+          signingUrl="/s3/sign"
           signingUrlHeaders={{ Authorization: `Bearer ${this.props.token}` }}
           accept={this.props.mimeType}
           onProgress={this.onUploadProgress}

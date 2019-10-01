@@ -18,11 +18,11 @@ class ConfirmPage extends Component {
     error: ''
   }
 
-  static getInitialProps ({ query }) {
+  static getInitialProps({ query }) {
     return { query }
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     const { query } = this.props
 
     // get token
@@ -38,7 +38,7 @@ class ConfirmPage extends Component {
     }
   }
 
-  render () {
+  render() {
     const { error } = this.state
 
     return (

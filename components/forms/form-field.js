@@ -29,7 +29,7 @@ export default class Field extends Component {
   renderInput = () => {
     return (
       <input
-        type='text'
+        type="text"
         name={this.props.name}
         placeholder={this.props.placeholder}
         value={this.props.value || ''}
@@ -49,7 +49,7 @@ export default class Field extends Component {
     )
   }
 
-  render () {
+  render() {
     const { type } = this.props
 
     return (
@@ -57,7 +57,7 @@ export default class Field extends Component {
         {type === 'text' && this.renderInput()}
         {type === 'textarea' && this.renderTextArea()}
 
-        <span className='error'>{this.state.error}</span>
+        <span className="error">{this.state.error}</span>
       </div>
     )
   }

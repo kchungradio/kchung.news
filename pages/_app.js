@@ -15,7 +15,7 @@ class KchungNews extends App {
     playingStory: {}
   }
 
-  static async getInitialProps ({ Component, router, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
@@ -48,7 +48,7 @@ class KchungNews extends App {
     }))
   }
 
-  render () {
+  render() {
     const { Component, pageProps, apolloClient } = this.props
     const { openStory, isPlaying, playingStory } = this.state
     const { audio, title } = playingStory

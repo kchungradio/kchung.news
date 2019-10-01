@@ -16,33 +16,33 @@ class ProfileForm extends Component {
     this.props.onSubmit(this.state.name)
   }
 
-  render () {
+  render() {
     const { onCancel, loading } = this.props
     const { name, submitted } = this.state
 
     return (
-      <div className='form-container'>
+      <div className="form-container">
         <br />
         <small>
           <i>Changing your name will sign you out.</i>
         </small>
         <br />
-        <form id='profile-form' onSubmit={this.handleFormSubmit}>
+        <form id="profile-form" onSubmit={this.handleFormSubmit}>
           <Field
-            placeholder='Name'
-            name='name'
+            placeholder="Name"
+            name="name"
             value={name}
             onChange={this.handleInputChange}
           />
           <br />
           <input
-            form='profile-form'
-            type='submit'
-            className='btn-lg'
-            value='Save'
+            form="profile-form"
+            type="submit"
+            className="btn-lg"
+            value="Save"
             disabled={name === this.props.name || loading || submitted}
           />
-          <button type='button' className='btn-lg' onClick={onCancel}>
+          <button type="button" className="btn-lg" onClick={onCancel}>
             Cancel
           </button>
         </form>
