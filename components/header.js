@@ -5,7 +5,7 @@ const Header = ({ session }) => (
     <h1>
       <Link route="stories">
         <a>
-          <img src="/static/newsbody_flat_black.png" alt="KCHUNG News Body" />
+          <img src="/newsbody_flat_black.png" alt="KCHUNG News Body" />
         </a>
       </Link>
     </h1>

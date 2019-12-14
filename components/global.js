@@ -13,7 +13,7 @@ const Global = () => (
         name="google-site-verification"
         content="bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y"
       />
-      <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     </Head>
 
     <style jsx global>{`

@@ -63,7 +63,7 @@ export default class Player extends Component {
 
         <img
           className="play-button"
-          src={`/static/${isPlaying ? 'pause' : 'play'}.svg`}
+          src={`/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
         />
 
