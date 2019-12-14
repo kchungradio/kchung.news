@@ -1,5 +1,5 @@
 import React from 'react'
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import { ApolloProvider } from 'react-apollo'
 
 import withApolloClient from '../lib/with-apollo-client'
@@ -56,27 +56,25 @@ class KchungNews extends App {
     const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
 
     return (
-      <Container>
-        <ApolloProvider client={apolloClient}>
-          <Component
-            {...pageProps}
-            openStory={openStory}
+      <ApolloProvider client={apolloClient}>
+        <Component
+          {...pageProps}
+          openStory={openStory}
+          isPlaying={isPlaying}
+          playingStory={playingStory}
+          onStoryClick={this.onStoryClick}
+          onStoryPlayClick={this.onStoryPlayClick}
+        />
+        {audioUrl && (
+          <Player
+            audioUrl={audioUrl}
+            title={title}
             isPlaying={isPlaying}
-            playingStory={playingStory}
-            onStoryClick={this.onStoryClick}
-            onStoryPlayClick={this.onStoryPlayClick}
+            setPlayState={this.setPlayState}
+            togglePlayPause={this.togglePlayPause}
           />
-          {audioUrl && (
-            <Player
-              audioUrl={audioUrl}
-              title={title}
-              isPlaying={isPlaying}
-              setPlayState={this.setPlayState}
-              togglePlayPause={this.togglePlayPause}
-            />
-          )}
-        </ApolloProvider>
-      </Container>
+        )}
+      </ApolloProvider>
     )
   }
 }
