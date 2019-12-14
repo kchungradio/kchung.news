@@ -47,14 +47,14 @@ const injectSession = Page => {
       return <Page {...this.props} {...this.state} />
     }
 
-    componentWillMount() {
+    componentDidMount() {
       // Use component state to track the session
       if (process.browser) {
         window.addEventListener('storage', this.handleStorageChange)
       }
     }
 
-    componentWillUnmount() {
+    componentDidUnmount() {
       // Stop tracking session
       if (process.browser) {
         window.removeEventListener('storage', this.handleStorageChange)
