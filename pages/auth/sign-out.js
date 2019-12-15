@@ -1,7 +1,7 @@
 import { Component } from 'react'
 
 import destroyToken from '../../lib/destroy-token'
-import { Router } from '../../routes'
+import Router from 'next/router'
 import SecurePage from '../../components/hoc/secure-page'
 
 class SignOutPage extends Component {
@@ -9,7 +9,7 @@ class SignOutPage extends Component {
     if (process.browser) {
       destroyToken()
     }
-    Router.pushRoute('stories')
+    Router.push('/')
   }
 
   render() {

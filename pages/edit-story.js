@@ -1,7 +1,6 @@
 import React from 'react'
 import { Query, Mutation, withApollo } from 'react-apollo'
-
-import { Router } from '../routes'
+import Router from 'next/router'
 
 import { storyBySlug } from '../graphql/queries'
 import { updateStory, deleteStory } from '../graphql/mutations'
@@ -46,7 +45,7 @@ function EditStoryPage({ session, slug, client }) {
                         updateStory({ variables: { id: data.story.id, story } })
                           .then(res => {
                             console.log('res', JSON.stringify(res))
-                            Router.pushRoute('stories')
+                            Router.push('/')
                           })
                           .catch(handleError)
                       }}
@@ -59,13 +58,13 @@ function EditStoryPage({ session, slug, client }) {
                           deleteStory({ variables: { id } })
                             .then(res => {
                               console.log('res', JSON.stringify(res))
-                              Router.pushRoute('stories')
+                              Router.push('/')
                               client.resetStore()
                             })
                             .catch(handleError)
                         }
                       }}
-                      onCancel={() => Router.pushRoute('stories')}
+                      onCancel={() => Router.push('/')}
                       loading={loading || loading2}
                     />
                     {(error || error2) && <div>There was an error.</div>}

@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import format from 'date-fns/format'
+import Router from 'next/router'
 
-import { Router } from '../routes'
 import Images from './images'
 
 // TODO: use react-transition group
@@ -85,7 +85,7 @@ class Story extends Component {
             <button
               onClick={e => {
                 e.stopPropagation()
-                Router.pushRoute('edit-story', { storySlug: story.slug })
+                Router.push(`/edit/${story.slug}`)
               }}
             >
               edit

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Mutation } from 'react-apollo'
-
-import { Router } from '../routes'
+import Router from 'next/router'
 
 import { updateAuthorName } from '../graphql/mutations'
 
@@ -20,11 +19,11 @@ function EditProfilePage({ session }) {
                 .then(res => {
                   console.log('res', JSON.stringify(res))
                   // we sign out so we can get a jwt with the new name
-                  Router.pushRoute('sign-out')
+                  Router.push('/auth/sign-out')
                 })
                 .catch(handleError)
             }}
-            onCancel={() => Router.pushRoute('stories')}
+            onCancel={() => Router.push('/')}
             loading={loading}
           />
           {error && <div>There was an error.</div>}

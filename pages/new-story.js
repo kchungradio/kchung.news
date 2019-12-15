@@ -1,7 +1,6 @@
 import React from 'react'
 import { Mutation, withApollo } from 'react-apollo'
-
-import { Router } from '../routes'
+import Router from 'next/router'
 
 import { addStory } from '../graphql/mutations'
 
@@ -19,14 +18,14 @@ function NewStoryPage({ session, client }) {
               addStory({ variables: { story } })
                 .then(res => {
                   console.log('res', JSON.stringify(res))
-                  Router.pushRoute('stories')
+                  Router.push('/')
                   client.resetStore()
                 })
                 .catch(err => {
                   console.error('error', JSON.stringify(err))
                 })
             }}
-            onCancel={() => Router.pushRoute('stories')}
+            onCancel={() => Router.push('/')}
             loading={loading}
           />
           {error && <div>There was an error.</div>}

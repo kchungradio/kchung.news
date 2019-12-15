@@ -1,13 +1,12 @@
 import React from 'react'
+import Router from 'next/router'
 
-import { Router } from '../routes'
+// TODO change button to Link > a
 
 const SessionButtons = () => (
   <React.Fragment>
-    <button onClick={() => Router.pushRoute('new-story')}>New Story</button>
-    <button onClick={() => Router.pushRoute('edit-profile')}>
-      Edit Profile
-    </button>
+    <button onClick={() => Router.push('/new')}>New Story</button>
+    <button onClick={() => Router.push('/edit-profile')}>Edit Profile</button>
 
     <style jsx>{`
       button {

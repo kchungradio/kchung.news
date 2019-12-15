@@ -1,9 +1,9 @@
-import { Link } from '../routes'
+import Link from 'next/link'
 
 const Header = ({ session }) => (
   <div className="header">
     <h1>
-      <Link route="stories">
+      <Link href="/">
         <a>
           <img src="/newsbody_flat_black.png" alt="KCHUNG News Body" />
         </a>
@@ -11,36 +11,36 @@ const Header = ({ session }) => (
     </h1>
 
     <nav>
-      <Link route="stories">
+      <Link href="/">
         <a>Stories</a>
       </Link>
       <span> | </span>
 
       {session && (
         <>
-          <Link route="channel" params={{ authorSlug: session.slug }}>
+          <Link href={`/channel/${session.slug}`}>
             <a>{session.name}</a>
           </Link>
           <span> | </span>
         </>
       )}
 
-      <Link route="participate">
+      <Link href="/participate">
         <a>Participate</a>
       </Link>
       <span> | </span>
 
-      <Link route="about">
+      <Link href="/about">
         <a>About</a>
       </Link>
       <span> | </span>
 
       {session ? (
-        <Link route="sign-out">
+        <Link href="/auth/sign-out">
           <a>Sign out</a>
         </Link>
       ) : (
-        <Link route="sign-in">
+        <Link href="/auth/sign-in">
           <a>Sign in</a>
         </Link>
       )}

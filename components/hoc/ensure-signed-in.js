@@ -1,10 +1,10 @@
 import { Component } from 'react'
+import Router from 'next/router'
 
-import { Router } from '../../routes'
 import destroyToken from '../../lib/destroy-token'
 
 /*
- * Causes page component to be redirected to `/sign-in` if there is no
+ * Causes page component to be redirected to `/auth/sign-in` if there is no
  * `this.props.session` available.
  */
 
@@ -22,13 +22,13 @@ const ensureSignedIn = Page => {
       if (process.browser) {
         // if no session, sign in
         if (!props.session) {
-          Router.pushRoute('sign-in')
+          Router.push('/auth/sign-in')
         }
 
         // if expired, destroy token and sign in
         if (props.session && new Date().getTime() / 1000 > props.session.exp) {
           destroyToken()
-          Router.pushRoute('sign-in')
+          Router.push('/auth/sign-in')
         }
       }
     }
@@ -37,7 +37,7 @@ const ensureSignedIn = Page => {
       // On the client redirect to the sign in page if the session
       // gets signed out in another tab
       if (process.browser && !nextProps.session) {
-        Router.pushRoute('sign-in')
+        Router.push('/auth/sign-in')
       }
     }
 
