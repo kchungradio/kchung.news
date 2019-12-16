@@ -1,21 +1,19 @@
 import React from 'react'
 import { Query, Mutation, withApollo } from 'react-apollo'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
-import { storyBySlug } from '../graphql/queries'
-import { updateStory, deleteStory } from '../graphql/mutations'
+import { storyBySlug } from '../../graphql/queries'
+import { updateStory, deleteStory } from '../../graphql/mutations'
 
-import SecurePage from '../components/hoc/secure-page'
-import StoryForm from '../components/forms/story-form'
+import SecurePage from '../../components/hoc/secure-page'
+import StoryForm from '../../components/forms/story-form'
 
-// query.storySlug comes from url defined in ../routes.js
-EditStoryPage.getInitialProps = async ({ query: { storySlug } }) => ({
-  slug: storySlug
-})
+function EditStoryPage({ session, client }) {
+  const router = useRouter()
+  const { story } = router.query
 
-function EditStoryPage({ session, slug, client }) {
   return (
-    <Query query={storyBySlug} variables={{ slug }}>
+    <Query query={storyBySlug} variables={{ slug: story }}>
       {({ loading, error, data }) => {
         if (error) {
           return (

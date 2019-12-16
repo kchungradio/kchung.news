@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import qs from 'querystring'
 import fetch from 'isomorphic-unfetch'
+import { withRouter } from 'next/router'
 
-import Router from 'next/router'
 import Page from '../../components/hoc/page'
 import saveToken from '../../lib/save-token'
 import config from '../../config'
@@ -18,20 +18,18 @@ class ConfirmPage extends Component {
     error: ''
   }
 
-  static getInitialProps({ query }) {
-    return { query }
-  }
-
   async componentDidMount() {
-    const { query } = this.props
+    const { router } = this.props
 
     // get token
-    const res = await fetch(`${config.api.auth}/confirm?${qs.stringify(query)}`)
+    const res = await fetch(
+      `${config.api.auth}/confirm?${qs.stringify(router.query)}`
+    )
 
     if (res.ok) {
       const token = await res.text()
       saveToken(token)
-      Router.push('/')
+      router.push('/')
     } else {
       const error = await res.text()
       this.setState({ error })
@@ -55,4 +53,4 @@ class ConfirmPage extends Component {
   }
 }
 
-export default Page(ConfirmPage)
+export default Page(withRouter(ConfirmPage))

@@ -18,7 +18,7 @@ const Header = ({ session }) => (
 
       {session && (
         <>
-          <Link href={`/channel/${session.slug}`}>
+          <Link href="/channel/[author]" as={`/channel/${session.slug}`}>
             <a>{session.name}</a>
           </Link>
           <span> | </span>

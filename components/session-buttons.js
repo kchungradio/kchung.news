@@ -6,7 +6,7 @@ import Router from 'next/router'
 const SessionButtons = () => (
   <React.Fragment>
     <button onClick={() => Router.push('/new')}>New Story</button>
-    <button onClick={() => Router.push('/edit-profile')}>Edit Profile</button>
+    <button onClick={() => Router.push('/account')}>Settings</button>
 
     <style jsx>{`
       button {

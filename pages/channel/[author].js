@@ -1,33 +1,31 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Query } from 'react-apollo'
 
-import { storiesByAuthorSlug } from '../graphql/queries'
+import { storiesByAuthorSlug } from '../../graphql/queries'
 
-import SessionButtons from '../components/session-buttons'
-import StoriesList from '../components/stories-list'
-import Page from '../components/hoc/page'
-
-// query.authorSlug comes from url defined in ../routes.js
-ChannelPage.getInitialProps = async ({ query: { authorSlug } }) => ({
-  authorSlug
-})
+import SessionButtons from '../../components/session-buttons'
+import StoriesList from '../../components/stories-list'
+import Page from '../../components/hoc/page'
 
 function ChannelPage({
   session,
-  authorSlug,
   openStory,
   isPlaying,
   playingStory,
   onStoryClick,
   onStoryPlayClick
 }) {
-  const isUsersPage = session && authorSlug === session.slug
+  const router = useRouter()
+  const { author } = router.query
+
+  const isUsersPage = session && author === session.slug
 
   return (
     <React.Fragment>
       {isUsersPage && <SessionButtons />}
 
-      <Query query={storiesByAuthorSlug} variables={{ slug: authorSlug }}>
+      <Query query={storiesByAuthorSlug} variables={{ slug: author }}>
         {({ loading, error, data }) => {
           if (error) {
             return (
