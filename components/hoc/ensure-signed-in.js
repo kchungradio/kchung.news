@@ -33,10 +33,10 @@ const ensureSignedIn = Page => {
       }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate() {
       // On the client redirect to the sign in page if the session
       // gets signed out in another tab
-      if (process.browser && !nextProps.session) {
+      if (process.browser && !this.props.session) {
         Router.push('/auth/sign-in')
       }
     }

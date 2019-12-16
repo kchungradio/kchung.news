@@ -54,7 +54,7 @@ const injectSession = Page => {
       }
     }
 
-    componentDidUnmount() {
+    componentWillUnmount() {
       // Stop tracking session
       if (process.browser) {
         window.removeEventListener('storage', this.handleStorageChange)
