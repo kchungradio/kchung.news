@@ -1,6 +1,5 @@
 {
-  "alias": [
-    "https://kchung.news",
-    "https://www.kchung.news"
-  ]
+  "name": "kchung.news",
+  "version": 2,
+  "scope": "kchungradio"
 }
