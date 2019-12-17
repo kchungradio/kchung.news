@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import Head from 'next/head'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { DateUtils } from 'react-day-picker'
 import dateFnsFormat from 'date-fns/format'
@@ -7,8 +8,6 @@ import dateFnsParse from 'date-fns/parse'
 import Field from './form-field'
 import UploadField from './upload-field'
 import Images from '../images'
-
-import 'react-day-picker/lib/style.css'
 
 const FORMAT = 'MMMM Do, YYYY'
 
@@ -117,6 +116,12 @@ class UploadForm extends Component {
 
     return (
       <div className="form-container">
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/react-day-picker/lib/style.css"
+          />
+        </Head>
         <form id="story-form" onSubmit={this.handleFormSubmit}>
           <Field
             placeholder="* Story Title"
