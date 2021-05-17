@@ -1,9 +1,9 @@
 import React from 'react'
 
-import StoriesList from '../components/stories-list'
-import Page from '../components/hoc/page'
+import StoriesList from '../../components/stories-list'
+import Page from '../../components/hoc/page'
 
-function StoriesPage({
+function ChannelPage({
   openStory,
   isPlaying,
   playingStory,
@@ -22,4 +22,4 @@ function StoriesPage({
   )
 }
 
-export default Page(StoriesPage)
+export default Page(ChannelPage)

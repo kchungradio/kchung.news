@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -13,4 +13,110 @@ a {
 
 * {
   box-sizing: border-box;
+} */
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: courier, sans-serif;
+  background: rgb(239, 123, 126);
+  color: 'black';
+}
+
+p,
+li {
+  font-size: 0.875em;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: 'black';
+}
+a:hover {
+  background: 'black';
+  color: rgb(239, 123, 126);
+}
+
+h1 a:hover {
+  background: rgb(239, 123, 126);
+  color: 'black';
+}
+
+input[type='text'],
+textarea {
+  font-family: courier, sans-serif;
+  font-size: 0.875em;
+  background-color: rgb(239, 123, 126);
+  color: 'black';
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid 'black';
+  outline: none;
+}
+input[type='text']::placeholder,
+textarea::placeholder {
+  color: 'black';
+  opacity: 0.4;
+}
+
+button,
+input[type='submit'] {
+  background-color: 'black';
+  color: rgb(239, 123, 126);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+  width: auto;
+}
+button:active,
+input[type='submit']:active {
+  opacity: 0.6;
+}
+button:disabled,
+input[type='submit']:disabled {
+  opacity: 0.4;
+}
+button:disabled:hover,
+input[type='submit']:disabled:hover {
+  cursor: not-allowed;
+}
+.btn-md {
+  padding: 6px 12px;
+}
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 0.75em;
+}
+
+hr {
+  width: 97%;
+  height: 1px;
+  border: none;
+  margin: 1em 0 1em auto;
+  background-color: 'black';
+  opacity: 0.6;
+}
+
+.error {
+  font-size: 0.75em;
+}
+
+.red {
+  color: red;
+}
+
+.darkgrey {
+  color: darkgrey;
+}
+
+.hidden {
+  display: none;
 }
