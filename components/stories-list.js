@@ -1,7 +1,8 @@
 import Story from '../components/story'
+import React, { useState, useEffect } from 'react'
 
 export default function StoriesList({
-  stories,
+  getStories,
   isUsersStory,
   openStory,
   isPlaying,
@@ -9,7 +10,14 @@ export default function StoriesList({
   onStoryClick,
   onStoryPlayClick
 }) {
-  if (!stories || !stories.length) return <div>No stories here...</div>
+  const [stories, setStories] = useState({})
+
+  useEffect(() => {
+    getStories().then(data => {
+      setStories(data)
+    })
+  })
+  if (!stories || !stories.length) return <div>Loading...</div>
 
   return stories.map(story => (
     <Story

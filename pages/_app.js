@@ -1,18 +1,15 @@
 import React from 'react'
 import App from 'next/app'
-import { ApolloProvider } from 'react-apollo'
 
-import withApolloClient from '../lib/with-apollo-client'
 import Player from '../components/player'
-import config from '../config'
-
-const { s3 } = config
 
 class KchungNews extends App {
   state = {
     openStory: null,
     isPlaying: false,
-    playingStory: {}
+    playingStory: {
+      audioUrl: ''
+    }
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -49,14 +46,12 @@ class KchungNews extends App {
   }
 
   render() {
-    const { Component, pageProps, apolloClient } = this.props
+    const { Component, pageProps } = this.props
     const { openStory, isPlaying, playingStory } = this.state
-    const { audio, title } = playingStory
-
-    const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
+    const { title, audioUrl } = playingStory
 
     return (
-      <ApolloProvider client={apolloClient}>
+      <>
         <Component
           {...pageProps}
           openStory={openStory}
@@ -74,9 +69,9 @@ class KchungNews extends App {
             togglePlayPause={this.togglePlayPause}
           />
         )}
-      </ApolloProvider>
+      </>
     )
   }
 }
 
-export default withApolloClient(KchungNews)
+export default KchungNews

@@ -1,11 +1,10 @@
 import React from 'react'
-import { Query } from 'react-apollo'
-
-import { allStories } from '../graphql/queries'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
+import { findStories } from '../lib/strapi-query'
+import ErrorBoundary from '../components/error-boundary'
 
 function StoriesPage({
   session,
@@ -18,37 +17,17 @@ function StoriesPage({
   return (
     <React.Fragment>
       {session && <SessionButtons />}
-
-      <Query query={allStories}>
-        {({ loading, error, data }) => {
-          if (error) {
-            return (
-              <div>
-                <i>Error loading stories.</i>
-              </div>
-            )
-          }
-          if (loading) {
-            return (
-              <div>
-                <i>Loading...</i>
-              </div>
-            )
-          }
-
-          return (
-            <StoriesList
-              stories={data.stories}
-              isUsersStory={story => session && session.id === story.author.id}
-              openStory={openStory}
-              isPlaying={isPlaying}
-              playingStory={playingStory}
-              onStoryClick={onStoryClick}
-              onStoryPlayClick={onStoryPlayClick}
-            />
-          )
-        }}
-      </Query>
+      <ErrorBoundary>
+        <StoriesList
+          getStories={findStories}
+          isUsersStory={story => session && session.id === story.author.id}
+          openStory={openStory}
+          isPlaying={isPlaying}
+          playingStory={playingStory}
+          onStoryClick={onStoryClick}
+          onStoryPlayClick={onStoryPlayClick}
+        />
+      </ErrorBoundary>
     </React.Fragment>
   )
 }
