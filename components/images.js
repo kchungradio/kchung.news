@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Lightbox from 'react-images'
 
-import config from '../config'
-
 export default class Images extends Component {
   state = {
     lightboxIsOpen: false,
@@ -33,20 +31,17 @@ export default class Images extends Component {
     const { lightboxIsOpen, currentImage } = this.state
 
     if (!images || !Array.isArray(images)) return null
-
+    console.log(images)
     const imageObjects = images.map(image => ({
-      src: config.s3.rootUrl + image.filename
+      src: image.url
     }))
 
     return (
       <React.Fragment>
         <ul>
           {images.map((image, idx) => (
-            <li
-              key={image.filename + idx}
-              onClick={() => this.openLightbox(idx)}
-            >
-              <img src={config.s3.rootUrl + image.filename} />
+            <li key={image.name + idx} onClick={() => this.openLightbox(idx)}>
+              <img src={image.formats.thumbnail.url} />
               {onDelete && (
                 <span
                   onClick={e => {
