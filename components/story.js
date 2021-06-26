@@ -73,11 +73,9 @@ class Story extends Component {
     return (
       <div className="story">
         <div className="story-main" onClick={() => onClick(story.id)}>
-          <span className="author">{story.author && story.author.name}</span>
+          <span className="author">{story.author}</span>
 
-          <span className="date">
-            {format(story.publishedAt, 'MMMM Do, YYYY')}
-          </span>
+          <span className="date">{format(story.date, 'MMMM Do, YYYY')}</span>
 
           <span className="title">{story.title}</span>
 

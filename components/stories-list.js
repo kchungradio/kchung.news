@@ -12,9 +12,13 @@ export default function StoriesList({
 }) {
   const [stories, setStories] = useState([])
 
-  useEffect(async () => {
+  const findAndSetStories = async () => {
     let response = await findStories()
     setStories(response.data)
+  }
+
+  useEffect(() => {
+    findAndSetStories()
   }, [])
 
   return stories.length ? (
