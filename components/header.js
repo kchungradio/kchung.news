@@ -33,9 +33,9 @@ const Header = ({ session }) => (
       <Link href="/about">
         <a>About</a>
       </Link>
-      <span> | </span>
+      {/*<span> | </span>*/}
 
-      {session ? (
+      {/*session ? (
         <Link href="/auth/sign-out">
           <a>Sign out</a>
         </Link>
@@ -43,7 +43,7 @@ const Header = ({ session }) => (
         <Link href="/auth/sign-in">
           <a>Sign in</a>
         </Link>
-      )}
+      )*/}
     </nav>
 
     <br />
