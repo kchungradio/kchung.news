@@ -31,9 +31,10 @@ class KchungNews extends App {
       isPlaying: !prevState.isPlaying
     }))
 
-  onStoryClick = storyId => {
+  onStoryClick = story => {
     this.setState(prevState => ({
-      openStory: prevState.openStory !== storyId ? storyId : null
+      openStory: prevState.openStory !== story.id ? story.id : null,
+      goToStory: prevState.openStory === story.id ? story : null
     }))
   }
 
@@ -49,7 +50,7 @@ class KchungNews extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    const { openStory, isPlaying, playingStory } = this.state
+    const { openStory, goToStory, isPlaying, playingStory } = this.state
     const {
       title,
       audio: { url }
@@ -61,6 +62,7 @@ class KchungNews extends App {
         <Component
           {...pageProps}
           openStory={openStory}
+          goToStory={goToStory}
           isPlaying={isPlaying}
           playingStory={playingStory}
           onStoryClick={this.onStoryClick}

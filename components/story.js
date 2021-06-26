@@ -72,12 +72,21 @@ class Story extends Component {
 
     return (
       <div className="story">
-        <div className="story-main" onClick={() => onClick(story.id)}>
+        <div className="story-main" onClick={() => onClick(story)}>
           <span className="author">{story.author}</span>
 
           <span className="date">{format(story.date, 'MMMM Do, YYYY')}</span>
 
           <span className="title">{story.title}</span>
+
+          <button
+            onClick={e => {
+              e.stopPropagation()
+              Router.push('/stories/[story]', `/stories/${story.slug}`)
+            }}
+          >
+            view story
+          </button>
 
           {isUsersStory() && (
             <button
