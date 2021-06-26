@@ -8,7 +8,9 @@ class KchungNews extends App {
     openStory: null,
     isPlaying: false,
     playingStory: {
-      audioUrl: ''
+      audio: {
+        url: ''
+      }
     }
   }
 
@@ -48,8 +50,12 @@ class KchungNews extends App {
   render() {
     const { Component, pageProps } = this.props
     const { openStory, isPlaying, playingStory } = this.state
-    const { title, audioUrl } = playingStory
+    const {
+      title,
+      audio: { url }
+    } = playingStory
 
+    const audioUrl = url
     return (
       <>
         <Component
