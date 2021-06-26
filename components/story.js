@@ -79,14 +79,16 @@ class Story extends Component {
 
           <span className="title">{story.title}</span>
 
-          <button
-            onClick={e => {
-              e.stopPropagation()
-              Router.push('/stories/[story]', `/stories/${story.slug}`)
-            }}
-          >
-            view story
-          </button>
+          {showDetails && (
+            <button
+              onClick={e => {
+                e.stopPropagation()
+                Router.push('/stories/[story]', `/stories/${story.slug}`)
+              }}
+            >
+              view full story
+            </button>
+          )}
 
           {isUsersStory() && (
             <button
