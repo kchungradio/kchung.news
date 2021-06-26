@@ -31,7 +31,6 @@ export default class Images extends Component {
     const { lightboxIsOpen, currentImage } = this.state
 
     if (!images || !Array.isArray(images)) return null
-    console.log(images)
     const imageObjects = images.map(image => ({
       src: image.url
     }))
