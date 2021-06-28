@@ -1,7 +1,6 @@
 node_modules
 .env
 .next
-.notes
 
 notes.md
 transform.js
