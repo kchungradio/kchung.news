@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
@@ -14,12 +14,23 @@ function StoriesPage({
   onStoryClick,
   onStoryPlayClick
 }) {
+  const [stories, setStories] = useState([])
+
+  const findAndSetStories = async () => {
+    let response = await findStories()
+    setStories(response.data)
+  }
+
+  useEffect(() => {
+    findAndSetStories()
+  }, [])
+
   return (
     <React.Fragment>
       {session && <SessionButtons />}
       <ErrorBoundary>
         <StoriesList
-          getStories={findStories}
+          stories={stories}
           isUsersStory={story => session && session.id === story.author.id}
           openStory={openStory}
           isPlaying={isPlaying}

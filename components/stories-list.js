@@ -1,8 +1,8 @@
 import Story from '../components/story'
-import React, { useState, useEffect } from 'react'
-import { findStories } from '../lib/strapi-query'
+import React from 'react'
 
 export default function StoriesList({
+  stories,
   isUsersStory,
   openStory,
   isPlaying,
@@ -10,17 +10,6 @@ export default function StoriesList({
   onStoryClick,
   onStoryPlayClick
 }) {
-  const [stories, setStories] = useState([])
-
-  const findAndSetStories = async () => {
-    let response = await findStories()
-    setStories(response.data)
-  }
-
-  useEffect(() => {
-    findAndSetStories()
-  }, [])
-
   return stories.length ? (
     stories.map(story => (
       <Story
