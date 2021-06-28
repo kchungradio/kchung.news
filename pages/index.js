@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import SessionButtons from '../components/session-buttons'
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
