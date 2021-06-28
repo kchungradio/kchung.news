@@ -1,5 +1,4 @@
 // const prod = process.env.NODE_ENV === 'production'
-const prod = true
 
 let config = {}
 
@@ -10,13 +9,6 @@ config.colors = {
 }
 
 config.api = {}
-config.api.s3UrlSigning = prod
-  ? 'https://s3-url-signing.kchung.news'
-  : 'http://localhost:3001'
-config.api.graphql = prod
-  ? 'https://graphql.kchung.news'
-  : 'http://localhost:4000'
-config.api.auth = prod ? 'https://auth.kchung.news' : 'http://localhost:3000'
 config.api.baseUrl = 'https://api.kchung.news'
 config.api.endpoints = {
   stories: '/stories'
