@@ -15,10 +15,10 @@ function KchungNewsApp({ Component, pageProps }) {
   const { audio, title } = playingStory
   const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
 
-  const handleStoryClick = storyId => {
+  const handleStoryClick = story => {
     setOpenStory(prevOpenStory =>
       // if it's the same story, close the story
-      prevOpenStory !== storyId ? storyId : null
+      prevOpenStory !== story.id ? story.id : null
     )
   }
 

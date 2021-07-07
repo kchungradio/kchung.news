@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
 import Lightbox from 'react-images'
 
-import config from '../config'
-
 export default class Images extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      lightboxIsOpen: false,
-      currentImage: 0
-    }
+  state = {
+    lightboxIsOpen: false,
+    currentImage: 0
   }
 
-  openLightbox(i) {
+  openLightbox = i => {
     this.setState({
       lightboxIsOpen: true,
       currentImage: i
     })
   }
-  closeLightbox() {
+  closeLightbox = () => {
     this.setState({
       lightboxIsOpen: false
     })
   }
-
-  prevImage() {
+  prevImage = () => {
     this.setState(prevState => ({ currentImage: prevState.currentImage - 1 }))
   }
-  nextImage() {
+  nextImage = () => {
     this.setState(prevState => ({ currentImage: prevState.currentImage + 1 }))
   }
 
@@ -37,8 +31,8 @@ export default class Images extends Component {
 
     if (!images || !Array.isArray(images)) return null
 
-    const imageObjects = images.map(image => ({
-      src: config.s3.rootUrl + image.filename
+    const imageObjects = images.map(({ url }) => ({
+      src: url
     }))
 
     return (
@@ -49,7 +43,7 @@ export default class Images extends Component {
               key={image.filename + idx}
               onClick={() => this.openLightbox(idx)}
             >
-              <img src={config.s3.rootUrl + image.filename} />
+              <img src={image.formats.thumbnail.url} />
               {onDelete && (
                 <span
                   onClick={e => {
