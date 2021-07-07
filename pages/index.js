@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 import ErrorBoundary from '../components/error-boundary'
+import { findStories } from '../lib/strapi-query'
 
 function StoriesPage({
   openStory,
@@ -11,10 +12,21 @@ function StoriesPage({
   onStoryClick,
   onStoryPlayClick
 }) {
+  const [stories, setStories] = useState([])
+
+  const findAndSetStories = async () => {
+    let response = await findStories()
+    setStories(response.data)
+  }
+
+  useEffect(() => {
+    findAndSetStories()
+  }, [])
+
   return (
     <ErrorBoundary>
       <StoriesList
-        stories={[]}
+        stories={stories}
         openStory={openStory}
         isPlaying={isPlaying}
         playingStory={playingStory}

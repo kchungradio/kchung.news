@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import format from 'date-fns/format'
-import Router from 'next/router'
+import { format, parseISO } from 'date-fns'
 
 import Images from './images'
 
@@ -22,7 +21,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
 
     <div className="description">{story.description}</div>
 
-    <Images images={story.images} />
+    <Images images={story.photos} />
 
     {/*
     {story.series && (
@@ -61,36 +60,17 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
 
 class Story extends Component {
   render() {
-    const {
-      story,
-      isUsersStory,
-      showDetails,
-      isPlaying,
-      onClick,
-      onPlayClick
-    } = this.props
-
+    const { story, showDetails, isPlaying, onClick, onPlayClick } = this.props
     return (
       <div className="story">
-        <div className="story-main" onClick={() => onClick(story.id)}>
-          <span className="author">{story.author && story.author.name}</span>
+        <div className="story-main" onClick={() => onClick(story)}>
+          <span className="author">{story.author}</span>
 
           <span className="date">
-            {format(story.publishedAt, 'MMMM Do, YYYY')}
+            {format(parseISO(story.date), 'MMMM Do, yyyy')}
           </span>
 
           <span className="title">{story.title}</span>
-
-          {isUsersStory() && (
-            <button
-              onClick={e => {
-                e.stopPropagation()
-                Router.push('/edit/[story]', `/edit/${story.slug}`)
-              }}
-            >
-              edit
-            </button>
-          )}
         </div>
 
         {showDetails && (
