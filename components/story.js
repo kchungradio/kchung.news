@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { format, parseISO } from 'date-fns'
+import Router from 'next/router'
 
 import Images from './images'
 
@@ -71,6 +72,17 @@ class Story extends Component {
           </span>
 
           <span className="title">{story.title}</span>
+
+          {showDetails && (
+            <button
+              onClick={e => {
+                e.stopPropagation()
+                Router.push('/story/[story]', `/story/${story.slug}`)
+              }}
+            >
+              view full story
+            </button>
+          )}
         </div>
 
         {showDetails && (
