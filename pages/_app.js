@@ -15,17 +15,17 @@ function KchungNewsApp({ Component, pageProps }) {
   const { audio, title } = playingStory
   const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
 
-  const handleStoryClick = (storyId) => {
-    setOpenStory((prevOpenStory) =>
+  const handleStoryClick = storyId => {
+    setOpenStory(prevOpenStory =>
       // if it's the same story, close the story
       prevOpenStory !== storyId ? storyId : null
     )
   }
 
-  const handleStoryPlayClick = (story) => {
+  const handleStoryPlayClick = story => {
     // if it's the same story, toggle
     // if it's a different story, play it
-    toggleIsPlaying((prevIsPlaying) =>
+    toggleIsPlaying(prevIsPlaying =>
       playingStory.id === story.id ? !prevIsPlaying : true
     )
     setPlayingStory(story)
@@ -55,7 +55,7 @@ function KchungNewsApp({ Component, pageProps }) {
   )
 }
 
-KchungNewsApp.getInitialProps = async (appContext) => {
+KchungNewsApp.getInitialProps = async appContext => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext)
   return { ...appProps }

@@ -8,7 +8,7 @@ function StoriesPage({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick,
+  onStoryPlayClick
 }) {
   return (
     <StoriesList

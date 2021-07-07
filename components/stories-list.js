@@ -6,11 +6,11 @@ export default function StoriesList({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick,
+  onStoryPlayClick
 }) {
   if (!stories || !stories.length) return <div>No stories here...</div>
 
-  return stories.map((story) => (
+  return stories.map(story => (
     <Story
       key={story.id}
       story={story}

@@ -8,7 +8,7 @@ function ChannelPage({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick,
+  onStoryPlayClick
 }) {
   return (
     <StoriesList

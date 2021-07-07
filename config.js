@@ -6,7 +6,7 @@ let config = {}
 config.colors = {
   primary: 'black',
   secondary: 'rgb(239, 123, 126)',
-  disabled: 'grey',
+  disabled: 'grey'
 }
 
 config.api = {}

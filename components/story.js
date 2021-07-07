@@ -67,7 +67,7 @@ class Story extends Component {
       showDetails,
       isPlaying,
       onClick,
-      onPlayClick,
+      onPlayClick
     } = this.props
 
     return (
@@ -83,7 +83,7 @@ class Story extends Component {
 
           {isUsersStory() && (
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 Router.push('/edit/[story]', `/edit/${story.slug}`)
               }}
