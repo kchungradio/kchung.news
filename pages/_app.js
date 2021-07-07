@@ -3,17 +3,16 @@ import App from 'next/app'
 import { useToggle } from 'react-use'
 
 import Player from '../components/player'
-import config from '../config'
-
-const { s3 } = config
 
 function KchungNewsApp({ Component, pageProps }) {
   const [openStory, setOpenStory] = useState(null)
   const [isPlaying, toggleIsPlaying] = useToggle(false)
-  const [playingStory, setPlayingStory] = useState({})
+  const [playingStory, setPlayingStory] = useState({ audio: { url: '' } })
 
-  const { audio, title } = playingStory
-  const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
+  const {
+    title,
+    audio: { url: audioUrl }
+  } = playingStory
 
   const handleStoryClick = story => {
     setOpenStory(prevOpenStory =>

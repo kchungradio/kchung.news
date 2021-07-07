@@ -7,28 +7,25 @@ import config from '../../config'
 const { primary, secondary } = config.colors
 
 export default class Player extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      playedPercent: 0,
-      playedSeconds: 0,
-      duration: 0
-    }
+  state = {
+    playedPercent: 0,
+    playedSeconds: 0,
+    duration: 0
   }
 
-  onProgress({ played: playedPercent, playedSeconds }) {
+  onProgress = ({ played: playedPercent, playedSeconds }) => {
     // only update time slider if not currently seeking
     if (!this.state.seeking) {
       this.setState({ playedPercent, playedSeconds })
     }
   }
-  onSeekMouseDown() {
+  onSeekMouseDown = () => {
     this.setState({ seeking: true })
   }
-  onSeekChange(e) {
+  onSeekChange = e => {
     this.setState({ playedPercent: parseFloat(e.target.value) })
   }
-  onSeekMouseUp(e) {
+  onSeekMouseUp = e => {
     this.setState({ seeking: false })
     this.player.seekTo(parseFloat(e.target.value))
   }
