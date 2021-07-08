@@ -68,7 +68,7 @@ class Story extends Component {
           <span className="author">{story.author}</span>
 
           <span className="date">
-            {format(parseISO(story.date), 'MMMM do, yyyy')}
+            {story.date ? format(parseISO(story.date), 'MMMM do, yyyy') : '---'}
           </span>
 
           <span className="title">{story.title}</span>
