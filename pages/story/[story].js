@@ -10,6 +10,7 @@ import Images from '../../components/images'
 function ViewStoryPage() {
   const router = useRouter()
   const { story: storySlug } = router.query
+  const [isLoading, setIsLoading] = useState(true)
   const [story, setStory] = useState({
     audio: {
       url: ''
@@ -20,13 +21,16 @@ function ViewStoryPage() {
   const findAndSetStory = async () => {
     let response = await getStoryBySlug(storySlug)
     setStory(response)
+    setIsLoading(false)
   }
 
   useEffect(() => {
     findAndSetStory()
   }, [])
 
-  return story ? (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <button
         onClick={e => {
@@ -64,8 +68,6 @@ function ViewStoryPage() {
         }
       `}</style>
     </>
-  ) : (
-    <div>Loading...</div>
   )
 }
 
