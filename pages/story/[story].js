@@ -7,7 +7,7 @@ import Page from '../../components/hoc/page'
 import Player from '../../components/player'
 import Images from '../../components/images'
 
-function ViewStoryPage() {
+function StoryPage() {
   const router = useRouter()
   const { story: storySlug } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -71,4 +71,4 @@ function ViewStoryPage() {
   )
 }
 
-export default Page(ViewStoryPage)
+export default Page(StoryPage)
