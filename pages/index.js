@@ -16,7 +16,7 @@ function StoriesPage({
 
   const findAndSetStories = async () => {
     let response = await findStories()
-    setStories(response.data)
+    setStories(response)
   }
 
   useEffect(() => {
