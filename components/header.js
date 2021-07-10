@@ -11,7 +11,7 @@ const Header = () => (
     </h1>
 
     <nav>
-      *{'  '}
+      {'*  '}
       <Link href="/">
         <a>Stories</a>
       </Link>
@@ -23,7 +23,7 @@ const Header = () => (
       <Link href="/about">
         <a>About</a>
       </Link>
-      {'  '}*
+      {'  *'}
     </nav>
     <hr />
 
