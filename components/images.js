@@ -43,7 +43,7 @@ export default class Images extends Component {
               key={image.filename + idx}
               onClick={() => this.openLightbox(idx)}
             >
-              <img src={image.formats.thumbnail.url} />
+              <img src={image.formats ? image.formats.thumbnail.url : ''} />
               {onDelete && (
                 <span
                   onClick={e => {

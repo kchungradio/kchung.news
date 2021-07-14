@@ -46,7 +46,16 @@ function StoryPage() {
       </h2>
       <h3>{story.location}</h3>
       <br />
-      <h4>{story.author}</h4>
+      <h4>
+        <button
+          onClick={e => {
+            e.stopPropagation()
+            router.push('/channel/[author]', `/channel/${story.author}`)
+          }}
+        >
+          {story.author}
+        </button>
+      </h4>
       <br />
       <p>{story.body}</p>
       <br />
