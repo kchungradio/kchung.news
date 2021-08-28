@@ -3,7 +3,7 @@ import App from 'next/app'
 import Router from 'next/router'
 
 function KchungNewsApp({ Component, pageProps }) {
-  const handleStoryClick = story => {
+  const handleStoryClick = (story) => {
     Router.push('/story/[story]', `/story/${story.slug}`)
   }
 
@@ -14,7 +14,7 @@ function KchungNewsApp({ Component, pageProps }) {
   )
 }
 
-KchungNewsApp.getInitialProps = async appContext => {
+KchungNewsApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext)
   return { ...appProps }

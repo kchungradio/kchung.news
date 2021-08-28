@@ -13,8 +13,8 @@ function StoryPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [story, setStory] = useState({
     audio: {
-      url: ''
-    }
+      url: '',
+    },
   })
   const [isPlaying, toggleIsPlaying] = useToggle(false)
 
@@ -33,7 +33,7 @@ function StoryPage() {
   ) : (
     <>
       <button
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation()
           router.push('/')
         }}
@@ -48,7 +48,7 @@ function StoryPage() {
       <br />
       <h4>
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation()
             router.push('/channel/[author]', `/channel/${story.author}`)
           }}

@@ -10,7 +10,7 @@ function StoriesPage({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick
+  onStoryPlayClick,
 }) {
   const [stories, setStories] = useState([])
 

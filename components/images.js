@@ -4,25 +4,25 @@ import Lightbox from 'react-images'
 export default class Images extends Component {
   state = {
     lightboxIsOpen: false,
-    currentImage: 0
+    currentImage: 0,
   }
 
-  openLightbox = i => {
+  openLightbox = (i) => {
     this.setState({
       lightboxIsOpen: true,
-      currentImage: i
+      currentImage: i,
     })
   }
   closeLightbox = () => {
     this.setState({
-      lightboxIsOpen: false
+      lightboxIsOpen: false,
     })
   }
   prevImage = () => {
-    this.setState(prevState => ({ currentImage: prevState.currentImage - 1 }))
+    this.setState((prevState) => ({ currentImage: prevState.currentImage - 1 }))
   }
   nextImage = () => {
-    this.setState(prevState => ({ currentImage: prevState.currentImage + 1 }))
+    this.setState((prevState) => ({ currentImage: prevState.currentImage + 1 }))
   }
 
   render() {
@@ -32,7 +32,7 @@ export default class Images extends Component {
     if (!images || !Array.isArray(images)) return null
 
     const imageObjects = images.map(({ url }) => ({
-      src: url
+      src: url,
     }))
 
     return (
@@ -46,7 +46,7 @@ export default class Images extends Component {
               <img src={image.formats ? image.formats.thumbnail.url : ''} />
               {onDelete && (
                 <span
-                  onClick={e => {
+                  onClick={(e) => {
                     e.stopPropagation()
                     onDelete(image.id)
                   }}

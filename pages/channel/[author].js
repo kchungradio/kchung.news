@@ -10,7 +10,7 @@ function ChannelPage({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick
+  onStoryPlayClick,
 }) {
   const router = useRouter()
   const { author } = router.query

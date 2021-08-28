@@ -6,7 +6,7 @@ let config = {}
 config.colors = {
   primary: 'black',
   secondary: 'rgb(239, 123, 126)',
-  disabled: 'grey'
+  disabled: 'grey',
 }
 
 config.api = {}
@@ -19,7 +19,7 @@ config.api.graphql = prod
 config.api.auth = prod ? 'https://auth.kchung.news' : 'http://localhost:3002'
 config.api.baseUrl = 'https://api.kchung.news'
 config.api.endpoints = {
-  stories: '/stories'
+  stories: '/stories',
 }
 
 config.s3 = {}
