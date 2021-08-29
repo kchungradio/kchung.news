@@ -27,23 +27,15 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
     <div>Loading...</div>
   ) : (
     <>
-      <button
-        onClick={(e) => {
-          e.stopPropagation()
-          router.push('/')
-        }}
-      >
-        back
-      </button>
       <h1>
         {story.title}
-        {story.audio &&
+        {story.audio && (
           <img
             className="play-button"
             src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
             onClick={() => onPlayClick(story)}
           />
-        }
+        )}
       </h1>
       <h2>
         {story.date ? format(parseISO(story.date), 'MMMM do, yyyy') : '---'}
@@ -58,7 +50,17 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
           }}
         >
           {story.author}
-        </button>
+        </button>{' '}
+        {story.series && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              router.push('/series/[series]', `/series/${story.series}`)
+            }}
+          >
+            {story.series}
+          </button>
+        )}
       </h4>
       <br />
       <p>{story.body}</p>
