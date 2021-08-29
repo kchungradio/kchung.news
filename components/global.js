@@ -24,7 +24,6 @@ const Global = () => (
         font-family: courier, sans-serif;
         background: ${secondary};
         color: ${primary};
-        height: 100vh;
       }
       p,
       li {

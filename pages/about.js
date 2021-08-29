@@ -1,64 +1,41 @@
 import Page from '../components/hoc/page'
-import { getAbouts } from '../lib/strapi-query'
-import React, { useState, useEffect } from 'react'
 
 function AboutPage() {
-  const [abouts, setAbouts] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  const findAndSetAbouts = async () => {
-    let response = await getAbouts()
-    setAbouts(response)
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    findAndSetAbouts()
-  }, [])
-
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <>
-      <div className="about">
-        {abouts
-          .sort((a, b) => a.index - b.index)
-          .map((about) => (
-            <div className="scroll-cell" key={about.index}>
-              {about.about}
-            </div>
-          ))}
-      </div>
-        <small>
-          <p>
-            <i>News Body</i> is a project of KCHUNG Radio, a Creative Capital
-            recipient
-          </p>
-          <p>
-            <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
-          </p>
-        </small>
-      <style jsx>{`
-        .about {
-          display: flex;
-          flex-direction: row;
-          position: fixed;
-        }
-
-        .scroll-cell {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-          overflow: scroll;
-          position: relative;
-          flex: 1;
-        }
-
-        small {
-          bottom: 0px;
-          position: sticky;
-        }
-      `}</style>
+      <p>
+        <i>News Body</i> is a vehicle for mobile, roving broadcast that brings
+        live interviews and reporting as well as production training to any
+        site, event and community. Operated by KCHUNG collective members,
+      </p>
+      <p>
+        <i>News Body</i> creates a moveable signal, a hyper-local live radio
+        transmission for listeners.
+      </p>
+      <p>
+        <i>News Body</i> makes KCHUNG’s site-specific programming accessible to
+        a worldwide audience through online audio streaming, on-location and in
+        real time.
+      </p>
+      <p>
+        <i>News Body</i> produces in-depth news programs and building a
+        searchable online archive of past programming.
+      </p>
+      <p>
+        <i>News Body</i> creates opportunities for spectacle, performance and
+        live engagement that imagine new uses and definitions for news in our
+        communities.
+      </p>
+      <br />
+      <small>
+        <p>
+          <i>News Body</i> is a project of KCHUNG Radio, a Creative Capital
+          recipient
+        </p>
+        <p>
+          <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
+        </p>
+      </small>
     </>
   )
 }
