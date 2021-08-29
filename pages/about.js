@@ -1,6 +1,6 @@
 import Page from '../components/hoc/page'
 import { getAbouts } from '../lib/strapi-query'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 function AboutPage() {
   const [abouts, setAbouts] = useState([])
@@ -21,9 +21,19 @@ function AboutPage() {
   ) : (
     <>
       <table>
-        {abouts.sort((a,b) => a.index - b.index).map((about) => 
-          <td key={about.index}>{about.about}</td>
-        )}
+        <tbody>
+          <tr>
+            {abouts
+              .sort((a, b) => a.index - b.index)
+              .map((about) => (
+                <td key={about.index}>
+                  <p>
+                    {about.about}
+                  </p>
+                </td>
+              ))}
+          </tr>
+        </tbody>
       </table>
       <br />
       <small>
@@ -35,6 +45,24 @@ function AboutPage() {
           <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
         </p>
       </small>
+      <style jsx>{`
+        table {
+          height: 90%;
+          overflow: hidden;
+        }
+
+        td {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow: auto;
+        }
+
+        small {
+          bottom: 0px;
+          position: sticky;
+        }
+      `}</style>
     </>
   )
 }
