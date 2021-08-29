@@ -20,6 +20,7 @@ config.api.auth = prod ? 'https://auth.kchung.news' : 'http://localhost:3002'
 config.api.baseUrl = 'https://api.kchung.news'
 config.api.endpoints = {
   stories: '/stories',
+  abouts: '/abouts',
 }
 
 config.s3 = {}

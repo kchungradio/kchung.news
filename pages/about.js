@@ -1,31 +1,30 @@
 import Page from '../components/hoc/page'
+import { getAbouts } from '../lib/strapi-query'
+import React, {useState, useEffect} from 'react'
 
 function AboutPage() {
-  return (
+  const [abouts, setAbouts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const findAndSetAbouts = async () => {
+    let response = await getAbouts()
+    setAbouts(response)
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    findAndSetAbouts()
+  }, [])
+
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <>
-      <p>
-        <i>News Body</i> is a vehicle for mobile, roving broadcast that brings
-        live interviews and reporting as well as production training to any
-        site, event and community. Operated by KCHUNG collective members,
-      </p>
-      <p>
-        <i>News Body</i> creates a moveable signal, a hyper-local live radio
-        transmission for listeners.
-      </p>
-      <p>
-        <i>News Body</i> makes KCHUNG’s site-specific programming accessible to
-        a worldwide audience through online audio streaming, on-location and in
-        real time.
-      </p>
-      <p>
-        <i>News Body</i> produces in-depth news programs and building a
-        searchable online archive of past programming.
-      </p>
-      <p>
-        <i>News Body</i> creates opportunities for spectacle, performance and
-        live engagement that imagine new uses and definitions for news in our
-        communities.
-      </p>
+      <table>
+        {abouts.sort((a,b) => a.index - b.index).map((about) => 
+          <td key={about.index}>{about.about}</td>
+        )}
+      </table>
       <br />
       <small>
         <p>
