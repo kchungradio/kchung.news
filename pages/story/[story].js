@@ -37,11 +37,13 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
       </button>
       <h1>
         {story.title}
-        <img
-          className="play-button"
-          src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
-          onClick={() => onPlayClick(story)}
-        />
+        {story.audio &&
+          <img
+            className="play-button"
+            src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
+            onClick={() => onPlayClick(story)}
+          />
+        }
       </h1>
       <h2>
         {story.date ? format(parseISO(story.date), 'MMMM do, yyyy') : '---'}
