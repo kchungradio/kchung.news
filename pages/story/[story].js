@@ -5,7 +5,7 @@ import { getStoryBySlug } from '../../lib/strapi-query'
 import Page from '../../components/hoc/page'
 import Images from '../../components/images'
 
-function StoryPage({isPlaying, playingStory, onPlayClick}) {
+function StoryPage({ isPlaying, playingStory, onPlayClick }) {
   const router = useRouter()
   const { story: storySlug } = router.query
   const [isLoading, setIsLoading] = useState(true)

@@ -17,7 +17,7 @@ function KchungNewsApp({ Component, pageProps }) {
   const handleStoryPlayClick = (story) => {
     // if it's the same story, toggle
     // if it's a different story, play it
-    setIsPlaying((prevIsPlaying) => 
+    setIsPlaying((prevIsPlaying) =>
       playingStory.id === story.id ? !prevIsPlaying : true
     )
     setPlayingStory(story)
@@ -39,7 +39,7 @@ function KchungNewsApp({ Component, pageProps }) {
           title={title}
           isPlaying={isPlaying}
           setPlayState={setIsPlaying}
-          togglePlayPause={() => setIsPlaying(p => !p)}
+          togglePlayPause={() => setIsPlaying((p) => !p)}
         />
       )}
     </>
