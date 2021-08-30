@@ -50,22 +50,48 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
           }}
         >
           {story.author}
-        </button>{' '}
-        {story.series && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              router.push('/series/[series]', `/series/${story.series}`)
-            }}
-          >
-            {story.series}
-          </button>
-        )}
+        </button>
       </h4>
       <br />
       <p>{story.body}</p>
       <br />
       <Images images={story.photos} />
+      <br />
+      <h4>
+        {story.series && (
+          <>
+            {' '}
+            Series:{' '}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                router.push('/series/[series]', `/series/${story.series}`)
+              }}
+            >
+              {story.series}
+            </button>
+          </>
+        )}
+        {story.tags.length && (
+          <>
+            {' '}
+            Tags:
+            {story.tags.map((tag) => (
+              <>
+                {' '}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    router.push('/tag/[tag]', `/tag/${tag.tagName}`)
+                  }}
+                >
+                  {tag.tagName}
+                </button>
+              </>
+            ))}
+          </>
+        )}
+      </h4>
 
       <style jsx>{`
         Images {

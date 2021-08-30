@@ -21,7 +21,7 @@ const wrapWithLayout = (Page) =>
 
           <style jsx>{`
             .background {
-              margin-bottom: 85px;
+              margin-bottom: 0px;
             }
             .layout {
               padding: 20px 40px;
