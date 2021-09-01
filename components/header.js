@@ -42,6 +42,7 @@ const Header = () => (
       .search {
         width: 20px;
         margin: 0 0 -5px 0;
+        cursor: pointer;
       }
       img {
         width: 100%;
