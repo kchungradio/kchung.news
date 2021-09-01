@@ -23,6 +23,10 @@ const Header = () => (
       <Link href="/about">
         <a>About</a>
       </Link>
+      <span> | </span>
+      <Link href="/search">
+        <img className="search" src="/search.svg" />
+      </Link>
       {'  *'}
     </nav>
     <hr />
@@ -34,6 +38,10 @@ const Header = () => (
         background: rgb(239, 123, 126);
         padding-top: 20px;
         margin-top: -20px;
+      }
+      .search {
+        width: 20px;
+        margin: 0 0 -5px 0;
       }
       img {
         width: 100%;
