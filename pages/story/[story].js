@@ -72,7 +72,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             </button>
           </>
         )}
-        {story.tags.length && (
+        {!!story.tags.length && (
           <>
             {' '}
             Tags:
