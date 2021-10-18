@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Player from '../components/player'
 import App from 'next/app'
-import Router from 'next/router'
 
 function KchungNewsApp({ Component, pageProps }) {
+  const [openStory, setOpenStory] = useState({ id: '' })
   const [isPlaying, setIsPlaying] = useState(false)
   const [playingStory, setPlayingStory] = useState({ audio: {} })
 
@@ -11,7 +11,9 @@ function KchungNewsApp({ Component, pageProps }) {
   const { url: audioUrl } = audio
 
   const handleStoryClick = (story) => {
-    Router.push('/story/[story]', `/story/${story.slug}`)
+    setOpenStory((prevOpenStory) =>
+      prevOpenStory?.id !== story.id ? story : null
+    )
   }
 
   const handleStoryPlayClick = (story) => {
@@ -27,6 +29,7 @@ function KchungNewsApp({ Component, pageProps }) {
     <>
       <Component
         {...pageProps}
+        openStory={openStory}
         isPlaying={isPlaying}
         playingStory={playingStory}
         onStoryClick={handleStoryClick}

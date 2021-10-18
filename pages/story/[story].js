@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { format, parseISO } from 'date-fns'
 import { getStoryBySlug } from '../../lib/strapi-query'
@@ -77,7 +77,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             {' '}
             Tags:
             {story.tags.map((tag) => (
-              <>
+              <Fragment key={tag}>
                 {' '}
                 <button
                   onClick={(e) => {
@@ -87,7 +87,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
                 >
                   {tag.tagName}
                 </button>
-              </>
+              </Fragment>
             ))}
           </>
         )}
