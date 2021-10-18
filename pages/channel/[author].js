@@ -5,7 +5,13 @@ import StoriesList from '../../components/stories-list'
 import Page from '../../components/hoc/page'
 import { getStoriesByChannel } from '../../lib/strapi-query'
 
-function ChannelPage({ onStoryClick }) {
+function ChannelPage({
+  openStory,
+  isPlaying,
+  playingStory,
+  onStoryClick,
+  onPlayClick,
+}) {
   const router = useRouter()
   const { author } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -27,7 +33,14 @@ function ChannelPage({ onStoryClick }) {
     <>
       <h1>{`${author}'s channel`}</h1>
       <br />
-      <StoriesList stories={stories} onStoryClick={onStoryClick} />
+      <StoriesList
+        stories={stories}
+        openStory={openStory}
+        isPlaying={isPlaying}
+        playingStory={playingStory}
+        onStoryClick={onStoryClick}
+        onPlayClick={onPlayClick}
+      />
     </>
   )
 }

@@ -5,7 +5,13 @@ import StoriesList from '../../components/stories-list'
 import Page from '../../components/hoc/page'
 import { getStoriesBySeries } from '../../lib/strapi-query'
 
-function SeriesPage({ onStoryClick }) {
+function SeriesPage({
+  openStory,
+  isPlaying,
+  playingStory,
+  onStoryClick,
+  onPlayClick,
+}) {
   const router = useRouter()
   const { series } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -27,7 +33,14 @@ function SeriesPage({ onStoryClick }) {
     <>
       <h1>{`Series: ${series}`}</h1>
       <br />
-      <StoriesList stories={stories} onStoryClick={onStoryClick} />
+      <StoriesList
+        stories={stories}
+        openStory={openStory}
+        isPlaying={isPlaying}
+        playingStory={playingStory}
+        onStoryClick={onStoryClick}
+        onPlayClick={onPlayClick}
+      />
     </>
   )
 }

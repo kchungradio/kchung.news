@@ -16,6 +16,10 @@ const Header = () => (
         <a>Stories</a>
       </Link>
       <span> | </span>
+      <Link href="/series">
+        <a>Series</a>
+      </Link>
+      <span> | </span>
       <Link href="/participate">
         <a>Participate</a>
       </Link>

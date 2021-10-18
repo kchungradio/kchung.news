@@ -5,7 +5,13 @@ import StoriesList from '../../components/stories-list'
 import Page from '../../components/hoc/page'
 import { getStoriesByTag } from '../../lib/strapi-query'
 
-function TagPage({ onStoryClick }) {
+function TagPage({
+  openStory,
+  isPlaying,
+  playingStory,
+  onStoryClick,
+  onPlayClick,
+}) {
   const router = useRouter()
   const { tag } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -27,7 +33,14 @@ function TagPage({ onStoryClick }) {
     <>
       <h1>{`Tagged: ${tag}`}</h1>
       <br />
-      <StoriesList stories={stories} onStoryClick={onStoryClick} />
+      <StoriesList
+        stories={stories}
+        openStory={openStory}
+        isPlaying={isPlaying}
+        playingStory={playingStory}
+        onStoryClick={onStoryClick}
+        onPlayClick={onPlayClick}
+      />
     </>
   )
 }
