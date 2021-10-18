@@ -4,7 +4,13 @@ import StoriesList from '../components/stories-list'
 import Page from '../components/hoc/page'
 import { getStoriesBySearch } from '../lib/strapi-query'
 
-function SearchPage({ onStoryClick }) {
+function SearchPage({
+  openStory,
+  isPlaying,
+  playingStory,
+  onStoryClick,
+  onPlayClick,
+}) {
   const [isLoading, setIsLoading] = useState(true)
   const [stories, setStories] = useState([])
   const [query, setQuery] = useState('')
@@ -30,7 +36,14 @@ function SearchPage({ onStoryClick }) {
         onChange={(e) => setQuery(e.target.value)}
       />
       <br />
-      <StoriesList stories={stories} onStoryClick={onStoryClick} />
+      <StoriesList
+        stories={stories}
+        openStory={openStory}
+        isPlaying={isPlaying}
+        playingStory={playingStory}
+        onStoryClick={onStoryClick}
+        onPlayClick={onPlayClick}
+      />
     </>
   )
 }
