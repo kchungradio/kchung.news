@@ -10,7 +10,7 @@ import Images from './images'
 // TODO: prevent double click text selection:
 // https://stackoverflow.com/a/28726111
 
-const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
+const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
   <div className="details">
     <img
       className="play-button"
@@ -21,6 +21,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
     <button
       onClick={() => {
         Router.push('/story/[story]', `/story/${story.slug}`)
+        onClick({ id: '' })
       }}
     >
       Read
@@ -93,6 +94,7 @@ class Story extends Component {
             story={story}
             isPlaying={isPlaying}
             onPlayClick={onPlayClick}
+            onClick={onClick}
           />
         )}
 
