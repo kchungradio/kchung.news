@@ -65,10 +65,13 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                router.push('/series/[series]', `/series/${story.series}`)
+                router.push(
+                  '/series/[series]',
+                  `/series/${story.series.seriesName}`
+                )
               }}
             >
-              {story.series}
+              {story.series.seriesName}
             </button>
           </>
         )}
@@ -77,7 +80,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             {' '}
             Tags:
             {story.tags.map((tag) => (
-              <Fragment key={tag}>
+              <Fragment key={tag.tagId}>
                 {' '}
                 <button
                   onClick={(e) => {
