@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import StoriesList from '../../components/stories-list'
 import Page from '../../components/hoc/page'
-import { getStoriesBySeries } from '../../lib/strapi-query'
+import { getSeriesByName, getStoriesBySeries } from '../../lib/strapi-query'
 
 function SeriesPage({
   openStory,
@@ -13,26 +13,32 @@ function SeriesPage({
   onPlayClick,
 }) {
   const router = useRouter()
-  const { series } = router.query
+  let { seriesName } = router.query
   const [isLoading, setIsLoading] = useState(true)
   const [stories, setStories] = useState([])
+  const [series, setSeries] = useState({})
 
-  const findAndSetStories = async () => {
-    let response = await getStoriesBySeries(series)
+  const findAndSetSeries = async () => {
+    seriesName = router.query.series
+    let newSeries = await getSeriesByName(seriesName)
+    let response = await getStoriesBySeries(seriesName)
+    setSeries(newSeries)
     setStories(response)
     setIsLoading(false)
   }
 
   useEffect(() => {
-    findAndSetStories()
+    findAndSetSeries()
   }, [])
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <>
-      <h1>{`Series: ${series}`}</h1>
-      <br />
+      <div className="section-head">
+        <h1>{`Series: ${series?.seriesName}`}</h1>
+        <span className="description">{series?.description}</span>
+      </div>
       <StoriesList
         stories={stories}
         openStory={openStory}
@@ -41,6 +47,13 @@ function SeriesPage({
         onStoryClick={onStoryClick}
         onPlayClick={onPlayClick}
       />
+      <style jsx>{`
+        .section-head {
+          margin: 0 0 30px 0;
+          border: solid 1px black;
+          padding: 10px 0 10px 0;
+        }
+      `}</style>
     </>
   )
 }
