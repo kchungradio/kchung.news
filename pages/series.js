@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import Page from '../../components/hoc/page'
-import { getSeriesList } from '../../lib/strapi-query'
+import Page from '../components/hoc/page'
+import { getSeriesList } from '../lib/strapi-query'
 
 function BrowseSeriesPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [series, setSeries] = useState([])
+  const [openSeries, setOpenSeries] = useState({})
+
+  const handleSeriesClick = (series) => {
+    setOpenSeries((prevOpenSeries) =>
+      prevOpenSeries?.id !== series.id ? series : null
+    )
+  }
 
   const findAndSetSeries = async () => {
     let response = await getSeriesList()
@@ -22,20 +29,35 @@ function BrowseSeriesPage() {
     <>
       <h1>{`Browse Series`}</h1>
       <br />
-      <SeriesList series={series} />
+      <SeriesList
+        series={series}
+        openSeries={openSeries}
+        onSeriesClick={handleSeriesClick}
+      />
     </>
   )
 }
 
-function SeriesList({ series }) {
-  return series.map((s) => <Series key={s.id} series={s} />)
+function SeriesList({ series, openSeries, onSeriesClick }) {
+  return series.map((s) => (
+    <Series
+      key={s.id}
+      series={s}
+      openSeries={openSeries}
+      onClick={onSeriesClick}
+    />
+  ))
 }
 
-function Series({ series }) {
+function Series({ series, openSeries, onClick }) {
   return (
     <div className="series">
-      <span className="seriesName">{series.seriesName}</span>
-      {/* Series Details */}
+      <div className="series-main" onClick={() => onClick(series)}>
+        <span className="name">{series.seriesName}</span>
+      </div>
+      {openSeries?.id === series.id && (
+        <div className="series-description">{series.description}</div>
+      )}
     </div>
   )
 }
