@@ -27,4 +27,17 @@ function BrowseSeriesPage() {
   )
 }
 
+function SeriesList({ series }) {
+  return series.map((s) => <Series key={s.id} series={s} />)
+}
+
+function Series({ series }) {
+  return (
+    <div className="series">
+      <span className="seriesName">{series.seriesName}</span>
+      {/* Series Details */}
+    </div>
+  )
+}
+
 export default Page(BrowseSeriesPage)
