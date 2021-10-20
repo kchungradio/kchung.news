@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Page from '../components/hoc/page'
+import Router from 'next/router'
 import { getSeriesList } from '../lib/strapi-query'
 
 function BrowseSeriesPage() {
@@ -56,8 +57,30 @@ function Series({ series, openSeries, onClick }) {
         <span className="name">{series.seriesName}</span>
       </div>
       {openSeries?.id === series.id && (
-        <div className="series-description">{series.description}</div>
+        <>
+          <button
+            onClick={() => {
+              Router.push('/series/[series]', `/series/${series.seriesName}`)
+              onClick({ id: '' })
+            }}
+          >
+            View Series
+          </button>
+          <div className="description">{series.description}</div>
+        </>
       )}
+      <style jsx>{`
+        .description {
+          font-size: 0.875em;
+          margin-top: 5px;
+        }
+        .series {
+          margin-bottom: 10px;
+        }
+        .series-main {
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   )
 }
