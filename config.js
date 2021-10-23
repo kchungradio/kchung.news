@@ -21,6 +21,7 @@ config.api.baseUrl = 'https://api.kchung.news'
 config.api.endpoints = {
   stories: '/stories',
   series: '/series',
+  countStories: '/series/count',
 }
 
 config.s3 = {}
