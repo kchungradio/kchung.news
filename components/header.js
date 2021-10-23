@@ -42,6 +42,7 @@ const Header = () => (
         background: rgb(239, 123, 126);
         padding-top: 20px;
         margin-top: -20px;
+        z-index: 10;
       }
       .search {
         width: 20px;
