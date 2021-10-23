@@ -87,6 +87,45 @@ class Story extends Component {
           </span>
 
           <span className="title">{story.title}</span>
+
+          {/* <h4>
+            {story.series && (
+              <>
+                {' '}
+                Series:{' '}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    Router.push(
+                      '/series/[series]',
+                      `/series/${story.series.seriesName}`
+                    )
+                  }}
+                >
+                  {story.series.seriesName}
+                </button>
+              </>
+            )}
+            {!!story.tags.length && (
+              <>
+                {' '}
+                Tags:
+                {story.tags.map((tag) => (
+                  <Fragment key={tag.tagId}>
+                    {' '}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        Router.push('/tag/[tag]', `/tag/${tag.tagName}`)
+                      }}
+                    >
+                      {tag.tagName}
+                    </button>
+                  </Fragment>
+                ))}
+              </>
+            )}
+          </h4> */}
         </div>
 
         {showDetails && (
