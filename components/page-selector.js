@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const NEXT_LABEL = '>'
 const PREV_LABEL = '<'
 const ELLIPSES = '...'
@@ -39,13 +37,6 @@ const getPageNumbersToDisplay = (page, numPages) => {
       )
     )
     pagesToDisplay.push(ELLIPSES, numPages)
-    console.log(
-      `upper  bound: ${range(
-        page - Math.floor(numCenter / 2),
-        page + Math.floor(numCenter / 2)
-      )}`
-    )
-    console.log(pagesToDisplay)
   } else if (!shouldShowLeftEllipses && shouldShowRightEllipses) {
     pagesToDisplay.push(...range(1, NUM_PAGES_IN_SELECTOR - 2))
     pagesToDisplay.push(ELLIPSES, numPages)

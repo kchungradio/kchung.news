@@ -6,7 +6,7 @@ import Page from '../components/hoc/page'
 import ErrorBoundary from '../components/error-boundary'
 import { findStories, countStories } from '../lib/strapi-query'
 
-export const LIMIT_PER_PAGE = 10
+export const LIMIT_PER_PAGE = 20
 
 function StoriesPage({
   openStory,
@@ -28,6 +28,7 @@ function StoriesPage({
 
   const goToPage = (n) => {
     if (n > 0 && n <= Math.floor(numStories / LIMIT_PER_PAGE) + 1) {
+      setStories([])
       setPage(n)
     }
   }
