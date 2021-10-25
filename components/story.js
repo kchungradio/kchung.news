@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, Fragment } from 'react'
 import { format, parseISO } from 'date-fns'
 import Router from 'next/router'
 
@@ -88,7 +88,7 @@ class Story extends Component {
 
           <span className="title">{story.title}</span>
 
-          {/* <h4>
+          <span>
             {story.series && (
               <>
                 {' '}
@@ -125,7 +125,7 @@ class Story extends Component {
                 ))}
               </>
             )}
-          </h4> */}
+          </span>
         </div>
 
         {showDetails && (
