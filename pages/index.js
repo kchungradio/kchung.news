@@ -15,6 +15,7 @@ function StoriesPage({
   onStoryClick,
   onPlayClick,
 }) {
+  const [isLoading, setIsLoading] = useState(true)
   const [stories, setStories] = useState([])
   // Page is 1-indexed, but the API query is 0 indexed.
   const [page, setPage] = useState(1)
@@ -24,11 +25,13 @@ function StoriesPage({
     setNumStories(await countStories())
     let response = await findStories(page - 1, LIMIT_PER_PAGE)
     setStories(response)
+    setIsLoading(false)
   }
 
   const goToPage = (n) => {
     if (n > 0 && n <= Math.floor(numStories / LIMIT_PER_PAGE) + 1) {
       setStories([])
+      setIsLoading(true)
       setPage(n)
     }
   }
@@ -37,7 +40,9 @@ function StoriesPage({
     findAndSetStories()
   }, [page])
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <ErrorBoundary>
       <StoriesList
         stories={stories}
