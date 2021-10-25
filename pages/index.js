@@ -27,7 +27,7 @@ function StoriesPage({
   }
 
   const goToPage = (n) => {
-    if (n > 0 && n < Math.floor(numStories / LIMIT_PER_PAGE)) {
+    if (n > 0 && n <= Math.floor(numStories / LIMIT_PER_PAGE) + 1) {
       setPage(n)
     }
   }
