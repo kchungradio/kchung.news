@@ -106,7 +106,7 @@ export default function PageSelector({ page, numPages, goToPage }) {
           margin: 0 5px 0 5px;
         }
         .curr-page {
-          background: grey;
+          background: #f6b7b8;
         }
         .page-step-label {
           cursor: pointer;
