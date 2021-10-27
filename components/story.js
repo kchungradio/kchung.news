@@ -27,9 +27,9 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
       Read
     </button>
 
-    {story.location && <div className="location">{story.location}</div>}
+    {story.location && <h4 className="location">{story.location}</h4>}
 
-    <div className="description">{story.description}</div>
+    <p className="description">{story.description}</p>
 
     <Images images={story.photos} />
 

@@ -28,6 +28,7 @@ const Global = () => (
       p,
       li {
         font-size: 0.875em;
+        white-space: pre-line;
       }
       a,
       a:link,

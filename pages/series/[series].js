@@ -37,7 +37,7 @@ function SeriesPage({
     <>
       <div className="section-head">
         <h1>{`Series: ${series?.seriesName}`}</h1>
-        <span className="description">{series?.description}</span>
+        <p className="description">{series?.description}</p>
       </div>
       <StoriesList
         stories={stories}
