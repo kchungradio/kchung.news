@@ -101,6 +101,7 @@ export default function PageSelector({ page, numPages, goToPage }) {
         }
         .page-num {
           border: 1px solid black;
+          border-radius: 2px;
           cursor: pointer;
           padding: 2px;
           margin: 0 5px 0 5px;

@@ -50,9 +50,9 @@ const Global = () => (
         font-size: 0.875em;
         background-color: ${secondary};
         color: ${primary};
-        width: 100%;
+        width: calc(100% - 40px);
         padding: 12px 20px;
-        margin: 10px 0;
+        margin: 10px 40px 10px 0px;
         border: none;
         border-bottom: 2px solid ${primary};
         outline: none;
@@ -92,7 +92,7 @@ const Global = () => (
         font-size: 0.75em;
       }
       hr {
-        width: 97%;
+        width: 100%;
         height: 1px;
         border: none;
         margin: 1em 0 1em auto;
