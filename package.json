@@ -22,7 +22,7 @@
     "react-images": "^0.5.19",
     "react-player": "^1.14.2",
     "react-s3-uploader": "^4.9.0",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
