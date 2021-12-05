@@ -106,25 +106,6 @@ class Story extends Component {
                 </button>
               </>
             )}
-            {!!story.tags.length && (
-              <>
-                {' '}
-                Tags:
-                {story.tags.map((tag) => (
-                  <Fragment key={tag.tagId}>
-                    {' '}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        Router.push('/tag/[tag]', `/tag/${tag.tagName}`)
-                      }}
-                    >
-                      {tag.tagName}
-                    </button>
-                  </Fragment>
-                ))}
-              </>
-            )}
           </span>
         </div>
 
