@@ -7,9 +7,6 @@ import Images from './images'
 // TODO: use react-transition group
 // https://reactcommunity.org/react-transition-group
 
-// TODO: prevent double click text selection:
-// https://stackoverflow.com/a/28726111
-
 const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
   <div className="details">
     {story.audio && (

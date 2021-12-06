@@ -31,7 +31,6 @@ config.api.queries = {
 }
 
 config.s3 = {}
-// config.s3.rootUrl = 'http://archive.kchung.news/'
 config.s3.rootUrl = 'https://s3-us-west-2.amazonaws.com/archive.kchung.news/'
 
 config.voscast = {}
