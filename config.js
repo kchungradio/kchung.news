@@ -22,6 +22,12 @@ config.api.endpoints = {
   stories: '/stories',
   series: '/series',
   countStories: '/stories/count',
+  countSeries: '/series/count',
+}
+config.api.queries = {
+  author: '?author=',
+  series: '?series.seriesName_in=',
+  tag: '?tags.tagName_in=',
 }
 
 config.s3 = {}
