@@ -12,11 +12,13 @@ import Images from './images'
 
 const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
   <div className="details">
-    <img
-      className="play-button"
-      src={`/${isPlaying ? 'pause' : 'play'}.svg`}
-      onClick={() => onPlayClick(story)}
-    />
+    {story.audio && (
+      <img
+        className="play-button"
+        src={`/${isPlaying ? 'pause' : 'play'}.svg`}
+        onClick={() => onPlayClick(story)}
+      />
+    )}
 
     <button
       onClick={() => {
