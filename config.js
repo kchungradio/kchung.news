@@ -26,7 +26,7 @@ config.api.endpoints = {
 }
 config.api.queries = {
   author: '?author=',
-  series: '?series.seriesName_in=',
+  series: '?series.seriesName=',
   tag: '?tags.tagName_in=',
 }
 

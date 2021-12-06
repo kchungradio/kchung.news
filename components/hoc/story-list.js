@@ -31,7 +31,7 @@ function StoryList({
   }
 
   const goToPage = (n) => {
-    if (n > 0 && n <= Math.floor(numStories / LIMIT_PER_PAGE) + 1) {
+    if (n > 0 && n <= Math.ceil(numStories / LIMIT_PER_PAGE)) {
       setStories([])
       setIsLoading(true)
       setPage(n)
@@ -40,7 +40,7 @@ function StoryList({
 
   useEffect(() => {
     findAndSetStories()
-  }, [page])
+  }, [page, queryString])
 
   return isLoading ? (
     <div>Loading...</div>
