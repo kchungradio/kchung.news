@@ -15,8 +15,8 @@ function ParticipatePage() {
         <li>edit.... or not!</li>
         <li>
           get in touch! email us at{' '}
-          <a href="mailto:participate@kchung.news?Subject=Participate">
-            <b>participate@kchung.news</b>
+          <a href="mailto:lyra@kchungradio.org?Subject=Participate">
+            <b>lyra@kchungradio.org</b>
           </a>{' '}
           and we will get you set up
         </li>
@@ -28,7 +28,7 @@ function ParticipatePage() {
       <br />
       <p>
         if you have any questions or would like more info,{' '}
-        <a href="mailto:participate@kchung.news?Subject=Participate">
+        <a href="mailto:lyra@kchungradio.org?Subject=Participate">
           <b>let us know</b>
         </a>
       </p>

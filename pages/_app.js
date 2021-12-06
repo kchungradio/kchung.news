@@ -1,31 +1,25 @@
 import React, { useState } from 'react'
-import App from 'next/app'
-import { useToggle } from 'react-use'
-
 import Player from '../components/player'
-import config from '../config'
-
-const { s3 } = config
+import App from 'next/app'
 
 function KchungNewsApp({ Component, pageProps }) {
-  const [openStory, setOpenStory] = useState(null)
-  const [isPlaying, toggleIsPlaying] = useToggle(false)
-  const [playingStory, setPlayingStory] = useState({})
+  const [openStory, setOpenStory] = useState({ id: '' })
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [playingStory, setPlayingStory] = useState({ audio: {} })
 
   const { audio, title } = playingStory
-  const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
+  const { url: audioUrl } = audio
 
-  const handleStoryClick = (storyId) => {
+  const handleStoryClick = (story) => {
     setOpenStory((prevOpenStory) =>
-      // if it's the same story, close the story
-      prevOpenStory !== storyId ? storyId : null
+      prevOpenStory?.id !== story.id ? story : null
     )
   }
 
   const handleStoryPlayClick = (story) => {
     // if it's the same story, toggle
     // if it's a different story, play it
-    toggleIsPlaying((prevIsPlaying) =>
+    setIsPlaying((prevIsPlaying) =>
       playingStory.id === story.id ? !prevIsPlaying : true
     )
     setPlayingStory(story)
@@ -39,7 +33,7 @@ function KchungNewsApp({ Component, pageProps }) {
         isPlaying={isPlaying}
         playingStory={playingStory}
         onStoryClick={handleStoryClick}
-        onStoryPlayClick={handleStoryPlayClick}
+        onPlayClick={handleStoryPlayClick}
       />
 
       {audioUrl && (
@@ -47,8 +41,8 @@ function KchungNewsApp({ Component, pageProps }) {
           audioUrl={audioUrl}
           title={title}
           isPlaying={isPlaying}
-          setPlayState={toggleIsPlaying}
-          togglePlayPause={toggleIsPlaying}
+          setPlayState={setIsPlaying}
+          togglePlayPause={() => setIsPlaying((p) => !p)}
         />
       )}
     </>

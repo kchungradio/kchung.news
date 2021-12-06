@@ -33,7 +33,7 @@ function AboutPage() {
           recipient
         </p>
         <p>
-          <a href="mailto:news@kchungradio.org">news@kchungradio.org</a>
+          <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
         </p>
       </small>
     </>

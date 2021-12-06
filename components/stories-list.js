@@ -6,7 +6,7 @@ export default function StoriesList({
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick,
+  onPlayClick,
 }) {
   if (!stories || !stories.length) return <div>No stories here...</div>
 
@@ -14,10 +14,10 @@ export default function StoriesList({
     <Story
       key={story.id}
       story={story}
-      showDetails={story.id === openStory}
+      showDetails={story.id === openStory?.id}
       isPlaying={isPlaying && story.id === playingStory.id}
       onClick={onStoryClick}
-      onPlayClick={onStoryPlayClick}
+      onPlayClick={onPlayClick}
     />
   ))
 }

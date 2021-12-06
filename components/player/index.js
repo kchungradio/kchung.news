@@ -31,13 +31,8 @@ export default class Player extends Component {
   }
 
   render() {
-    const {
-      audioUrl,
-      title,
-      isPlaying,
-      setPlayState,
-      togglePlayPause,
-    } = this.props
+    const { audioUrl, title, isPlaying, setPlayState, togglePlayPause } =
+      this.props
     const { playedPercent, playedSeconds, duration } = this.state
 
     return (

@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import format from 'date-fns/format'
+import { format, parseISO } from 'date-fns'
 import Router from 'next/router'
 
 import Images from './images'
@@ -7,48 +7,48 @@ import Images from './images'
 // TODO: use react-transition group
 // https://reactcommunity.org/react-transition-group
 
-// TODO: prevent double click text selection:
-// https://stackoverflow.com/a/28726111
-
-const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
+const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
   <div className="details">
-    <img
-      className="play-button"
-      src={`/${isPlaying ? 'pause' : 'play'}.svg`}
-      onClick={() => onPlayClick(story)}
-    />
-
-    {story.location && <div className="location">{story.location}</div>}
-
-    <div className="description">{story.description}</div>
-
-    <Images images={story.images} />
-
-    {/*
-    {story.series && (
-      <div className='series'>
-        Series: {story.series}
-      </div>
+    {story.audio && (
+      <img
+        className="play-button"
+        src={`/${isPlaying ? 'pause' : 'play'}.svg`}
+        onClick={() => onPlayClick(story)}
+      />
     )}
-    */}
 
-    {/*
-    {story.tags && (
-      <div className='tags'>
-        {story.tags.map(tag => `#${tag}`).join(' ')}
-      </div>
-    )}
-    */}
+    <button
+      onClick={() => {
+        Router.push('/story/[story]', `/story/${story.slug}`)
+        onClick({ id: '' })
+      }}
+    >
+      Read
+    </button>
+
+    {story.location && <h4 className="location">{story.location}</h4>}
+
+    <p className="description">{story.description}</p>
+
+    <Images images={story.photos} />
 
     <style jsx>{`
       .details {
         padding-bottom: 15px;
+        user-select: text;
       }
       img {
         width: 40px;
         height: 40px;
         margin: 5px 0 -4px 0;
         cursor: pointer;
+      }
+      button {
+        font-size: 20px;
+        height: 40px;
+        vertical-align: top;
+        margin: 5px 0 0 10px;
+        user-select: none;
       }
       .description,
       .location {
@@ -61,36 +61,37 @@ const StoryDetails = ({ story, isPlaying, onPlayClick }) => (
 
 class Story extends Component {
   render() {
-    const {
-      story,
-      isUsersStory,
-      showDetails,
-      isPlaying,
-      onClick,
-      onPlayClick,
-    } = this.props
-
+    const { story, showDetails, isPlaying, onClick, onPlayClick } = this.props
     return (
       <div className="story">
-        <div className="story-main" onClick={() => onClick(story.id)}>
-          <span className="author">{story.author && story.author.name}</span>
+        <div className="story-main" onClick={() => onClick(story)}>
+          <span className="author">{story.author}</span>
 
           <span className="date">
-            {format(story.publishedAt, 'MMMM Do, YYYY')}
+            {story.date ? format(parseISO(story.date), 'MMMM do, yyyy') : '---'}
           </span>
 
           <span className="title">{story.title}</span>
 
-          {isUsersStory() && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                Router.push('/edit/[story]', `/edit/${story.slug}`)
-              }}
-            >
-              edit
-            </button>
-          )}
+          <span>
+            {story.series && (
+              <>
+                {' '}
+                Series:{' '}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    Router.push(
+                      '/series/[series]',
+                      `/series/${story.series.seriesName}`
+                    )
+                  }}
+                >
+                  {story.series.seriesName}
+                </button>
+              </>
+            )}
+          </span>
         </div>
 
         {showDetails && (
@@ -98,12 +99,14 @@ class Story extends Component {
             story={story}
             isPlaying={isPlaying}
             onPlayClick={onPlayClick}
+            onClick={onClick}
           />
         )}
 
         <style jsx>{`
           .story {
             margin-bottom: 10px;
+            user-select: none;
           }
           .story-main {
             cursor: pointer;
