@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-
-import StoriesList from '../../components/stories-list'
 import Page from '../../components/hoc/page'
-import { getSeriesByName, getStoriesBySeries } from '../../lib/strapi-query'
+import StoryList from '../../components/hoc/story-list'
+import { countStoriesBySeries } from '../../lib/strapi-query'
+import config from '../../config'
+import SeriesHeader from './seriesHeader'
 
 function SeriesPage({
   openStory,
@@ -13,47 +14,36 @@ function SeriesPage({
   onPlayClick,
 }) {
   const router = useRouter()
-  let { seriesName } = router.query
+  const [seriesName, setSeriesName] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [stories, setStories] = useState([])
-  const [series, setSeries] = useState({})
 
-  const findAndSetSeries = async () => {
-    seriesName = router.query.series
-    let newSeries = await getSeriesByName(seriesName)
-    let response = await getStoriesBySeries(seriesName)
-    setSeries(newSeries)
-    setStories(response)
+  const { series: seriesQuery } = config.api.queries
+  const countStories = () => countStoriesBySeries(seriesName)
+
+  const findAndSetSeriesName = async () => {
+    setSeriesName(router.query.series)
     setIsLoading(false)
   }
 
   useEffect(() => {
-    findAndSetSeries()
+    findAndSetSeriesName()
   }, [])
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <>
-      <div className="section-head">
-        <h1>{`Series: ${series?.seriesName}`}</h1>
-        <p className="description">{series?.description}</p>
-      </div>
-      <StoriesList
-        stories={stories}
+      <SeriesHeader seriesName={seriesName} />
+      <StoryList
         openStory={openStory}
         isPlaying={isPlaying}
         playingStory={playingStory}
         onStoryClick={onStoryClick}
         onPlayClick={onPlayClick}
+        countStories={countStories}
+        query={seriesQuery}
+        queryParam={seriesName}
       />
-      <style jsx>{`
-        .section-head {
-          margin: 0 0 30px 0;
-          border: solid 1px black;
-          padding: 10px 0 10px 0;
-        }
-      `}</style>
     </>
   )
 }
