@@ -17,6 +17,7 @@ function TagPage({
   const { tag } = router.query
 
   const { tag: tagQuery } = config.api.queries
+  const queryString = tagQuery + tag
   const countStories = () => countStoriesByTag(tag)
   const header = `Tagged: ${tag}`
 
@@ -28,8 +29,7 @@ function TagPage({
       onStoryClick={onStoryClick}
       onPlayClick={onPlayClick}
       countStories={countStories}
-      query={tagQuery}
-      queryParam={tag}
+      queryString={queryString}
       header={header}
     />
   )

@@ -16,6 +16,7 @@ function ChannelPage({
   const router = useRouter()
   const { author } = router.query
   const { author: authorQuery } = config.api.queries
+  const queryString = authorQuery + author
   const countStories = () => countStoriesByChannel(author)
   const header = `${author}'s channel`
 
@@ -27,8 +28,7 @@ function ChannelPage({
       onStoryClick={onStoryClick}
       onPlayClick={onPlayClick}
       countStories={countStories}
-      query={authorQuery}
-      queryParam={author}
+      queryString={queryString}
       header={header}
     />
   )

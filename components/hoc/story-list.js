@@ -14,8 +14,7 @@ function StoryList({
   onStoryClick,
   onPlayClick,
   countStories,
-  query,
-  queryParam,
+  queryString,
   header,
 }) {
   const [isLoading, setIsLoading] = useState(true)
@@ -26,12 +25,7 @@ function StoryList({
 
   const findAndSetStories = async () => {
     setNumStories(await countStories())
-    let response = await findStories(
-      query,
-      queryParam,
-      page - 1,
-      LIMIT_PER_PAGE
-    )
+    let response = await findStories(queryString, page - 1, LIMIT_PER_PAGE)
     setStories(response)
     setIsLoading(false)
   }

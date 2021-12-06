@@ -18,6 +18,7 @@ function SeriesPage({
   const [isLoading, setIsLoading] = useState(true)
 
   const { series: seriesQuery } = config.api.queries
+  const queryString = seriesQuery + seriesName
   const countStories = () => countStoriesBySeries(seriesName)
 
   const findAndSetSeriesName = async () => {
@@ -41,8 +42,7 @@ function SeriesPage({
         onStoryClick={onStoryClick}
         onPlayClick={onPlayClick}
         countStories={countStories}
-        query={seriesQuery}
-        queryParam={seriesName}
+        queryString={queryString}
       />
     </>
   )
