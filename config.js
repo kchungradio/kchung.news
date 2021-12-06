@@ -1,12 +1,12 @@
-// const prod = process.env.NODE_ENV === 'production'
-const prod = true
+const prod = process.env.NODE_ENV === 'production'
+// const prod = true
 
 let config = {}
 
 config.colors = {
   primary: 'black',
   secondary: 'rgb(239, 123, 126)',
-  disabled: 'grey'
+  disabled: 'grey',
 }
 
 config.api = {}
@@ -17,9 +17,20 @@ config.api.graphql = prod
   ? 'https://graphql.kchung.news'
   : 'http://localhost:4000'
 config.api.auth = prod ? 'https://auth.kchung.news' : 'http://localhost:3002'
+config.api.baseUrl = 'https://api.kchung.news'
+config.api.endpoints = {
+  stories: '/stories',
+  series: '/series',
+  countStories: '/stories/count',
+  countSeries: '/series/count',
+}
+config.api.queries = {
+  author: '?author=',
+  series: '?series.seriesName=',
+  tag: '?tags.tagName_in=',
+}
 
 config.s3 = {}
-// config.s3.rootUrl = 'http://archive.kchung.news/'
 config.s3.rootUrl = 'https://s3-us-west-2.amazonaws.com/archive.kchung.news/'
 
 config.voscast = {}

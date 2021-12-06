@@ -1,82 +1,58 @@
-import React from 'react'
-import App from 'next/app'
-import { ApolloProvider } from 'react-apollo'
-
-import withApolloClient from '../lib/with-apollo-client'
+import React, { useState } from 'react'
 import Player from '../components/player'
-import config from '../config'
+import App from 'next/app'
 
-const { s3 } = config
+function KchungNewsApp({ Component, pageProps }) {
+  const [openStory, setOpenStory] = useState({ id: '' })
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [playingStory, setPlayingStory] = useState({ audio: {} })
 
-class KchungNews extends App {
-  state = {
-    openStory: null,
-    isPlaying: false,
-    playingStory: {}
-  }
+  const { audio, title } = playingStory
+  const { url: audioUrl } = audio
 
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return { pageProps }
-  }
-
-  setPlayState = state => this.setState({ isPlaying: state })
-
-  togglePlayPause = () =>
-    this.setState(prevState => ({
-      isPlaying: !prevState.isPlaying
-    }))
-
-  onStoryClick = storyId => {
-    this.setState(prevState => ({
-      openStory: prevState.openStory !== storyId ? storyId : null
-    }))
-  }
-
-  onStoryPlayClick = story => {
-    // if it's the same story, toggle
-    // if it's a different story, just play it
-    this.setState(prevState => ({
-      isPlaying:
-        prevState.playingStory.id === story.id ? !prevState.isPlaying : true,
-      playingStory: story
-    }))
-  }
-
-  render() {
-    const { Component, pageProps, apolloClient } = this.props
-    const { openStory, isPlaying, playingStory } = this.state
-    const { audio, title } = playingStory
-
-    const audioUrl = audio && audio.filename && s3.rootUrl + audio.filename
-
-    return (
-      <ApolloProvider client={apolloClient}>
-        <Component
-          {...pageProps}
-          openStory={openStory}
-          isPlaying={isPlaying}
-          playingStory={playingStory}
-          onStoryClick={this.onStoryClick}
-          onStoryPlayClick={this.onStoryPlayClick}
-        />
-        {audioUrl && (
-          <Player
-            audioUrl={audioUrl}
-            title={title}
-            isPlaying={isPlaying}
-            setPlayState={this.setPlayState}
-            togglePlayPause={this.togglePlayPause}
-          />
-        )}
-      </ApolloProvider>
+  const handleStoryClick = (story) => {
+    setOpenStory((prevOpenStory) =>
+      prevOpenStory?.id !== story.id ? story : null
     )
   }
+
+  const handleStoryPlayClick = (story) => {
+    // if it's the same story, toggle
+    // if it's a different story, play it
+    setIsPlaying((prevIsPlaying) =>
+      playingStory.id === story.id ? !prevIsPlaying : true
+    )
+    setPlayingStory(story)
+  }
+
+  return (
+    <>
+      <Component
+        {...pageProps}
+        openStory={openStory}
+        isPlaying={isPlaying}
+        playingStory={playingStory}
+        onStoryClick={handleStoryClick}
+        onPlayClick={handleStoryPlayClick}
+      />
+
+      {audioUrl && (
+        <Player
+          audioUrl={audioUrl}
+          title={title}
+          isPlaying={isPlaying}
+          setPlayState={setIsPlaying}
+          togglePlayPause={() => setIsPlaying((p) => !p)}
+        />
+      )}
+    </>
+  )
 }
 
-export default withApolloClient(KchungNews)
+KchungNewsApp.getInitialProps = async (appContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext)
+  return { ...appProps }
+}
+
+export default KchungNewsApp

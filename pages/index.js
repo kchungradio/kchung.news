@@ -1,56 +1,25 @@
 import React from 'react'
-import { Query } from 'react-apollo'
-
-import { allStories } from '../graphql/queries'
-
-import SessionButtons from '../components/session-buttons'
-import StoriesList from '../components/stories-list'
+import StoryList from '../components/hoc/story-list'
 import Page from '../components/hoc/page'
+import { findStories, countStories } from '../lib/strapi-query'
 
 function StoriesPage({
-  session,
   openStory,
   isPlaying,
   playingStory,
   onStoryClick,
-  onStoryPlayClick
+  onPlayClick,
 }) {
   return (
-    <React.Fragment>
-      {session && <SessionButtons />}
-
-      <Query query={allStories}>
-        {({ loading, error, data }) => {
-          if (error) {
-            return (
-              <div>
-                <i>Error loading stories.</i>
-              </div>
-            )
-          }
-          if (loading) {
-            return (
-              <div>
-                <i>Loading...</i>
-              </div>
-            )
-          }
-
-          return (
-            <StoriesList
-              stories={data.stories}
-              isUsersStory={story => session && session.id === story.author.id}
-              openStory={openStory}
-              isPlaying={isPlaying}
-              playingStory={playingStory}
-              onStoryClick={onStoryClick}
-              onStoryPlayClick={onStoryPlayClick}
-            />
-          )
-        }}
-      </Query>
-    </React.Fragment>
+    <StoryList
+      openStory={openStory}
+      isPlaying={isPlaying}
+      playingStory={playingStory}
+      onStoryClick={onStoryClick}
+      onPlayClick={onPlayClick}
+      findStories={findStories}
+      countStories={countStories}
+    />
   )
 }
-
 export default Page(StoriesPage)

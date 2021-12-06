@@ -3,10 +3,10 @@ import React from 'react'
 
 import StoryList from '../../components/hoc/story-list'
 import Page from '../../components/hoc/page'
-import { countStoriesByChannel } from '../../lib/strapi-query'
+import { countStoriesByTag } from '../../lib/strapi-query'
 import config from '../../config'
 
-function ChannelPage({
+function TagPage({
   openStory,
   isPlaying,
   playingStory,
@@ -14,11 +14,12 @@ function ChannelPage({
   onPlayClick,
 }) {
   const router = useRouter()
-  const { author } = router.query
-  const { author: authorQuery } = config.api.queries
-  const queryString = authorQuery + author
-  const countStories = () => countStoriesByChannel(author)
-  const header = `${author}'s channel`
+  const { tag } = router.query
+
+  const { tag: tagQuery } = config.api.queries
+  const queryString = tagQuery + tag
+  const countStories = () => countStoriesByTag(tag)
+  const header = `Tagged: ${tag}`
 
   return (
     <StoryList
@@ -33,4 +34,5 @@ function ChannelPage({
     />
   )
 }
-export default Page(ChannelPage)
+
+export default Page(TagPage)
