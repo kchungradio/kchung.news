@@ -5,7 +5,7 @@ import PageSelector from '../page-selector'
 import ErrorBoundary from '../error-boundary'
 import { findStories } from '../../lib/strapi-query'
 
-export const LIMIT_PER_PAGE = 2
+export const LIMIT_PER_PAGE = 20
 
 function StoryList({
   openStory,
