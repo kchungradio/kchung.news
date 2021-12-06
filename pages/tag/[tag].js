@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import StoriesList from '../../components/stories-list'
+import StoryList from '../../components/hoc/story-list'
 import Page from '../../components/hoc/page'
-import { getStoriesByTag } from '../../lib/strapi-query'
+import { countStoriesByTag } from '../../lib/strapi-query'
+import config from '../../config'
 
 function TagPage({
   openStory,
@@ -14,34 +15,23 @@ function TagPage({
 }) {
   const router = useRouter()
   const { tag } = router.query
-  const [isLoading, setIsLoading] = useState(true)
-  const [stories, setStories] = useState([])
 
-  const findAndSetStories = async () => {
-    let response = await getStoriesByTag(tag)
-    setStories(response)
-    setIsLoading(false)
-  }
+  const { tag: tagQuery } = config.api.queries
+  const countStories = () => countStoriesByTag(tag)
+  const header = `Tagged: ${tag}`
 
-  useEffect(() => {
-    findAndSetStories()
-  }, [])
-
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
-    <>
-      <h1>{`Tagged: ${tag}`}</h1>
-      <br />
-      <StoriesList
-        stories={stories}
-        openStory={openStory}
-        isPlaying={isPlaying}
-        playingStory={playingStory}
-        onStoryClick={onStoryClick}
-        onPlayClick={onPlayClick}
-      />
-    </>
+  return (
+    <StoryList
+      openStory={openStory}
+      isPlaying={isPlaying}
+      playingStory={playingStory}
+      onStoryClick={onStoryClick}
+      onPlayClick={onPlayClick}
+      countStories={countStories}
+      query={tagQuery}
+      queryParam={tag}
+      header={header}
+    />
   )
 }
 
