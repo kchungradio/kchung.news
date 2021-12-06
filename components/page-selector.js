@@ -70,6 +70,10 @@ const getPageNumbersToDisplay = (page, numPages) => {
  * @returns
  */
 export default function PageSelector({ page, numPages, goToPage }) {
+  if (numPages <= 1) {
+    return <div />
+  }
+
   const pagesToDisplay = getPageNumbersToDisplay(page, numPages)
 
   return (
