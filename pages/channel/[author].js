@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import StoriesList from '../../components/stories-list'
+import StoryList from '../../components/hoc/story-list'
 import Page from '../../components/hoc/page'
-import { getStoriesByChannel } from '../../lib/strapi-query'
+import { countStoriesByChannel } from '../../lib/strapi-query'
+import config from '../../config'
 
 function ChannelPage({
   openStory,
@@ -14,35 +15,22 @@ function ChannelPage({
 }) {
   const router = useRouter()
   const { author } = router.query
-  const [isLoading, setIsLoading] = useState(true)
-  const [stories, setStories] = useState([])
+  const { author: authorQuery } = config.api.queries
+  const countStories = () => countStoriesByChannel(author)
+  const header = `${author}'s channel`
 
-  const findAndSetStories = async () => {
-    let response = await getStoriesByChannel(author)
-    setStories(response)
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    findAndSetStories()
-  }, [])
-
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
-    <>
-      <h1>{`${author}'s channel`}</h1>
-      <br />
-      <StoriesList
-        stories={stories}
-        openStory={openStory}
-        isPlaying={isPlaying}
-        playingStory={playingStory}
-        onStoryClick={onStoryClick}
-        onPlayClick={onPlayClick}
-      />
-    </>
+  return (
+    <StoryList
+      openStory={openStory}
+      isPlaying={isPlaying}
+      playingStory={playingStory}
+      onStoryClick={onStoryClick}
+      onPlayClick={onPlayClick}
+      countStories={countStories}
+      query={authorQuery}
+      queryParam={author}
+      header={header}
+    />
   )
 }
-
 export default Page(ChannelPage)
