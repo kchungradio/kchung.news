@@ -35,25 +35,10 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
 
     <Images images={story.photos} />
 
-    {/*
-    {story.series && (
-      <div className='series'>
-        Series: {story.series}
-      </div>
-    )}
-    */}
-
-    {/*
-    {story.tags && (
-      <div className='tags'>
-        {story.tags.map(tag => `#${tag}`).join(' ')}
-      </div>
-    )}
-    */}
-
     <style jsx>{`
       .details {
         padding-bottom: 15px;
+        user-select: text;
       }
       img {
         width: 40px;
@@ -66,6 +51,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
         height: 40px;
         vertical-align: top;
         margin: 5px 0 0 10px;
+        user-select: none;
       }
       .description,
       .location {
@@ -123,6 +109,7 @@ class Story extends Component {
         <style jsx>{`
           .story {
             margin-bottom: 10px;
+            user-select: none;
           }
           .story-main {
             cursor: pointer;
