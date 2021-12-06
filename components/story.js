@@ -1,4 +1,4 @@
-import { Component, Fragment } from 'react'
+import { Component } from 'react'
 import { format, parseISO } from 'date-fns'
 import Router from 'next/router'
 
