@@ -31,8 +31,10 @@ export default class Images extends Component {
 
     if (!images || !Array.isArray(images)) return null
 
-    const imageObjects = images.map(({ url }) => ({
+    const imageObjects = images.map(({ url, alternativeText, caption }) => ({
       src: url,
+      alt: alternativeText,
+      title: caption,
     }))
 
     return (
@@ -43,7 +45,11 @@ export default class Images extends Component {
               key={image.filename + idx}
               onClick={() => this.openLightbox(idx)}
             >
-              <img src={image.formats ? image.formats.thumbnail.url : ''} />
+              <img
+                src={image.formats ? image.formats.thumbnail.url : ''}
+                alt={image.alternativeText}
+                title={image.caption}
+              />
               {onDelete && (
                 <span
                   onClick={(e) => {
