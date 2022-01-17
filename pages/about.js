@@ -1,6 +1,7 @@
 import Page from '../components/hoc/page'
 
-function AboutPage() {
+function AboutPage({ setPageTitle }) {
+  setPageTitle('About')
   return (
     <>
       <p>

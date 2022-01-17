@@ -12,6 +12,7 @@ function SearchPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
 }) {
   const [isLoading, setIsLoading] = useState(true)
   const [stories, setStories] = useState([])
@@ -19,6 +20,7 @@ function SearchPage({
   // Page is 1-indexed, but the API query is 0 indexed.
   const [page, setPage] = useState(1)
   const [numStories, setNumStories] = useState(-1)
+  setPageTitle('')
 
   const findAndSetStories = async () => {
     setNumStories(await countStoriesBySearch(query))

@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Player from '../components/player'
 import App from 'next/app'
+import Head from 'next/head'
+
+export const DEFAULT_TITLE = 'KCHUNG News Body'
 
 function KchungNewsApp({ Component, pageProps }) {
+  const [pageTitle, setPageTitle] = useState('')
   const [openStory, setOpenStory] = useState({ id: '' })
   const [isPlaying, setIsPlaying] = useState(false)
   const [playingStory, setPlayingStory] = useState({ audio: {} })
@@ -27,6 +31,13 @@ function KchungNewsApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <title>
+          {pageTitle ? `${pageTitle} | ` : ''}
+          {DEFAULT_TITLE}
+        </title>
+      </Head>
+
       <Component
         {...pageProps}
         openStory={openStory}
@@ -34,6 +45,7 @@ function KchungNewsApp({ Component, pageProps }) {
         playingStory={playingStory}
         onStoryClick={handleStoryClick}
         onPlayClick={handleStoryPlayClick}
+        setPageTitle={setPageTitle}
       />
 
       {audioUrl && (

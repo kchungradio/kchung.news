@@ -9,7 +9,9 @@ function StoriesPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
 }) {
+  setPageTitle('')
   return (
     <StoryList
       openStory={openStory}

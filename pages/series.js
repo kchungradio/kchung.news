@@ -3,10 +3,11 @@ import Page from '../components/hoc/page'
 import Router from 'next/router'
 import { getSeriesList } from '../lib/strapi-query'
 
-function BrowseSeriesPage() {
+function BrowseSeriesPage({ setPageTitle }) {
   const [isLoading, setIsLoading] = useState(true)
   const [series, setSeries] = useState([])
   const [openSeries, setOpenSeries] = useState({})
+  setPageTitle('Browse Series')
 
   const handleSeriesClick = (series) => {
     setOpenSeries((prevOpenSeries) =>

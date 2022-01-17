@@ -12,6 +12,7 @@ function ChannelPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
 }) {
   const router = useRouter()
   const { author } = router.query
@@ -19,6 +20,7 @@ function ChannelPage({
   const queryString = authorQuery + author
   const countStories = () => countStoriesByChannel(author)
   const header = `${author}'s channel`
+  setPageTitle(header)
 
   return (
     <StoryList
