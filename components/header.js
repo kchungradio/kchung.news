@@ -50,7 +50,7 @@ const Header = () => (
         cursor: pointer;
       }
       img {
-        width: calc(100%);
+        width: 100%;
         height: auto;
       }
       nav {
