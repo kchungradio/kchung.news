@@ -32,6 +32,7 @@ function KchungNewsApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <html lang="en" />
         <title>
           {pageTitle ? `${pageTitle} | ` : ''}
           {DEFAULT_TITLE}
