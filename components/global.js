@@ -7,6 +7,7 @@ const { primary, secondary } = config.colors
 const Global = () => (
   <div>
     <Head>
+      <html lang="en" />
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta
