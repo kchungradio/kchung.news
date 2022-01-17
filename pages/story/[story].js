@@ -4,8 +4,15 @@ import { format, parseISO } from 'date-fns'
 import { getStoryBySlug } from '../../lib/strapi-query'
 import Page from '../../components/hoc/page'
 import Images from '../../components/images'
+import config from '../../config'
 
-function StoryPage({ isPlaying, playingStory, onPlayClick, setPageTitle }) {
+function StoryPage({
+  isPlaying,
+  playingStory,
+  onPlayClick,
+  setPageTitle,
+  setPageDescription,
+}) {
   const router = useRouter()
   const { story: storySlug } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -17,6 +24,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick, setPageTitle }) {
     let response = await getStoryBySlug(storySlug)
     setStory(response)
     setPageTitle(response.title || '')
+    setPageDescription(response.description || config.pageDescriptions.default)
     setIsLoading(false)
   }
 

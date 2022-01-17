@@ -13,6 +13,7 @@ function TagPage({
   onStoryClick,
   onPlayClick,
   setPageTitle,
+  setPageDescription,
 }) {
   const router = useRouter()
   const { tag } = router.query
@@ -22,6 +23,7 @@ function TagPage({
   const countStories = () => countStoriesByTag(tag)
   const header = `Tagged: ${tag}`
   setPageTitle(header)
+  setPageDescription(`${header} ${config.pageDescriptions.default}`)
 
   return (
     <StoryList

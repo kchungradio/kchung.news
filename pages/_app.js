@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import Player from '../components/player'
 import App from 'next/app'
 import Head from 'next/head'
-
-export const DEFAULT_TITLE = 'KCHUNG News Body'
+import { pageDescriptions, defaultPageTitle } from '../config'
 
 function KchungNewsApp({ Component, pageProps }) {
   const [pageTitle, setPageTitle] = useState('')
+  const [pageDescription, setPageDescription] = useState(
+    pageDescriptions.default
+  )
   const [openStory, setOpenStory] = useState({ id: '' })
   const [isPlaying, setIsPlaying] = useState(false)
   const [playingStory, setPlayingStory] = useState({ audio: {} })
@@ -34,8 +36,9 @@ function KchungNewsApp({ Component, pageProps }) {
       <Head>
         <title>
           {pageTitle ? `${pageTitle} | ` : ''}
-          {DEFAULT_TITLE}
+          {defaultPageTitle}
         </title>
+        <meta name="description" content={pageDescription} />
       </Head>
 
       <Component
@@ -46,6 +49,7 @@ function KchungNewsApp({ Component, pageProps }) {
         onStoryClick={handleStoryClick}
         onPlayClick={handleStoryPlayClick}
         setPageTitle={setPageTitle}
+        setPageDescription={setPageDescription}
       />
 
       {audioUrl && (

@@ -1,9 +1,11 @@
 import { Fragment } from 'react'
 
 import Page from '../components/hoc/page'
+import { pageDescriptions } from '../config'
 
-function ParticipatePage({ setPageTitle }) {
+function ParticipatePage({ setPageTitle, setPageDescription }) {
   setPageTitle('Participate')
+  setPageDescription(pageDescriptions.participate)
   return (
     <Fragment>
       <p>become a kchung news contributor</p>
