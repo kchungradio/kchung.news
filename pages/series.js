@@ -8,8 +8,6 @@ function BrowseSeriesPage({ setPageTitle, setPageDescription }) {
   const [isLoading, setIsLoading] = useState(true)
   const [series, setSeries] = useState([])
   const [openSeries, setOpenSeries] = useState({})
-  setPageTitle('Browse Series')
-  setPageDescription(`Browse Series. ${config.pageDescriptions.default}`)
 
   const handleSeriesClick = (series) => {
     setOpenSeries((prevOpenSeries) =>
@@ -24,6 +22,8 @@ function BrowseSeriesPage({ setPageTitle, setPageDescription }) {
   }
 
   useEffect(() => {
+    setPageTitle('Browse Series')
+    setPageDescription(`Browse Series. ${config.pageDescriptions.default}`)
     findAndSetSeries()
   }, [])
 

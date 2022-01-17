@@ -1,11 +1,13 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 
 import Page from '../components/hoc/page'
 import config from '../config'
 
 function ParticipatePage({ setPageTitle, setPageDescription }) {
-  setPageTitle('Participate')
-  setPageDescription(config.pageDescriptions.participate)
+  useEffect(() => {
+    setPageTitle('Participate')
+    setPageDescription(config.pageDescriptions.participate)
+  }, [])
   return (
     <Fragment>
       <p>become a kchung news contributor</p>

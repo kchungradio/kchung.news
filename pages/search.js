@@ -22,8 +22,11 @@ function SearchPage({
   // Page is 1-indexed, but the API query is 0 indexed.
   const [page, setPage] = useState(1)
   const [numStories, setNumStories] = useState(-1)
-  setPageTitle('')
-  setPageDescription(config.pageDescriptions.default)
+
+  const setPageMetadata = () => {
+    setPageTitle('')
+    setPageDescription(config.pageDescriptions.default)
+  }
 
   const findAndSetStories = async () => {
     setNumStories(await countStoriesBySearch(query))
@@ -48,6 +51,10 @@ function SearchPage({
   useEffect(() => {
     findAndSetStories()
   }, [page])
+
+  useEffect(() => {
+    setPageMetadata()
+  }, [])
 
   return isLoading ? (
     <div>Loading...</div>

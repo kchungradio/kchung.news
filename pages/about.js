@@ -1,9 +1,12 @@
+import { useEffect } from 'react'
 import Page from '../components/hoc/page'
 import config from '../config'
 
 function AboutPage({ setPageTitle, setPageDescription }) {
-  setPageTitle('About')
-  setPageDescription(`About: ${config.pageDescriptions.default}`)
+  useEffect(() => {
+    setPageTitle('About')
+    setPageDescription(`About: ${config.pageDescriptions.default}`)
+  }, [])
   return (
     <>
       <p>
