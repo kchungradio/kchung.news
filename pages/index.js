@@ -2,7 +2,7 @@ import React from 'react'
 import StoryList from '../components/hoc/story-list'
 import Page from '../components/hoc/page'
 import { findStories, countStories } from '../lib/strapi-query'
-import { pageDescriptions } from '../config'
+import config from '../config'
 
 function StoriesPage({
   openStory,
@@ -14,7 +14,7 @@ function StoriesPage({
   setPageDescription,
 }) {
   setPageTitle('')
-  setPageDescription(pageDescriptions.default)
+  setPageDescription(config.pageDescriptions.default)
   return (
     <StoryList
       openStory={openStory}

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Page from '../components/hoc/page'
 import Router from 'next/router'
 import { getSeriesList } from '../lib/strapi-query'
-import { pageDescriptions } from '../config'
+import config from '../config'
 
 function BrowseSeriesPage({ setPageTitle, setPageDescription }) {
   const [isLoading, setIsLoading] = useState(true)
   const [series, setSeries] = useState([])
   const [openSeries, setOpenSeries] = useState({})
   setPageTitle('Browse Series')
-  setPageDescription(`Browse Series. ${pageDescriptions.default}`)
+  setPageDescription(`Browse Series. ${config.pageDescriptions.default}`)
 
   const handleSeriesClick = (series) => {
     setOpenSeries((prevOpenSeries) =>

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import Player from '../components/player'
 import App from 'next/app'
 import Head from 'next/head'
-import { pageDescriptions, defaultPageTitle } from '../config'
+import config from '../config'
 
 function KchungNewsApp({ Component, pageProps }) {
   const [pageTitle, setPageTitle] = useState('')
   const [pageDescription, setPageDescription] = useState(
-    pageDescriptions.default
+    config.pageDescriptions.default
   )
   const [openStory, setOpenStory] = useState({ id: '' })
   const [isPlaying, setIsPlaying] = useState(false)
@@ -36,7 +36,7 @@ function KchungNewsApp({ Component, pageProps }) {
       <Head>
         <title>
           {pageTitle ? `${pageTitle} | ` : ''}
-          {defaultPageTitle}
+          {config.defaultPageTitle}
         </title>
         <meta name="description" content={pageDescription} />
       </Head>

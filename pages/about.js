@@ -1,9 +1,9 @@
 import Page from '../components/hoc/page'
-import { pageDescriptions } from '../config'
+import config from '../config'
 
 function AboutPage({ setPageTitle, setPageDescription }) {
   setPageTitle('About')
-  setPageDescription(`About: ${pageDescriptions.default}`)
+  setPageDescription(`About: ${config.pageDescriptions.default}`)
   return (
     <>
       <p>

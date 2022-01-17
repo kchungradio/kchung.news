@@ -5,7 +5,7 @@ import Page from '../components/hoc/page'
 import PageSelector from '../components/page-selector'
 import { LIMIT_PER_PAGE } from '../components/hoc/story-list'
 import { countStoriesBySearch, getStoriesBySearch } from '../lib/strapi-query'
-import { pageDescriptions } from '../config'
+import config from '../config'
 
 function SearchPage({
   openStory,
@@ -23,7 +23,7 @@ function SearchPage({
   const [page, setPage] = useState(1)
   const [numStories, setNumStories] = useState(-1)
   setPageTitle('')
-  setPageDescription(pageDescriptions.default)
+  setPageDescription(config.pageDescriptions.default)
 
   const findAndSetStories = async () => {
     setNumStories(await countStoriesBySearch(query))
