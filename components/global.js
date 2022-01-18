@@ -73,6 +73,10 @@ const Global = () => (
         outline: none;
         width: auto;
       }
+      button:focus {
+        outline: 5px auto Highlight;
+        outline: 5px auto -webkit-focus-ring-color;
+      }
       button:active,
       input[type='submit']:active {
         opacity: 0.6;
