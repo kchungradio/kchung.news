@@ -1,7 +1,10 @@
+import config from '../config'
+
 const NEXT_LABEL = '>'
 const PREV_LABEL = '<'
 const ELLIPSES = '...'
 const NUM_PAGES_IN_SELECTOR = 7 // Must be odd
+const { primary } = config.colors
 
 // Generate array of ints from start to end (inclusive)
 const range = (start, end) =>
@@ -78,25 +81,26 @@ export default function PageSelector({ page, numPages, goToPage }) {
 
   return (
     <div className="page-selector">
-      <span className="page-step-label" onClick={() => goToPage(page - 1)}>
+      <button className="page-step-label" onClick={() => goToPage(page - 1)}>
         {PREV_LABEL}
-      </span>
+      </button>
       {pagesToDisplay.map((p, i) => {
         const pageNumClass =
           (p === ELLIPSES ? '' : 'page-num') + (p === page ? ' curr-page' : '')
         return (
-          <span
+          <button
             className={pageNumClass}
             key={`${p}${i}`}
             onClick={() => onClickPage(p, goToPage)}
+            tabIndex={0}
           >
             {p}
-          </span>
+          </button>
         )
       })}
-      <span className="page-step-label" onClick={() => goToPage(page + 1)}>
+      <button className="page-step-label" onClick={() => goToPage(page + 1)}>
         {NEXT_LABEL}
-      </span>
+      </button>
       <style jsx>{`
         .page-selector {
           margin: auto;
@@ -109,12 +113,17 @@ export default function PageSelector({ page, numPages, goToPage }) {
           cursor: pointer;
           padding: 2px;
           margin: 0 5px 0 5px;
+          color: ${primary};
+          background-color: transparent;
         }
         .curr-page {
           background: #f6b7b8;
         }
         .page-step-label {
           cursor: pointer;
+          color: ${primary};
+          background: none;
+          border: none;
         }
       `}</style>
     </div>

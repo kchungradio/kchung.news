@@ -49,6 +49,7 @@ export default class Images extends Component {
                 src={image.formats ? image.formats.thumbnail.url : ''}
                 alt={image.alternativeText}
                 title={image.caption}
+                tabIndex={0}
               />
               {onDelete && (
                 <span

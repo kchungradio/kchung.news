@@ -20,7 +20,10 @@ function ParticipatePage({ setPageTitle, setPageDescription }) {
         <li>edit.... or not!</li>
         <li>
           get in touch! email us at{' '}
-          <a href="mailto:lyra@kchungradio.org?Subject=Participate">
+          <a
+            href="mailto:lyra@kchungradio.org?Subject=Participate"
+            tabIndex={0}
+          >
             <b>lyra@kchungradio.org</b>
           </a>{' '}
           and we will get you set up
@@ -33,7 +36,7 @@ function ParticipatePage({ setPageTitle, setPageDescription }) {
       <br />
       <p>
         if you have any questions or would like more info,{' '}
-        <a href="mailto:lyra@kchungradio.org?Subject=Participate">
+        <a href="mailto:lyra@kchungradio.org?Subject=Participate" tabIndex={0}>
           <b>let us know</b>
         </a>
       </p>

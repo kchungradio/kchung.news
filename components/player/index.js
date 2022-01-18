@@ -60,6 +60,7 @@ export default class Player extends Component {
           className="play-button"
           src={`/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
+          tabIndex={0}
         />
 
         <div className="stack">

@@ -38,7 +38,9 @@ function SeriesHeader({ seriesName }) {
             {series?.description.length > MAX_DESCRIPTION_SIZE && collapsed && (
               <>
                 <span>{ELLIPSES}</span>
-                <button onClick={() => setCollapsed(false)}>{SHOW_MORE}</button>
+                <button onClick={() => setCollapsed(false)} tabIndex={0}>
+                  {SHOW_MORE}
+                </button>
               </>
             )}
           </p>

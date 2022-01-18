@@ -39,7 +39,9 @@ function AboutPage({ setPageTitle, setPageDescription }) {
           recipient
         </p>
         <p>
-          <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
+          <a href="mailto:lyra@kchungradio.org" tabIndex={0}>
+            lyra@kchungradio.org
+          </a>
         </p>
       </small>
     </>

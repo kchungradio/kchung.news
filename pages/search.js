@@ -65,6 +65,7 @@ function SearchPage({
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        tabIndex={0}
       />
       <br />
       <StoriesList

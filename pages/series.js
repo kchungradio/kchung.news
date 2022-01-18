@@ -56,12 +56,13 @@ function SeriesList({ series, openSeries, onSeriesClick }) {
 function Series({ series, openSeries, onClick }) {
   return (
     <div className="series">
-      <div className="series-main" onClick={() => onClick(series)}>
+      <div className="series-main" onClick={() => onClick(series)} onFocus={() => onClick(series)} tabIndex={0}>
         <span className="name">{series.seriesName}</span>
       </div>
       {openSeries?.id === series.id && (
         <>
           <button
+            tabIndex={0}
             onClick={() => {
               Router.push('/series/[series]', `/series/${series.seriesName}`)
               onClick({ id: '' })

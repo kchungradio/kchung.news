@@ -43,6 +43,7 @@ function StoryPage({
             className="play-button"
             src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
             onClick={() => onPlayClick(story)}
+            tabIndex={0}
           />
         )}
       </h1>
@@ -57,6 +58,7 @@ function StoryPage({
             e.stopPropagation()
             router.push('/channel/[author]', `/channel/${story.author}`)
           }}
+          tabIndex={0}
         >
           {story.author}
         </button>
@@ -72,6 +74,7 @@ function StoryPage({
             {' '}
             Series:{' '}
             <button
+              tabIndex={0}
               onClick={(e) => {
                 e.stopPropagation()
                 router.push(
@@ -96,6 +99,7 @@ function StoryPage({
                     e.stopPropagation()
                     router.push('/tag/[tag]', `/tag/${tag.tagName}`)
                   }}
+                  tabIndex={0}
                 >
                   {tag.tagName}
                 </button>

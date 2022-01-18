@@ -33,7 +33,14 @@ const Header = () => (
       </Link>
       <span> | </span>
       <Link href="/search">
-        <img className="search" src="/search.svg" alt="Search" title="Search" />
+        <a>
+          <img
+            className="search"
+            src="/search.svg"
+            alt="Search"
+            title="Search"
+          />
+        </a>
       </Link>
       {'  *'}
     </nav>
