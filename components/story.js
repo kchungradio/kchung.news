@@ -12,6 +12,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
     {story.audio && (
       <img
         className="play-button"
+        alt="play button"
         src={`/${isPlaying ? 'pause' : 'play'}.svg`}
         onClick={() => onPlayClick(story)}
       />

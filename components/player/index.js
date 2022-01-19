@@ -58,6 +58,7 @@ export default class Player extends Component {
 
         <img
           className="play-button"
+          alt="play button"
           src={`/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
           tabIndex={0}

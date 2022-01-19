@@ -41,6 +41,7 @@ function StoryPage({
         {story.audio && (
           <img
             className="play-button"
+            alt="play button"
             src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
             onClick={() => onPlayClick(story)}
             tabIndex={0}
