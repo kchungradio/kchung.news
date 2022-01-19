@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Page from '../components/hoc/page'
 import Router from 'next/router'
 import { getSeriesList } from '../lib/strapi-query'
+import config from '../config'
 
-function BrowseSeriesPage() {
+function BrowseSeriesPage({ setPageTitle, setPageDescription }) {
   const [isLoading, setIsLoading] = useState(true)
   const [series, setSeries] = useState([])
   const [openSeries, setOpenSeries] = useState({})
@@ -21,6 +22,8 @@ function BrowseSeriesPage() {
   }
 
   useEffect(() => {
+    setPageTitle('Browse Series')
+    setPageDescription(`Browse Series. ${config.pageDescriptions.default}`)
     findAndSetSeries()
   }, [])
 
@@ -53,12 +56,13 @@ function SeriesList({ series, openSeries, onSeriesClick }) {
 function Series({ series, openSeries, onClick }) {
   return (
     <div className="series">
-      <div className="series-main" onClick={() => onClick(series)}>
+      <div className="series-main" onFocus={() => onClick(series)} tabIndex={0}>
         <span className="name">{series.seriesName}</span>
       </div>
       {openSeries?.id === series.id && (
         <>
           <button
+            tabIndex={0}
             onClick={() => {
               Router.push('/series/[series]', `/series/${series.seriesName}`)
               onClick({ id: '' })

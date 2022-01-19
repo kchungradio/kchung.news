@@ -4,8 +4,15 @@ import { format, parseISO } from 'date-fns'
 import { getStoryBySlug } from '../../lib/strapi-query'
 import Page from '../../components/hoc/page'
 import Images from '../../components/images'
+import config from '../../config'
 
-function StoryPage({ isPlaying, playingStory, onPlayClick }) {
+function StoryPage({
+  isPlaying,
+  playingStory,
+  onPlayClick,
+  setPageTitle,
+  setPageDescription,
+}) {
   const router = useRouter()
   const { story: storySlug } = router.query
   const [isLoading, setIsLoading] = useState(true)
@@ -16,6 +23,8 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
   const findAndSetStory = async () => {
     let response = await getStoryBySlug(storySlug)
     setStory(response)
+    setPageTitle(response.title || '')
+    setPageDescription(response.description || config.pageDescriptions.default)
     setIsLoading(false)
   }
 
@@ -32,8 +41,10 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
         {story.audio && (
           <img
             className="play-button"
+            alt="play button"
             src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
             onClick={() => onPlayClick(story)}
+            tabIndex={0}
           />
         )}
       </h1>
@@ -48,6 +59,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             e.stopPropagation()
             router.push('/channel/[author]', `/channel/${story.author}`)
           }}
+          tabIndex={0}
         >
           {story.author}
         </button>
@@ -63,6 +75,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
             {' '}
             Series:{' '}
             <button
+              tabIndex={0}
               onClick={(e) => {
                 e.stopPropagation()
                 router.push(
@@ -87,6 +100,7 @@ function StoryPage({ isPlaying, playingStory, onPlayClick }) {
                     e.stopPropagation()
                     router.push('/tag/[tag]', `/tag/${tag.tagName}`)
                   }}
+                  tabIndex={0}
                 >
                   {tag.tagName}
                 </button>

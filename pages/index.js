@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import StoryList from '../components/hoc/story-list'
 import Page from '../components/hoc/page'
 import { findStories, countStories } from '../lib/strapi-query'
+import config from '../config'
 
 function StoriesPage({
   openStory,
@@ -9,7 +10,13 @@ function StoriesPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
+  setPageDescription,
 }) {
+  useEffect(() => {
+    setPageTitle('')
+    setPageDescription(config.pageDescriptions.default)
+  }, [])
   return (
     <StoryList
       openStory={openStory}

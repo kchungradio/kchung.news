@@ -1,6 +1,12 @@
+import { useEffect } from 'react'
 import Page from '../components/hoc/page'
+import config from '../config'
 
-function AboutPage() {
+function AboutPage({ setPageTitle, setPageDescription }) {
+  useEffect(() => {
+    setPageTitle('About')
+    setPageDescription(`About: ${config.pageDescriptions.default}`)
+  }, [])
   return (
     <>
       <p>
@@ -33,7 +39,9 @@ function AboutPage() {
           recipient
         </p>
         <p>
-          <a href="mailto:lyra@kchungradio.org">lyra@kchungradio.org</a>
+          <a href="mailto:lyra@kchungradio.org" tabIndex={0}>
+            lyra@kchungradio.org
+          </a>
         </p>
       </small>
     </>

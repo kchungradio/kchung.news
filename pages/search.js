@@ -5,6 +5,7 @@ import Page from '../components/hoc/page'
 import PageSelector from '../components/page-selector'
 import { LIMIT_PER_PAGE } from '../components/hoc/story-list'
 import { countStoriesBySearch, getStoriesBySearch } from '../lib/strapi-query'
+import config from '../config'
 
 function SearchPage({
   openStory,
@@ -12,6 +13,8 @@ function SearchPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
+  setPageDescription,
 }) {
   const [isLoading, setIsLoading] = useState(true)
   const [stories, setStories] = useState([])
@@ -19,6 +22,11 @@ function SearchPage({
   // Page is 1-indexed, but the API query is 0 indexed.
   const [page, setPage] = useState(1)
   const [numStories, setNumStories] = useState(-1)
+
+  const setPageMetadata = () => {
+    setPageTitle('')
+    setPageDescription(config.pageDescriptions.default)
+  }
 
   const findAndSetStories = async () => {
     setNumStories(await countStoriesBySearch(query))
@@ -44,6 +52,10 @@ function SearchPage({
     findAndSetStories()
   }, [page])
 
+  useEffect(() => {
+    setPageMetadata()
+  }, [])
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -53,6 +65,7 @@ function SearchPage({
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        tabIndex={0}
       />
       <br />
       <StoriesList

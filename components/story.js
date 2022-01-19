@@ -12,6 +12,7 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
     {story.audio && (
       <img
         className="play-button"
+        alt="play button"
         src={`/${isPlaying ? 'pause' : 'play'}.svg`}
         onClick={() => onPlayClick(story)}
       />
@@ -64,7 +65,7 @@ class Story extends Component {
     const { story, showDetails, isPlaying, onClick, onPlayClick } = this.props
     return (
       <div className="story">
-        <div className="story-main" onClick={() => onClick(story)}>
+        <div className="story-main" onFocus={() => onClick(story)} tabIndex={0}>
           <span className="author">{story.author}</span>
 
           <span className="date">
@@ -79,6 +80,7 @@ class Story extends Component {
                 {' '}
                 Series:{' '}
                 <button
+                  tabIndex={0}
                   onClick={(e) => {
                     e.stopPropagation()
                     Router.push(

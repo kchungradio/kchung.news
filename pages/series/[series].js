@@ -12,6 +12,8 @@ function SeriesPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
+  setPageDescription,
 }) {
   const router = useRouter()
   const [seriesName, setSeriesName] = useState()
@@ -22,7 +24,10 @@ function SeriesPage({
   const countStories = () => countStoriesBySeries(seriesName)
 
   const findAndSetSeriesName = async () => {
-    setSeriesName(router.query.series)
+    const newSeriesName = router.query.series
+    setSeriesName(newSeriesName)
+    setPageTitle(newSeriesName)
+    setPageDescription(`${newSeriesName} ${config.pageDescriptions.default}`)
     setIsLoading(false)
   }
 

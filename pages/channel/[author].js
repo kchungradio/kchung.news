@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import StoryList from '../../components/hoc/story-list'
 import Page from '../../components/hoc/page'
@@ -12,6 +12,8 @@ function ChannelPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
+  setPageDescription,
 }) {
   const router = useRouter()
   const { author } = router.query
@@ -19,6 +21,11 @@ function ChannelPage({
   const queryString = authorQuery + author
   const countStories = () => countStoriesByChannel(author)
   const header = `${author}'s channel`
+
+  useEffect(() => {
+    setPageTitle(header)
+    setPageDescription(`${header} ${config.pageDescriptions.default}`)
+  }, [])
 
   return (
     <StoryList

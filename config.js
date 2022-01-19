@@ -29,6 +29,13 @@ config.api.queries = {
   series: '?series.seriesName=',
   tag: '?tags.tagName_in=',
 }
+config.defaultPageTitle = 'KCHUNG News Body'
+config.pageDescriptions = {
+  default:
+    'KCHUNG News Body is a vehicle for mobile, roving broadcast that brings live interviews and reporting as well as production training to any site, event and community.',
+  participate:
+    'Become a kchung news contributor here. go out and record sounds in your world using any available means',
+}
 
 config.s3 = {}
 config.s3.rootUrl = 'https://s3-us-west-2.amazonaws.com/archive.kchung.news/'

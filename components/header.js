@@ -5,7 +5,11 @@ const Header = () => (
     <h1>
       <Link href="/">
         <a>
-          <img src="/newsbody_flat_black.png" alt="KCHUNG News Body" />
+          <img
+            src="/newsbody_flat_black.png"
+            alt="KCHUNG News Body"
+            title="KCHUNG News Body"
+          />
         </a>
       </Link>
     </h1>
@@ -29,7 +33,14 @@ const Header = () => (
       </Link>
       <span> | </span>
       <Link href="/search">
-        <img className="search" src="/search.svg" />
+        <a>
+          <img
+            className="search"
+            src="/search.svg"
+            alt="Search"
+            title="Search"
+          />
+        </a>
       </Link>
       {'  *'}
     </nav>
@@ -51,6 +62,7 @@ const Header = () => (
       }
       img {
         width: 100%;
+        height: auto;
       }
       nav {
         padding-top: 5px;

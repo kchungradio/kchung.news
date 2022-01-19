@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import StoryList from '../../components/hoc/story-list'
 import Page from '../../components/hoc/page'
@@ -12,6 +12,8 @@ function TagPage({
   playingStory,
   onStoryClick,
   onPlayClick,
+  setPageTitle,
+  setPageDescription,
 }) {
   const router = useRouter()
   const { tag } = router.query
@@ -20,6 +22,11 @@ function TagPage({
   const queryString = tagQuery + tag
   const countStories = () => countStoriesByTag(tag)
   const header = `Tagged: ${tag}`
+
+  useEffect(() => {
+    setPageTitle(header)
+    setPageDescription(`${header} ${config.pageDescriptions.default}`)
+  }, [])
 
   return (
     <StoryList
