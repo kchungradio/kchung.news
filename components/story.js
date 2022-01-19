@@ -64,12 +64,7 @@ class Story extends Component {
     const { story, showDetails, isPlaying, onClick, onPlayClick } = this.props
     return (
       <div className="story">
-        <div
-          className="story-main"
-          onClick={() => onClick(story)}
-          onFocus={() => onClick(story)}
-          tabIndex={0}
-        >
+        <div className="story-main" onFocus={() => onClick(story)} tabIndex={0}>
           <span className="author">{story.author}</span>
 
           <span className="date">

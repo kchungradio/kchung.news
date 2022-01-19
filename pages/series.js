@@ -56,7 +56,7 @@ function SeriesList({ series, openSeries, onSeriesClick }) {
 function Series({ series, openSeries, onClick }) {
   return (
     <div className="series">
-      <div className="series-main" onClick={() => onClick(series)} onFocus={() => onClick(series)} tabIndex={0}>
+      <div className="series-main" onFocus={() => onClick(series)} tabIndex={0}>
         <span className="name">{series.seriesName}</span>
       </div>
       {openSeries?.id === series.id && (
