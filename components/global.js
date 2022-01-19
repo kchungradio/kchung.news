@@ -11,7 +11,7 @@ const Global = () => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta
         name="google-site-verification"
-        content="bdv9GjKeXJSA42CbqHqI-n7yA-N9uOtIfyyTSxGff_Y"
+        content="Uf3qqCbq1tzSkxOcS3kKz3mdzCRWNBZLATklreFof7g"
       />
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     </Head>
