@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import StoryList from '../components/hoc/story-list'
 import Page from '../components/hoc/page'
-import { findStories, countStories } from '../lib/strapi-query'
+import { countStories } from '../lib/strapi-query'
 import config from '../config'
 
 function StoriesPage({
@@ -24,7 +24,6 @@ function StoriesPage({
       playingStory={playingStory}
       onStoryClick={onStoryClick}
       onPlayClick={onPlayClick}
-      findStories={findStories}
       countStories={countStories}
     />
   )

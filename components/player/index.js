@@ -24,6 +24,7 @@ export default class Player extends Component {
   }
   onSeekChange = (e) => {
     this.setState({ playedPercent: parseFloat(e.target.value) })
+    this.player.seekTo(parseFloat(e.target.value))
   }
   onSeekMouseUp = (e) => {
     this.setState({ seeking: false })
@@ -61,6 +62,7 @@ export default class Player extends Component {
           alt="play button"
           src={`/${isPlaying ? 'pause' : 'play'}.svg`}
           onClick={togglePlayPause}
+          onKeyDown={(e) => e.key === 'Enter' && togglePlayPause()}
           tabIndex={0}
         />
 
@@ -80,6 +82,7 @@ export default class Player extends Component {
             onMouseDown={this.onSeekMouseDown}
             onChange={this.onSeekChange}
             onMouseUp={this.onSeekMouseUp}
+            onKeyDown={(e) => e.key === 'Enter' && togglePlayPause()}
           />
         </div>
 

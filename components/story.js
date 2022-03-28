@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { format, parseISO } from 'date-fns'
 import Router from 'next/router'
+import { debounce } from 'lodash'
 
 import Images from './images'
 
@@ -15,6 +16,8 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
         alt="play button"
         src={`/${isPlaying ? 'pause' : 'play'}.svg`}
         onClick={() => onPlayClick(story)}
+        onKeyDown={(e) => e.key === 'Enter' && onPlayClick(story)}
+        tabIndex={0}
       />
     )}
 
@@ -63,9 +66,15 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
 class Story extends Component {
   render() {
     const { story, showDetails, isPlaying, onClick, onPlayClick } = this.props
+    const debounceStoryClick = debounce(() => onClick(story), 200)
     return (
       <div className="story">
-        <div className="story-main" onFocus={() => onClick(story)} tabIndex={0}>
+        <div
+          className="story-main"
+          onFocus={debounceStoryClick}
+          onClick={debounceStoryClick}
+          tabIndex={0}
+        >
           <span className="author">{story.author}</span>
 
           <span className="date">
@@ -88,6 +97,7 @@ class Story extends Component {
                       `/series/${story.series.seriesName}`
                     )
                   }}
+                  onFocus={(e) => e.stopPropagation()}
                 >
                   {story.series.seriesName}
                 </button>

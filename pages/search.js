@@ -30,7 +30,7 @@ function SearchPage({
 
   const findAndSetStories = async () => {
     setNumStories(await countStoriesBySearch(query))
-    let response = await getStoriesBySearch(query)
+    let response = await getStoriesBySearch(query, page - 1, LIMIT_PER_PAGE)
     setStories(response)
     setIsLoading(false)
   }
