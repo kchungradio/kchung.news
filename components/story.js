@@ -16,6 +16,8 @@ const StoryDetails = ({ story, isPlaying, onPlayClick, onClick }) => (
         alt="play button"
         src={`/${isPlaying ? 'pause' : 'play'}.svg`}
         onClick={() => onPlayClick(story)}
+        onKeyDown={(e) => e.key === 'Enter' && onPlayClick(story)}
+        tabIndex={0}
       />
     )}
 
@@ -95,6 +97,7 @@ class Story extends Component {
                       `/series/${story.series.seriesName}`
                     )
                   }}
+                  onFocus={(e) => e.stopPropagation()}
                 >
                   {story.series.seriesName}
                 </button>

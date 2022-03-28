@@ -44,6 +44,7 @@ function StoryPage({
             alt="play button"
             src={`/${isThisStoryPlaying ? 'pause' : 'play'}.svg`}
             onClick={() => onPlayClick(story)}
+            onKeyDown={(e) => e.key === 'Enter' && onPlayClick(story)}
             tabIndex={0}
           />
         )}
