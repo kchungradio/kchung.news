@@ -17,10 +17,9 @@ function KchungNewsApp({ Component, pageProps }) {
   const { url: audioUrl } = audio
 
   const handleStoryClick = (story) => {
-    setOpenStory((prevOpenStory) => {
-      console.log(story)
-      return prevOpenStory?.id !== story.id ? story : { id: '' }
-    })
+    setOpenStory((prevOpenStory) =>
+      prevOpenStory?.id !== story.id ? story : { id: '' }
+    )
   }
 
   const handleStoryPlayClick = (story) => {
