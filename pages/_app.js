@@ -18,7 +18,7 @@ function KchungNewsApp({ Component, pageProps }) {
 
   const handleStoryClick = (story) => {
     setOpenStory((prevOpenStory) =>
-      prevOpenStory?.id !== story.id ? story : null
+      prevOpenStory?.id !== story.id ? story : { id: '' }
     )
   }
 
