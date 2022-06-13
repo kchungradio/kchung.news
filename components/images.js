@@ -42,7 +42,7 @@ export default class Images extends Component {
         <ul>
           {images.map((image, idx) => (
             <li
-              key={image.filename + idx}
+              key={`${image.filename}-${idx}`}
               onClick={() => this.openLightbox(idx)}
             >
               <img

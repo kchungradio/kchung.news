@@ -1,12 +1,12 @@
 {
   "name": "kchung.news",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "axios": "^0.21.2",
     "date-fns": "^2.17.0",
     "lodash.debounce": "^4.0.8",
-    "next": "^10.0.6",
+    "next": "^12.1.6",
     "qs": "^6.10.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

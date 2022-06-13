@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { format, parseISO } from 'date-fns'
 import Router from 'next/router'
-import { debounce } from 'lodash'
+import debounce from 'lodash.debounce'
 
 import Images from './images'
 
