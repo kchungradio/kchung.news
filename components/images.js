@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Lightbox from 'react-images'
+import {Carousel} from 'react-responsive-carousel';
 
 export default class Images extends Component {
   state = {
@@ -65,15 +65,13 @@ export default class Images extends Component {
           ))}
         </ul>
 
-        <Lightbox
-          images={imageObjects}
-          isOpen={lightboxIsOpen}
-          onClose={this.closeLightbox}
-          currentImage={currentImage}
-          onClickPrev={this.prevImage}
-          onClickNext={this.nextImage}
-          backdropClosesModal
-        />
+        <Carousel>
+          {imageObjects.map(image => (
+            <div>
+              <img src={image.src} alt={image.alt} />
+            </div>
+          ))}
+        </Carousel>
 
         <style jsx>{`
           ul,
