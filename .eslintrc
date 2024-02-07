@@ -4,15 +4,19 @@
     "node": true,
     "browser": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
     "ecmaVersion": 7,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
       "modules": true,
       "experimentalObjectRestSpread": true
-    }
+    },
+    "requireConfigFile": false
   },
   "extends": [
     "eslint:recommended",
@@ -26,6 +30,15 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": [
+          "jsx",
+          "global"
+        ]
+      }
+    ],
     "react/prop-types": "off"
   },
   "globals": {
