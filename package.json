@@ -10,13 +10,13 @@
     "qs": "6.11.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-images": "1.2.0-beta.7",
-    "react-player": "1.15.3"
+    "react-player": "1.15.3",
+    "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {
     "@babel/core": "7.23.9",
-    "@babel/preset-env": "7.23.9",
     "@babel/eslint-parser": "7.23.10",
+    "@babel/preset-env": "7.23.9",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
